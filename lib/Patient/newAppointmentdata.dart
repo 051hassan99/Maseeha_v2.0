@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 
 class NewAppointmentData extends ChangeNotifier {
@@ -8,6 +9,8 @@ class NewAppointmentData extends ChangeNotifier {
   String diseaseDescription;
   String phonenumber;
   String doctorName;
+  String docEmail;
+  String patientEmail;
 
   NewAppointmentData(
       {this.name,
@@ -15,17 +18,20 @@ class NewAppointmentData extends ChangeNotifier {
       this.appointmenttype,
       this.gender,
       this.diseaseDescription,
-      this.doctorName});
+      this.doctorName,
+      this.patientEmail,
+      this.docEmail});
 
   factory NewAppointmentData.fromJson(Map<String, dynamic> map) {
     return NewAppointmentData(
-      name: map['PatientName'],
-      age: map['Age'],
-      gender: map['Gender'],
-      appointmenttype: map['ApointmentType'],
-      diseaseDescription: map['DiseaseDescription'],
-      doctorName: map['DoctoroName'],
-    );
+        name: map['PatientName'],
+        age: map['Age'],
+        gender: map['Gender'],
+        appointmenttype: map['AppointmentType'],
+        diseaseDescription: map['DiseaseDescription'],
+        patientEmail: map['patientEmail'],
+        doctorName: map['DoctorName'],
+        docEmail: map['docEmail']);
   }
 
   Map<String, dynamic> get toJson => {
@@ -34,8 +40,10 @@ class NewAppointmentData extends ChangeNotifier {
         "Gender": this.gender,
         "AppointmentType": this.appointmenttype,
         "DiseaseDescription": this.diseaseDescription,
-        "PhoneNumber": this.phonenumber,
-        "DoctoroName": this.doctorName,
+        "patientEmail": this.patientEmail,
+        "DoctorName": this.doctorName,
+        "docEmail": this.docEmail,
+        "createdAt": FieldValue.serverTimestamp()
       };
 
   void genderChanged(String value) {

@@ -1,9 +1,12 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
-//import 'package:flutter_polyline_points/flutter_polyline_points.dart';
+import 'package:flutter_polyline_points/flutter_polyline_points.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:maseeha_update/Assistants/assistantMethods.dart';
+import 'package:maseeha_update/DataHandler/AppData.dart';
+import 'package:maseeha_update/Patient/searchScreen.dart';
+import 'package:provider/provider.dart';
 
 class MapBuilding extends StatefulWidget {
   @override
@@ -39,9 +42,7 @@ class _MapBuildingState extends State<MapBuilding> {
     newGoogleMapController
         .animateCamera(CameraUpdate.newCameraPosition(cameraPosition));
 
-    String address =
-        await AssistantMethods.searchCoordinateAddress(position, context);
-    print("This is your searched address::" + address);
+    await AssistantMethods.searchCoordinateAddress(position, context);
   }
 
   static final CameraPosition _kGooglePlex = CameraPosition(
@@ -83,7 +84,14 @@ class _MapBuildingState extends State<MapBuilding> {
               right: 0.0,
               bottom: 0.0,
               child: GestureDetector(
-                onTap: () async {},
+                onTap: () async {
+                  var res = await Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => SearchScreen()));
+
+                  if (res == "obtaindirection") {
+                    await getPlaceDirection();
+                  }
+                },
                 child: Container(
                   height: (size.height * 4) / 10,
                   decoration: BoxDecoration(
@@ -173,11 +181,17 @@ class _MapBuildingState extends State<MapBuilding> {
                                 FittedBox(
                                   fit: BoxFit.contain,
                                   child: Container(
-                                    height: 50,
+                                    height: 60,
                                     width: 250,
                                     padding: EdgeInsets.only(top: 7.0),
                                     child: Text(
-                                      "Add Home",
+                                      Provider.of<AppData>(context)
+                                                  .userlocation !=
+                                              null
+                                          ? Provider.of<AppData>(context)
+                                              .userlocation
+                                              .placeName
+                                          : "Add Home",
                                       style: TextStyle(
                                         fontSize: 15.0,
                                         color: Colors.white,
@@ -201,7 +215,19 @@ class _MapBuildingState extends State<MapBuilding> {
     );
   }
 
-  /*  PolylinePoints polylinePoints = new PolylinePoints();
+  Future<void> getPlaceDirection() async {
+    var intialPos = Provider.of<AppData>(context, listen: false).userlocation;
+    var finalPos =
+        Provider.of<AppData>(context, listen: false).searchedlocation;
+
+    var userIntialLocation = LatLng(intialPos.latitude, intialPos.longitude);
+    var finalDestinationLocation =
+        LatLng(finalPos.latitude, finalPos.longitude);
+
+    var details = await AssistantMethods.obtainPlacePredictionDetails(
+        userIntialLocation, finalDestinationLocation);
+
+    PolylinePoints polylinePoints = new PolylinePoints();
     List<PointLatLng> decodePolyLineResult =
         polylinePoints.decodePolyline(details.encodePoints);
 
@@ -296,10 +322,11 @@ class _MapBuildingState extends State<MapBuilding> {
       strokeColor: Colors.greenAccent,
       strokeWidth: 4,
       circleId: CircleId("FinalDestinationLocationId"),
-    );  
+    );
 
     setState(() {
       circleSet.add(userIntialLocationCircle);
       circleSet.add(finalDestinationLocationCircle);
-    }); */
+    });
+  }
 }

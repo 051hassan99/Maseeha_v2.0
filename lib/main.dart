@@ -2,8 +2,16 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:maseeha_update/Custodian/showPatientCustodian.dart';
+import 'package:maseeha_update/DataHandler/AppData.dart';
+import 'package:maseeha_update/Doctor/appointmentReply/appointmentReply.dart';
+import 'package:maseeha_update/Doctor/doctor_dashboard.dart';
+import 'package:maseeha_update/Models/login_data.dart';
 import 'package:maseeha_update/Patient/caretakerAppointment/caretakerNewAppointmentData.dart';
 import 'package:maseeha_update/Patient/doctorList.dart';
+import 'package:maseeha_update/Patient/patient_dashboard.dart';
+import 'package:maseeha_update/Patient/patient_login.dart';
+import 'package:maseeha_update/category.dart';
+import 'package:maseeha_update/screens/login_screen.dart';
 import 'package:provider/provider.dart';
 import 'Custodian/addMedicineData.dart';
 import 'Doctor/apointment_messages.dart';
@@ -90,6 +98,15 @@ class _MyAppState extends State<MyApp> {
         ChangeNotifierProvider(
           create: (context) => CaretakerNewAppointmentData(),
         ),
+        ChangeNotifierProvider(
+          create: (context) => AppData(),
+        ),
+        ChangeNotifierProvider(
+          create: (_) => LoginData(),
+        ),
+        ChangeNotifierProvider(
+          create: (_) => AppointmentReply(),
+        ),
       ],
       child: MaterialApp(
         locale: _locale,
@@ -122,6 +139,10 @@ class _MyAppState extends State<MyApp> {
         initialRoute: SplashScreen.id,
         routes: {
           SplashScreen.id: (_) => SplashScreen(),
+          Category.id: (_) => Category(),
+          LoginScreen.id: (_) => LoginScreen(),
+          PatientDashboard.id: (_) => PatientDashboard(),
+          DoctorDashboard.id: (_) => DoctorDashboard(),
           DoctorList.id: (_) => DoctorList(),
           Appointments.id: (_) => Appointments(),
           ShowPatientCustodian.id: (_) => ShowPatientCustodian()

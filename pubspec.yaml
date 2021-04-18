@@ -39,6 +39,7 @@ dependencies:
   path_provider: ^2.0.1
   provider: ^5.0.0
   shared_preferences: ^2.0.4
+  flutter_polyline_points: ^0.2.6
 
 dev_dependencies:
   flutter_test:

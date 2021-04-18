@@ -8,6 +8,7 @@ import 'apointment_messages.dart';
 import 'doctor_drawer.dart';
 
 class DoctorDashboard extends StatelessWidget {
+  static const String id = 'doctor_dashboard';
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;

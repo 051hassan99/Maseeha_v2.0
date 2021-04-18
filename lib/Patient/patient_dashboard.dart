@@ -10,6 +10,8 @@ import 'package:maseeha_update/localization/demo_localization.dart';
 import '../lang_selector.dart';
 
 class PatientDashboard extends StatelessWidget {
+  static const String id = 'patient_dashboard';
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;

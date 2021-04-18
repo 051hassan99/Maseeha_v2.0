@@ -1,11 +1,13 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:maseeha_update/Assistants/firestore_assitant.dart';
 import 'package:maseeha_update/Patient/newAppointmentdata.dart';
 import 'package:maseeha_update/localization/demo_localization.dart';
 import 'package:provider/provider.dart';
 import '../doctorsdata.dart';
 import '../lang_selector.dart';
+import 'loginPatientData.dart';
 import 'newAppointment.dart';
 //import 'package:path/path.dart';
 
@@ -15,15 +17,66 @@ class DoctorList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    void takeAppointment(ctx) {
-      showModalBottomSheet(
-          context: ctx,
-          builder: (context) {
-            return NewAppointment();
-          });
-    }
-
     Size size = MediaQuery.of(context).size;
+    final patientEmail =
+        context.read<LoginPatientData>().getCurrentPatientData();
+
+    final firestoreAssitant = FirestoreAssitant();
+    final newApponitmentData =
+        Provider.of<NewAppointmentData>(context, listen: false);
+
+    void takeAnAppointment(BuildContext context) => showDialog(
+        context: context,
+        builder: (_) {
+          return SingleChildScrollView(
+            child: AlertDialog(
+              title: Container(
+                child: Center(
+                  child: Text(
+                    DemoLocalization.of(context).getTranslatedValue('fillform'),
+                    style: GoogleFonts.rajdhani(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 20,
+                      color: Theme.of(context).primaryColor,
+                    ),
+                  ),
+                ),
+              ),
+              content: NewAppointment(),
+              actions: [
+                FlatButton(
+                    child: Text(
+                      DemoLocalization.of(context).getTranslatedValue('submit'),
+                      style: GoogleFonts.rajdhani(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 16,
+                          color: Colors.blue),
+                    ),
+                    onPressed: () async {
+                      try {
+                        print('Uploading data');
+                        firestoreAssitant.sendAppointment(newApponitmentData);
+                        Navigator.pop(context);
+                      } catch (_) {
+                        print('Failed to upload');
+                      }
+                    }),
+                FlatButton(
+                    child: Text(
+                      'Cancel',
+                      style: GoogleFonts.rajdhani(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 16,
+                          color: Colors.blue),
+                    ),
+                    onPressed: () async {
+                      Navigator.pop(context);
+                    }),
+              ],
+            ),
+          );
+        });
+
     return Scaffold(
       appBar: AppBar(
         title: Padding(
@@ -106,7 +159,7 @@ class DoctorList extends StatelessWidget {
                               padding: EdgeInsets.all(5),
                             ),
                             Container(
-                              height: 150,
+                              height: 180,
                               width: 150,
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -122,6 +175,12 @@ class DoctorList extends StatelessWidget {
                                   ),
                                   Text(
                                     doc.hospital ?? 'No data',
+                                    style: TextStyle(
+                                      fontSize: 12,
+                                    ),
+                                  ),
+                                  Text(
+                                    doc.docEmail ?? 'No data',
                                     style: TextStyle(
                                       fontSize: 12,
                                     ),
@@ -146,7 +205,13 @@ class DoctorList extends StatelessWidget {
                                         context
                                             .read<NewAppointmentData>()
                                             .doctorName = doc.fullName;
-                                        takeAppointment(context);
+                                        context
+                                            .read<NewAppointmentData>()
+                                            .docEmail = doc.docEmail;
+                                        context
+                                            .read<NewAppointmentData>()
+                                            .patientEmail = patientEmail;
+                                        takeAnAppointment(context);
                                       } catch (err) {
                                         print(err.toString());
                                       }

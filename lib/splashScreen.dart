@@ -92,12 +92,13 @@ class SplashScreen extends StatelessWidget {
                               color: Colors.white),
                         ),
                         onPressed: () {
-                          Navigator.push(
+                          /* Navigator.push(
                             context,
                             MaterialPageRoute(
                               builder: (context) => Category(),
                             ),
-                          );
+                          ); */
+                          Navigator.pushReplacementNamed(context, Category.id);
                         }),
                   ),
                 ],

@@ -3,20 +3,22 @@ import 'package:flutter_signin_button/button_list.dart';
 import 'package:flutter_signin_button/button_view.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:maseeha_update/Assistants/firestore_assitant.dart';
+import 'package:maseeha_update/Doctor/doctor_dashboard.dart';
+import 'package:maseeha_update/Models/login_data.dart';
+import 'package:maseeha_update/Patient/AppUserData.dart';
+import 'package:maseeha_update/Patient/loginPatientData.dart';
+import 'package:maseeha_update/Patient/patient_dashboard.dart';
+import 'package:maseeha_update/Patient/patient_signup.dart';
+import 'package:maseeha_update/lang_selector.dart';
 import 'package:maseeha_update/localization/demo_localization.dart';
 import 'package:provider/provider.dart';
-import '../lang_selector.dart';
-import 'AppUserData.dart';
-import 'loginPatientData.dart';
-import 'patient_dashboard.dart';
-import 'patient_signup.dart';
 
-class PatientLogin extends StatelessWidget {
-  static const String id = 'patient_login_screen';
+class LoginScreen extends StatelessWidget {
+  static const String id = 'login_screen';
 
   final firestoreAssitant = FirestoreAssitant();
 
-  createAlertDialog(BuildContext context) {
+  Future createAlertDialog(BuildContext context) {
     return showDialog(
         context: context,
         builder: (context) {
@@ -58,7 +60,8 @@ class PatientLogin extends StatelessWidget {
                 children: [
                   Center(
                     child: Text(
-                      DemoLocalization.of(context).getTranslatedValue('p'),
+                      DemoLocalization.of(context).getTranslatedValue(
+                          context.read<LoginData>().userTitle),
                       style: GoogleFonts.rajdhani(
                           fontWeight: FontWeight.bold,
                           fontSize: 50,
@@ -89,9 +92,9 @@ class PatientLogin extends StatelessWidget {
                   ),
                   child: Form(
                     key: _formkey,
-                    child: Consumer<LoginPatientData>(
+                    child: Consumer<LoginData>(
                       builder: (_, loginpateintdata, child) {
-                        if (loginpateintdata.loading) {
+                        if (context.read<LoginData>().loading) {
                           return Center(
                             child: CircularProgressIndicator(
                               valueColor: new AlwaysStoppedAnimation<Color>(
@@ -122,55 +125,60 @@ class PatientLogin extends StatelessWidget {
                               ),
                             ),
                           ),
-                          FittedBox(
-                            fit: BoxFit.contain,
-                            child: Row(
-                              children: [
-                                Container(
-                                  width: size.width / 2,
-                                  padding: EdgeInsets.only(
-                                    left: 20,
-                                    right: 10,
-                                    bottom: 10,
-                                  ),
-                                  decoration: BoxDecoration(
-                                    color: Colors.transparent,
-                                    borderRadius: BorderRadius.circular(50),
-                                  ),
-                                  child: FittedBox(
-                                    fit: BoxFit.contain,
-                                    child: SignInButton(
-                                      Buttons.Google,
-                                      text: DemoLocalization.of(context)
-                                          .getTranslatedValue('gmailtext'),
-                                      onPressed: () {},
-                                    ),
+                          context.read<LoginData>().userType == UserType.Doctor
+                              ? Container()
+                              : FittedBox(
+                                  fit: BoxFit.contain,
+                                  child: Row(
+                                    children: [
+                                      Container(
+                                        width: size.width / 2,
+                                        padding: EdgeInsets.only(
+                                          left: 20,
+                                          right: 10,
+                                          bottom: 10,
+                                        ),
+                                        decoration: BoxDecoration(
+                                          color: Colors.transparent,
+                                          borderRadius:
+                                              BorderRadius.circular(50),
+                                        ),
+                                        child: FittedBox(
+                                          fit: BoxFit.contain,
+                                          child: SignInButton(
+                                            Buttons.Google,
+                                            text: DemoLocalization.of(context)
+                                                .getTranslatedValue(
+                                                    'gmailtext'),
+                                            onPressed: () {},
+                                          ),
+                                        ),
+                                      ),
+                                      Container(
+                                        padding: EdgeInsets.only(
+                                          right: 20,
+                                          left: 10,
+                                          bottom: 10,
+                                        ),
+                                        width: size.width / 2,
+                                        decoration: BoxDecoration(
+                                          color: Colors.transparent,
+                                          borderRadius:
+                                              BorderRadius.circular(50),
+                                        ),
+                                        child: FittedBox(
+                                          fit: BoxFit.contain,
+                                          child: SignInButton(
+                                            Buttons.FacebookNew,
+                                            text: DemoLocalization.of(context)
+                                                .getTranslatedValue('fbtext'),
+                                            onPressed: () {},
+                                          ),
+                                        ),
+                                      ),
+                                    ],
                                   ),
                                 ),
-                                Container(
-                                  padding: EdgeInsets.only(
-                                    right: 20,
-                                    left: 10,
-                                    bottom: 10,
-                                  ),
-                                  width: size.width / 2,
-                                  decoration: BoxDecoration(
-                                    color: Colors.transparent,
-                                    borderRadius: BorderRadius.circular(50),
-                                  ),
-                                  child: FittedBox(
-                                    fit: BoxFit.contain,
-                                    child: SignInButton(
-                                      Buttons.FacebookNew,
-                                      text: DemoLocalization.of(context)
-                                          .getTranslatedValue('fbtext'),
-                                      onPressed: () {},
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
                           Padding(
                             padding: EdgeInsets.symmetric(
                                 horizontal: size.width / 9),
@@ -221,7 +229,10 @@ class PatientLogin extends StatelessWidget {
                                         return null;
                                       },
                                       onChanged: (String value) {
-                                        loginPatientData.email = value;
+                                        context
+                                            .read<LoginData>()
+                                            .loginCredentials
+                                            .email = value;
                                       },
                                     ),
                                   ),
@@ -285,7 +296,10 @@ class PatientLogin extends StatelessWidget {
                                             return null;
                                           },
                                           onChanged: (value) {
-                                            loginPatientData.password = value;
+                                            context
+                                                .read<LoginData>()
+                                                .loginCredentials
+                                                .password = value;
                                           },
                                         );
                                       },
@@ -330,16 +344,23 @@ class PatientLogin extends StatelessWidget {
                                           } else {
                                             _formkey.currentState.save();
 
-                                            final check = await loginPatientData
+                                            final check = await context
+                                                .read<LoginData>()
                                                 .signUser();
 
                                             if (check) {
-                                              Navigator.push(
-                                                context,
-                                                MaterialPageRoute(
-                                                    builder: (context) =>
-                                                        PatientDashboard()),
-                                              );
+                                              while (
+                                                  Navigator.canPop(context)) {
+                                                Navigator.pop(context);
+                                              }
+                                              Navigator.pushReplacementNamed(
+                                                  context,
+                                                  context
+                                                              .read<LoginData>()
+                                                              .userType ==
+                                                          UserType.Patient
+                                                      ? PatientDashboard.id
+                                                      : DoctorDashboard.id);
                                             } else {
                                               createAlertDialog(context);
                                             }

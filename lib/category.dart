@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:maseeha_update/Doctor/doctor_dashboard.dart';
 import 'package:maseeha_update/Doctor/doctor_login.dart';
-import 'package:maseeha_update/Patient/patient_dashboard.dart';
-import 'package:maseeha_update/Patient/patient_login.dart';
+import 'package:maseeha_update/Models/login_data.dart';
 import 'package:maseeha_update/caretaker/caretaker_dashboard.dart';
+import 'package:maseeha_update/screens/login_screen.dart';
 import 'lang_selector.dart';
 import 'localization/demo_localization.dart';
+import 'package:provider/provider.dart';
 
 class Category extends StatelessWidget {
+  static const String id = 'category_screen';
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
@@ -94,18 +95,15 @@ class Category extends StatelessWidget {
               children: [
                 CategoryButton(
                   onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => PatientLogin(),
-                      ),
-                    );
+                    context.read<LoginData>().userType = UserType.Patient;
+                    Navigator.pushNamed(context, LoginScreen.id);
                   },
                   imagePath: 'assets/images/patient.svg',
                   text: 'p',
                 ),
                 CategoryButton(
                   onTap: () {
+                    context.read<LoginData>().userType = UserType.Doctor;
                     Navigator.push(
                       context,
                       MaterialPageRoute(

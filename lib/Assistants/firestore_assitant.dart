@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:maseeha_update/Custodian/addMedicineData.dart';
+import 'package:maseeha_update/Doctor/appointmentReply/appointmentReply.dart';
 import 'package:maseeha_update/Doctor/doctorRegisterData.dart';
 import 'package:maseeha_update/Patient/AppUserData.dart';
 import 'package:maseeha_update/Patient/caretakerAppointment/caretakerNewAppointmentData.dart';
@@ -43,6 +44,12 @@ class FirestoreAssitant {
     Map<String, dynamic> medicineData = data.toMedicineJson;
 
     await firebaseFirestore.collection('medicines').add(medicineData);
+  }
+
+  Future<void> sendApointmentReply(AppointmentReply data) async {
+    Map<String, dynamic> replyData = data.toJson;
+
+    await firebaseFirestore.collection('appointmentReply').add(replyData);
   }
 
   Future<List<NewAppointmentData>> getAppointments(String doctorName) async {

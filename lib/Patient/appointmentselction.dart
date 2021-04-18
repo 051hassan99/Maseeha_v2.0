@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:maseeha_update/Patient/caretakerAppointment/caratakerslist.dart';
 import 'package:maseeha_update/Patient/doctorList.dart';
+import 'package:maseeha_update/Patient/patientAppointmentMessages.dart';
 import 'package:maseeha_update/localization/demo_localization.dart';
 
 import '../category.dart';
@@ -93,7 +94,7 @@ class AppointmentSelection extends StatelessWidget {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => CaretakerList()),
+                            builder: (context) => AppointmentHistory()),
                       );
                     },
                   ),

@@ -30,8 +30,15 @@ class DoctorRegisterData extends ChangeNotifier {
         "name": this.docName,
         "pmdc": this.pmdc,
         "hospital": this.hospital,
-        "specialization": this.specialiozation
+        "specialization": this.specialiozation,
+        "docEmail": this.docEmail
       };
+
+  String getCurrentDoctorData() {
+    final auth = FirebaseAuth.instance;
+    User user = auth.currentUser;
+    return user.email;
+  }
 
   void secureText() {
     securetext = !securetext;
