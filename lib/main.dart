@@ -1,4 +1,5 @@
 import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:maseeha_update/Custodian/showPatientCustodian.dart';
@@ -31,7 +32,15 @@ import 'splashScreen.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
+  FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
   runApp(MyApp());
+}
+
+Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
+  // If you're going to use other Firebase services in the background, such as Firestore,
+  // make sure you call `initializeApp` before using other Firebase services.
+  // await Firebase.initializeApp();
+  print('Handling a background message ${message.messageId}');
 }
 
 class MyApp extends StatefulWidget {
@@ -47,6 +56,19 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   var bgcolor = Colors.blue;
   Locale _locale;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    // getToken();
+  }
+
+  void getToken() async {
+    String token = await FirebaseMessaging.instance.getToken();
+
+    print(token);
+  }
 
   void setLocale(Locale locale) {
     setState(() {

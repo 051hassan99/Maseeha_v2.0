@@ -216,22 +216,20 @@ class NewAppointment extends StatelessWidget {
                   width: 2,
                 ),
               ),
-              child: Expanded(
-                child: TextFormField(
-                  keyboardType: TextInputType.multiline,
-                  minLines: 1,
-                  maxLines: 5,
-                  decoration: InputDecoration(
-                    hintText: DemoLocalization.of(context)
-                        .getTranslatedValue('diseasedescription'),
-                    hintStyle: TextStyle(fontSize: 12),
-                    border: InputBorder.none,
-                    contentPadding: EdgeInsets.all(8),
-                  ),
-                  onChanged: (value) {
-                    newApponitmentData.diseaseDescription = value;
-                  },
+              child: TextFormField(
+                keyboardType: TextInputType.multiline,
+                minLines: 1,
+                maxLines: 5,
+                decoration: InputDecoration(
+                  hintText: DemoLocalization.of(context)
+                      .getTranslatedValue('diseasedescription'),
+                  hintStyle: TextStyle(fontSize: 12),
+                  border: InputBorder.none,
+                  contentPadding: EdgeInsets.all(8),
                 ),
+                onChanged: (value) {
+                  newApponitmentData.diseaseDescription = value;
+                },
               ),
             ),
           ],

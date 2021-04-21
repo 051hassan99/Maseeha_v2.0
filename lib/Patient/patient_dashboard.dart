@@ -6,6 +6,7 @@ import 'package:maseeha_update/Doctor/apointment_messages.dart';
 import 'package:maseeha_update/Patient/appointmentselction.dart';
 import 'package:maseeha_update/Patient/mapbuilding.dart';
 import 'package:maseeha_update/localization/demo_localization.dart';
+import 'package:maseeha_update/videoCalling/src/pages/index.dart';
 
 import '../lang_selector.dart';
 
@@ -175,7 +176,14 @@ class PatientDashboard extends StatelessWidget {
                     ),
                     SizedBox(width: 10),
                     GestureDetector(
-                      onTap: () {},
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => IndexPage(),
+                          ),
+                        );
+                      },
                       child: _buildCard(
                         svgPicture: SvgPicture.asset(
                             'assets/images/computer.svg',

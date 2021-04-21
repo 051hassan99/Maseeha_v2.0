@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:maseeha_update/Doctor/upeeContainer.dart';
 import 'package:maseeha_update/localization/demo_localization.dart';
+import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 
 import '../lang_selector.dart';
 import 'bmi_Container.dart';
@@ -12,8 +13,9 @@ import 'doctor_drawer.dart';
 class RightHandToDoctor extends StatelessWidget {
   void calculate(ctx, option) {
     if (option == 1) {
-      showModalBottomSheet(
+      showMaterialModalBottomSheet(
           context: ctx,
+          expand: true,
           builder: (BuildContext bc) {
             return BMIContainer();
           });

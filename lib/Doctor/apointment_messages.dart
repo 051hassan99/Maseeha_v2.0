@@ -12,6 +12,7 @@ import '../lang_selector.dart';
 class Appointments extends StatelessWidget {
   static const String id = 'appointments_screen';
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+  //hassan
   final firestoreAssitant = FirestoreAssitant();
 
   @override
