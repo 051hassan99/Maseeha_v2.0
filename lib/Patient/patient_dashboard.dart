@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:maseeha_update/Chat/screens/chats/chats_screen.dart';
 import 'package:maseeha_update/Custodian/patientCustodianSelection.dart';
 import 'package:maseeha_update/Doctor/apointment_messages.dart';
 import 'package:maseeha_update/Patient/appointmentselction.dart';
 import 'package:maseeha_update/Patient/mapbuilding.dart';
+import 'package:maseeha_update/TeleMedicine/videoHomePage.dart';
 import 'package:maseeha_update/localization/demo_localization.dart';
-import 'package:maseeha_update/videoCalling/src/pages/index.dart';
 
 import '../lang_selector.dart';
 
@@ -177,12 +178,12 @@ class PatientDashboard extends StatelessWidget {
                     SizedBox(width: 10),
                     GestureDetector(
                       onTap: () {
-                        Navigator.push(
+                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => IndexPage(),
+                            builder: (context) => MyHomePage(),
                           ),
-                        );
+                        );  
                       },
                       child: _buildCard(
                         svgPicture: SvgPicture.asset(
@@ -261,39 +262,68 @@ class PatientDashboard extends StatelessWidget {
               fit: BoxFit.contain,
               child: Padding(
                 padding: const EdgeInsets.only(
-                    left: 10.0, right: 10.0, bottom: 20.0),
+                  left: 10.0,
+                  right: 10.0,
+                ),
                 child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
-                    Padding(
-                      padding: EdgeInsets.symmetric(
-                        horizontal: size.width / 4,
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) =>ChatsScreen(),
+                          ),
+                        );
+                      },
+                      child: _buildCard(
+                        svgPicture: SvgPicture.asset(
+                            'assets/images/chat.svg',
+                            semanticsLabel: 'Tablet'),
+                        text: Text(
+                          DemoLocalization.of(context)
+                              .getTranslatedValue('connectwithDoctor'),
+                          style: TextStyle(
+                            fontSize: 13,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white,
+                          ),
+                        ),
+                        context: context,
                       ),
-                      child: GestureDetector(
-                        onTap: () {
-                          Navigator.pushNamed(context, Appointments.id);
-                        },
-                        child: _buildCard(
+                    ),
+                    SizedBox(width: 10),
+                    GestureDetector(
+                      onTap: () {
+                        /*  Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => IndexPage(),
+                          ),
+                        );  */
+                      },
+                      child: _buildCard(
                           svgPicture: SvgPicture.asset(
                               'assets/images/article.svg',
                               semanticsLabel: 'Tablet'),
                           text: Text(
                             DemoLocalization.of(context)
                                 .getTranslatedValue('healthylifestyle'),
-                            style: TextStyle(
-                              fontSize: 13,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.white,
-                            ),
+                          style: TextStyle(
+                            fontSize: 13,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white,
                           ),
-                          context: context,
                         ),
+                        context: context,
                       ),
                     ),
                   ],
                 ),
               ),
             ),
+           
           ],
         ),
       ),

@@ -79,5 +79,6 @@
     "addMedQuantity": "Add Medicine Quantity",
     "addTotalMedQuantity": "Add Total Medicine Quantity",
     "addMedTime": "Add Medicine Time",
-    "submit": "Submit"
+    "submit": "Submit",
+    "connectwithDoctor": "Connect With Doctor"
 }

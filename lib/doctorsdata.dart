@@ -1,6 +1,6 @@
 import 'package:flutter/foundation.dart';
 
-class Doctor {
+class Doctor extends ChangeNotifier {
   @required
   final int id;
   @required
@@ -13,6 +13,8 @@ class Doctor {
   final String specialization;
   @required
   final String docEmail;
+
+  var chatDoctorName = ''; 
 
   Doctor(
       {this.id,
@@ -30,4 +32,5 @@ class Doctor {
         specialization: map['specialization'],
         docEmail: map['docEmail']);
   }
+
 }

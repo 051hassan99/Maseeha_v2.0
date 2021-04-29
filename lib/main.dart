@@ -12,6 +12,7 @@ import 'package:maseeha_update/Patient/doctorList.dart';
 import 'package:maseeha_update/Patient/patient_dashboard.dart';
 import 'package:maseeha_update/Patient/patient_login.dart';
 import 'package:maseeha_update/category.dart';
+import 'package:maseeha_update/doctorsdata.dart';
 import 'package:maseeha_update/screens/login_screen.dart';
 import 'package:provider/provider.dart';
 import 'Custodian/addMedicineData.dart';
@@ -128,6 +129,9 @@ class _MyAppState extends State<MyApp> {
         ),
         ChangeNotifierProvider(
           create: (_) => AppointmentReply(),
+        ),
+        ChangeNotifierProvider(
+          create: (context) => Doctor(),
         ),
       ],
       child: MaterialApp(

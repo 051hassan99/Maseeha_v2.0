@@ -1,120 +1,49 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:maseeha_update/Assistants/firestore_assitant.dart';
-import 'package:maseeha_update/Patient/newAppointmentdata.dart';
-import 'package:maseeha_update/localization/demo_localization.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:maseeha_update/Chat/screens/chats/chatFunctionality.dart';
+import '../../../../doctorsdata.dart';
+import '../../../constants.dart';
 import 'package:provider/provider.dart';
-import '../doctorsdata.dart';
-import '../lang_selector.dart';
-import 'loginPatientData.dart';
-import 'newAppointment.dart';
-//import 'package:path/path.dart';
 
-class DoctorList extends StatelessWidget {
-  static const String id = 'doctors_list';
-  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
-  
-
-  
-
+class ChatList extends StatelessWidget {
+   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+    
   @override
   Widget build(BuildContext context) {
+
     Size size = MediaQuery.of(context).size;
-    final patientEmail =
-        context.read<LoginPatientData>().getCurrentPatientData();
-        
-
-    final firestoreAssitant = FirestoreAssitant();
-    final newApponitmentData =
-        Provider.of<NewAppointmentData>(context, listen: false);
-
-    void takeAnAppointment(BuildContext context) => showDialog(
-        context: context,
-        builder: (_) {
-          return SingleChildScrollView(
-            child: AlertDialog(
-              title: Container(
-                child: Center(
-                  child: Text(
-                    DemoLocalization.of(context).getTranslatedValue('fillform'),
-                    style: GoogleFonts.rajdhani(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 20,
-                      color: Theme.of(context).primaryColor,
-                    ),
-                  ),
-                ),
-              ),
-              content: NewAppointment(),
-              actions: [
-                FlatButton(
-                    child: Text(
-                      DemoLocalization.of(context).getTranslatedValue('submit'),
-                      style: GoogleFonts.rajdhani(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 16,
-                          color: Colors.blue),
-                    ),
-                    onPressed: () async {
-                      try {
-                        print('Uploading data');
-                        firestoreAssitant.sendAppointment(newApponitmentData);
-                        Navigator.pop(context);
-                      } catch (_) {
-                        print('Failed to upload');
-                      }
-                    }),
-                FlatButton(
-                    child: Text(
-                      'Cancel',
-                      style: GoogleFonts.rajdhani(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 16,
-                          color: Colors.blue),
-                    ),
-                    onPressed: () async {
-                      Navigator.pop(context);
-                    }),
-              ],
-            ),
-          );
-        });
-
-    return Scaffold(
-      appBar: AppBar(
-        title: Padding(
-          padding: EdgeInsets.only(
-            right: size.width / 30,
-          ),
+    return Column(
+      children: [
+        SizedBox(height: 10),
+        Container(
+          padding: EdgeInsets.fromLTRB(
+              kDefaultPadding, 0, kDefaultPadding, kDefaultPadding),
+          color:Colors.white,
           child: Row(
-            mainAxisAlignment: MainAxisAlignment.end,
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-              Container(
-                width: size.width * 0.28,
-                child: Center(
-                  child: Text(
-                    DemoLocalization.of(context).getTranslatedValue('title'),
-                    style: GoogleFonts.montserrat(
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ),
+             
+              FlatButton(onPressed: () {}, 
+              child: Text("Recent Message",
+              style: TextStyle(color: Colors.white ),),
+              autofocus: true,
+              color: Theme.of(context).primaryColor,
+              ),
+              SizedBox(width: kDefaultPadding),
+              FlatButton(
+                onPressed: () {},
+                child:Text("Active",
+                style: TextStyle(color: Colors.white ),),
+                color: Theme.of(context).primaryColor,
+                autofocus: false,
+                
               ),
             ],
           ),
         ),
-        actions: <Widget>[
-          Padding(
-              padding: EdgeInsets.only(
-                left: size.width / 30,
-                right: size.width / 30,
-              ),
-              child: LangSelector()),
-        ],
-      ),
-      body: Container(
+        Expanded(
+         child:Container(
         child: Padding(
             padding: EdgeInsets.symmetric(
               horizontal: size.width / 8,
@@ -206,20 +135,15 @@ class DoctorList extends StatelessWidget {
                                               Theme.of(context).primaryColor),
                                     ),
                                     onPressed: () {
-                                      try {
-                                        context
-                                            .read<NewAppointmentData>()
-                                            .doctorName = doc.fullName;
-                                        context
-                                            .read<NewAppointmentData>()
-                                            .docEmail = doc.docEmail;
-                                        context
-                                            .read<NewAppointmentData>()
-                                            .patientEmail = patientEmail;
-                                        takeAnAppointment(context);
-                                      } catch (err) {
-                                        print(err.toString());
-                                      }
+
+                                      context.read<Doctor>().chatDoctorName = doc.fullName;
+                                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) =>ChatFunctionality(),
+                          ),
+                        );
+                                     
                                     },
                                   ),
                                 ],
@@ -237,6 +161,8 @@ class DoctorList extends StatelessWidget {
               },
             )),
       ),
+        ),
+      ],
     );
   }
 }
