@@ -2,31 +2,31 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:maseeha_update/Custodian/showPatientCustodian.dart';
-import 'package:maseeha_update/DataHandler/AppData.dart';
 import 'package:maseeha_update/Doctor/appointmentReply/appointmentReply.dart';
-import 'package:maseeha_update/Doctor/doctor_dashboard.dart';
-import 'package:maseeha_update/Models/login_data.dart';
+import 'package:maseeha_update/Notification/notification.dart';
 import 'package:maseeha_update/Patient/caretakerAppointment/caretakerNewAppointmentData.dart';
-import 'package:maseeha_update/Patient/doctorList.dart';
-import 'package:maseeha_update/Patient/patient_dashboard.dart';
-import 'package:maseeha_update/Patient/patient_login.dart';
+import 'package:maseeha_update/Patient/patientScreens/doctorList.dart';
 import 'package:maseeha_update/category.dart';
-import 'package:maseeha_update/doctorsdata.dart';
-import 'package:maseeha_update/screens/login_screen.dart';
+import 'package:maseeha_update/loadingScreen.dart';
+import 'package:maseeha_update/token.dart';
 import 'package:provider/provider.dart';
-import 'Custodian/addMedicineData.dart';
-import 'Doctor/apointment_messages.dart';
-import 'Doctor/bmiContainer_Data.dart';
-import 'Doctor/bmrContainerData.dart';
-import 'Doctor/doctorRegisterData.dart';
-import 'Doctor/loginDoctorData.dart';
-import 'Doctor/upeeContainerData.dart';
-import 'Patient/AppUserData.dart';
-import 'Patient/loginPatientData.dart';
-import 'Patient/newAppointmentdata.dart';
-import 'caretaker/caretakerRegister.dart';
-import 'caretaker/loginCaretakerData.dart';
+import 'Doctor/doctorScreens/apointment_messages.dart';
+import 'Doctor/doctorScreens/doctor_dashboard.dart';
+import 'Doctor/doctorScreensData/bmiContainer_Data.dart';
+import 'Doctor/doctorScreensData/bmrContainerData.dart';
+import 'Doctor/doctorScreensData/doctorRegisterData.dart';
+import 'Doctor/doctorScreensData/loginDoctorData.dart';
+import 'Doctor/doctorScreensData/upeeContainerData.dart';
+import 'Map/DataHandler/AppData.dart';
+import 'Patient/Custodian/addMedicineData.dart';
+import 'Patient/Custodian/showPatientCustodian.dart';
+import 'Patient/patientScreens/patient_dashboard.dart';
+import 'Patient/patientScreensData/AppUserData.dart';
+import 'Patient/patientScreensData/loginPatientData.dart';
+import 'Patient/patientScreensData/newAppointmentdata.dart';
+import 'Caretaker/caretakerRegister.dart';
+import 'Caretaker/loginCaretakerData.dart';
+import 'classes/doctor.dart';
 import 'localization/demo_localization.dart';
 import 'splashScreen.dart';
 
@@ -60,17 +60,18 @@ class _MyAppState extends State<MyApp> {
 
   @override
   void initState() {
+    // ignore: todo
     // TODO: implement initState
     super.initState();
     // getToken();
   }
 
-  void getToken() async {
+  /* void getToken() async {
     String token = await FirebaseMessaging.instance.getToken();
 
     print(token);
   }
-
+*/
   void setLocale(Locale locale) {
     setState(() {
       _locale = locale;
@@ -87,7 +88,6 @@ class _MyAppState extends State<MyApp> {
         ChangeNotifierProvider(
           create: (context) => LoginPatientData(),
         ),
-        ChangeNotifierProvider(create: (_) => NewAppointmentData()),
         ChangeNotifierProvider(
           create: (context) => LoginPatientData(),
         ),
@@ -125,13 +125,16 @@ class _MyAppState extends State<MyApp> {
           create: (context) => AppData(),
         ),
         ChangeNotifierProvider(
-          create: (_) => LoginData(),
-        ),
-        ChangeNotifierProvider(
           create: (_) => AppointmentReply(),
         ),
         ChangeNotifierProvider(
           create: (context) => Doctor(),
+        ),
+        ChangeNotifierProvider(
+          create: (context) => NotificationSend(),
+        ),
+        ChangeNotifierProvider(
+          create: (context) => Token(),
         ),
       ],
       child: MaterialApp(
@@ -156,17 +159,14 @@ class _MyAppState extends State<MyApp> {
         theme: ThemeData(
           // hassabahmed
           primaryColor: bgcolor,
+          
         ),
-        /* home: Scaffold(
-          body: Container(
-            child: SplashScreen(),
-          ),
-        ), */
-        initialRoute: SplashScreen.id,
+     
+        initialRoute: LoadingScreen.id,
         routes: {
+          LoadingScreen.id: (_) => LoadingScreen(),
           SplashScreen.id: (_) => SplashScreen(),
           Category.id: (_) => Category(),
-          LoginScreen.id: (_) => LoginScreen(),
           PatientDashboard.id: (_) => PatientDashboard(),
           DoctorDashboard.id: (_) => DoctorDashboard(),
           DoctorList.id: (_) => DoctorList(),
@@ -177,3 +177,4 @@ class _MyAppState extends State<MyApp> {
     );
   }
 }
+

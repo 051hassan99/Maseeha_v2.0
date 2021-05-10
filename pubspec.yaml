@@ -25,26 +25,27 @@ dependencies:
     sdk: flutter
   flutter_localizations:
     sdk: flutter
-  
+  agora_rtc_engine: 1.0.5
   cloud_firestore: ^1.0.1
   cupertino_icons: ^1.0.2
   firebase_auth: ^1.0.0
   firebase_core: ^1.0.0
   firebase_messaging: ^9.1.1
   flutter_polyline_points: ^0.2.6
+  flutter_progress_hud: ^2.0.0
   flutter_signin_button: ^1.1.0
   flutter_svg: ^0.19.3
   fluttertoast: ^7.1.8
   geolocator: ^7.0.1
   google_fonts: ^2.0.0
   google_maps_flutter: ^2.0.1
+  google_sign_in: ^5.0.2
   http: ^0.13.0
   modal_bottom_sheet: ^2.0.0
   path_provider: ^2.0.1
+  permission_handler: ^3.0.0
   provider: ^5.0.0
   shared_preferences: ^2.0.4
-  agora_rtc_engine: 1.0.5
-  permission_handler: ^3.0.0
 
 dev_dependencies:
   flutter_test:
@@ -74,12 +75,12 @@ flutter:
   # "family" key with the font family name, and a "fonts" key with a
   # list giving the asset and other descriptors for the font. For
   # example:
-  # fonts:
-  #   - family: Schyler
-  #     fonts:
-  #       - asset: fonts/Schyler-Regular.ttf
-  #       - asset: fonts/Schyler-Italic.ttf
-  #         style: italic
+  fonts:
+    - family: Jameel Noori Nastaleeq Kasheeda
+      fonts:
+        - asset: fonts/Jameel Noori Nastaleeq Kasheeda.ttf
+          #       - asset: fonts/Schyler-Italic.ttf
+          style: italic
   #   - family: Trajan Pro
   #     fonts:
   #       - asset: fonts/TrajanPro.ttf

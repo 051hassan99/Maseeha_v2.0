@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:maseeha_update/Map/mapbuilding.dart';
 import 'package:maseeha_update/localization/demo_localization.dart';
-
 import '../lang_selector.dart';
 import 'caretaker_drawer.dart';
 
 class CaretakerDashboard extends StatelessWidget {
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    var _mainColor = Theme.of(context).primaryColor;
     return Scaffold(
         appBar: AppBar(
           title: Padding(
@@ -65,66 +66,98 @@ class CaretakerDashboard extends StatelessWidget {
                 ),
               ],
             ),
-            FittedBox(
-              fit: BoxFit.contain,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  _buildCard(
-                      icon: Icon(
-                        Icons.calculate,
-                        size: 30,
-                        color: _mainColor,
-                      ),
-                      text: FlatButton(
-                        child: Text(
+             GestureDetector(
+                      onTap: () {
+
+
+                        
+                      },
+                      child: _buildCard(
+                        svgPicture: SvgPicture.asset(
+                            'assets/images/viewpatients.svg',
+                            semanticsLabel: 'Tablet'),
+                        text: Text(
                           DemoLocalization.of(context)
-                              .getTranslatedValue('ScheduleAppointment'),
+                              .getTranslatedValue('ViewPatients'),
                           style: TextStyle(
-                              fontSize: 13, fontWeight: FontWeight.bold),
+                            fontSize: 13,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white,
+                          ),
                         ),
-                        onPressed: () {},
+                        context: context,
                       ),
-                      context: context),
-                ],
-              ),
-            )
+                    ),
+                    SizedBox(height: 20),
+                      GestureDetector(
+                      onTap: () {
+
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => MapBuilding(),
+                          ),
+                        );
+                        
+                      },
+                      child: _buildCard(
+                        svgPicture: SvgPicture.asset(
+                            'assets/images/map.svg',
+                            semanticsLabel: 'Tablet'),
+                        text: Text(
+                          DemoLocalization.of(context)
+                              .getTranslatedValue('FindLocation'),
+                          style: TextStyle(
+                            fontSize: 13,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white,
+                          ),
+                        ),
+                        context: context,
+                      ),
+                    ),
+          
+
           ],
         ));
   }
 }
 
-Container _buildCard(
-    {final Icon icon, final FlatButton text, BuildContext context}) {
+Padding _buildCard(
+    {final SvgPicture svgPicture, Text text, BuildContext context}) {
   Size size = MediaQuery.of(context).size;
-  return Container(
-    height: size.height / 3.3,
-    width: size.width / 1.6,
-    decoration: BoxDecoration(
-      color: Colors.white,
-      borderRadius: BorderRadius.circular(16),
-    ),
-    padding: EdgeInsets.all(16),
-    child: Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Container(
-          height: size.height / 11,
-          width: size.width / 5,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(12),
-            border: Border.all(
-              width: 4,
-              color: Theme.of(context).primaryColor,
-            ),
+  return Padding(
+      padding: EdgeInsets.symmetric(
+        horizontal: 40
+      ),
+      child: Container(
+      height: size.height / 3.2,
+      width: size.width / 2.5,
+      decoration: BoxDecoration(
+        color: Theme.of(context).primaryColor,
+        borderRadius: BorderRadius.circular(20),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.white,
+            blurRadius: 6.0,
+            offset: Offset(0.7, 0.7),
           ),
-          child: icon,
-        ),
-        Padding(
-          padding: EdgeInsets.all(size.width / 30),
-          child: text,
-        ),
-      ],
+        ],
+      ),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Container(
+            height: size.height / 6,
+            width: size.width / 4,
+            child: svgPicture,
+          ),
+          Padding(
+            padding: EdgeInsets.only(top: 20.0),
+            child: text,
+          ),
+        ],
+      ),
     ),
   );
 }

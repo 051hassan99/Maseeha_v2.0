@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:maseeha_update/Doctor/doctor_login.dart';
-import 'package:maseeha_update/Models/login_data.dart';
-import 'package:maseeha_update/caretaker/caretaker_dashboard.dart';
-import 'package:maseeha_update/screens/login_screen.dart';
+import 'package:maseeha_update/Caretaker/caretaker_login.dart';
+import 'package:maseeha_update/Patient/patientScreens/patient_login.dart';
+import 'Doctor/doctorScreens/doctor_login.dart';
 import 'lang_selector.dart';
 import 'localization/demo_localization.dart';
-import 'package:provider/provider.dart';
+
 
 class Category extends StatelessWidget {
   static const String id = 'category_screen';
@@ -46,9 +44,10 @@ class Category extends StatelessWidget {
           Center(
             child: Text(
               DemoLocalization.of(context).getTranslatedValue('title'),
-              style: GoogleFonts.rajdhani(
+              style:TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 50,
+                   fontFamily: 'Jameel Noori Nastaleeq Kasheeda',
                   color: Colors.white),
             ),
           ),
@@ -82,9 +81,10 @@ class Category extends StatelessWidget {
               child: Center(
                 child: Text(
                   DemoLocalization.of(context).getTranslatedValue('category'),
-                  style: GoogleFonts.rajdhani(
+                  style: TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 24,
+                     fontFamily: 'Jameel Noori Nastaleeq Kasheeda',
                     color: Theme.of(context).primaryColor,
                   ),
                 ),
@@ -95,15 +95,19 @@ class Category extends StatelessWidget {
               children: [
                 CategoryButton(
                   onTap: () {
-                    context.read<LoginData>().userType = UserType.Patient;
-                    Navigator.pushNamed(context, LoginScreen.id);
+                      Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => PatientLogin(),
+                      ),
+                    );
                   },
                   imagePath: 'assets/images/patient.svg',
                   text: 'p',
                 ),
                 CategoryButton(
                   onTap: () {
-                    context.read<LoginData>().userType = UserType.Doctor;
+                   
                     Navigator.push(
                       context,
                       MaterialPageRoute(
@@ -124,7 +128,7 @@ class Category extends StatelessWidget {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => CaretakerDashboard(),
+                      builder: (context) => CaretakerLogin(),
                     ),
                   );
                 },
@@ -187,9 +191,10 @@ class CategoryButton extends StatelessWidget {
                   padding: const EdgeInsets.all(4.0),
                   child: Text(
                     DemoLocalization.of(context).getTranslatedValue(this.text),
-                    style: GoogleFonts.rajdhani(
+                    style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 20,
+                       fontFamily: 'Jameel Noori Nastaleeq Kasheeda',
                       color: Colors.white,
                     ),
                   ),

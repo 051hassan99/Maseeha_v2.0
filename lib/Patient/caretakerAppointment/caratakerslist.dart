@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:maseeha_update/Patient/caretakerAppointment/caretakerNewAppointment.dart';
 import 'package:maseeha_update/Patient/caretakerAppointment/caretakerNewAppointmentData.dart';
-import 'package:maseeha_update/Patient/newAppointmentdata.dart';
 import 'package:maseeha_update/classes/caretaker.dart';
 import 'package:maseeha_update/localization/demo_localization.dart';
 import 'package:provider/provider.dart';
@@ -134,6 +133,7 @@ class CaretakerList extends StatelessWidget {
                                       fontSize: 12,
                                     ),
                                   ),
+                                  // ignore: deprecated_member_use
                                   FlatButton(
                                     child: Text(
                                       'Click Here ',

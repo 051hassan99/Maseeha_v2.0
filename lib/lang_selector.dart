@@ -40,6 +40,7 @@ class LangSelector extends StatelessWidget {
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 20,
+                        fontFamily: 'Jameel Noori Nastaleeq Kasheeda'
                       ),
                     )
                   ],

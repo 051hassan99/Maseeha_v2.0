@@ -210,6 +210,7 @@ class CaretakerNewAppointment extends StatelessWidget {
               color: Theme.of(context).primaryColor,
               borderRadius: BorderRadius.circular(50),
             ),
+            // ignore: deprecated_member_use
             child: FlatButton(
                 splashColor: Colors.transparent,
                 highlightColor: Colors.transparent,

@@ -56,7 +56,7 @@ class CaretakerLogin extends StatelessWidget {
                       DemoLocalization.of(context).getTranslatedValue('c'),
                       style: GoogleFonts.rajdhani(
                           fontWeight: FontWeight.bold,
-                          fontSize: 50,
+                          fontSize: 40,
                           color: Colors.white),
                     ),
                   ),
@@ -146,6 +146,9 @@ class CaretakerLogin extends StatelessWidget {
                                       decoration: InputDecoration(
                                         hintText: DemoLocalization.of(context)
                                             .getTranslatedValue('eemail'),
+                                         hintStyle: TextStyle(
+                                                  fontSize: 14
+                                                ),
                                         border: InputBorder.none,
                                         contentPadding: EdgeInsets.all(10),
                                       ),
@@ -206,6 +209,9 @@ class CaretakerLogin extends StatelessWidget {
                                             hintText: DemoLocalization.of(
                                                     context)
                                                 .getTranslatedValue('epass'),
+                                                hintStyle: TextStyle(
+                                                  fontSize: 14
+                                                ),
                                             border: InputBorder.none,
                                             contentPadding: EdgeInsets.all(10),
                                             suffixIcon: IconButton(
@@ -257,6 +263,7 @@ class CaretakerLogin extends StatelessWidget {
                                       color: Theme.of(context).primaryColor,
                                       borderRadius: BorderRadius.circular(80),
                                     ),
+                                    // ignore: deprecated_member_use
                                     child: FlatButton(
                                         splashColor: Colors.transparent,
                                         highlightColor: Colors.transparent,
@@ -292,6 +299,7 @@ class CaretakerLogin extends StatelessWidget {
                                       color: Theme.of(context).primaryColor,
                                       borderRadius: BorderRadius.circular(80),
                                     ),
+                                    // ignore: deprecated_member_use
                                     child: FlatButton(
                                         splashColor: Colors.transparent,
                                         highlightColor: Colors.transparent,

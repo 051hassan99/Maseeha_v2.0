@@ -80,5 +80,14 @@
     "addTotalMedQuantity": "Add Total Medicine Quantity",
     "addMedTime": "Add Medicine Time",
     "submit": "Submit",
-    "connectwithDoctor": "Connect With Doctor"
+    "connectwithDoctor": "Connect With Doctor",
+    "showAppointmentHistory": "Show my appointment history",
+    "female": "Female",
+    "Male": "Male",
+    "Physical":"Physical",
+    "Online" : "Online",
+    "Cancel" : "Cancel",
+    "HiThere": "Hi There",
+    "yourDoctorLocation": "Your Doctor Location",
+    "searchYourDoctor":"Search Your Doctor"
 }

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:maseeha_update/category.dart';
 import 'package:maseeha_update/lang_selector.dart';
 import 'localization/demo_localization.dart';
@@ -47,9 +46,10 @@ class SplashScreen extends StatelessWidget {
                               Text(
                                 DemoLocalization.of(context)
                                     .getTranslatedValue('title'),
-                                style: GoogleFonts.rajdhani(
+                                style: TextStyle(
                                     fontWeight: FontWeight.bold,
                                     fontSize: 60,
+                                     fontFamily: 'Jameel Noori Nastaleeq Kasheeda',
                                     color: Colors.white),
                               ),
                               Text(
@@ -59,6 +59,7 @@ class SplashScreen extends StatelessWidget {
                                 style: TextStyle(
                                   color: Colors.white,
                                   fontSize: 20,
+                                   fontFamily: 'Jameel Noori Nastaleeq Kasheeda',
                                 ),
                               ),
                             ],
@@ -80,15 +81,17 @@ class SplashScreen extends StatelessWidget {
                       color: Theme.of(context).primaryColor,
                       borderRadius: BorderRadius.circular(80),
                     ),
+                    // ignore: deprecated_member_use
                     child: FlatButton(
                         splashColor: Colors.transparent,
                         highlightColor: Colors.transparent,
                         child: Text(
                           DemoLocalization.of(context)
                               .getTranslatedValue('btn'),
-                          style: GoogleFonts.rajdhani(
+                          style: TextStyle(
                               fontWeight: FontWeight.bold,
                               fontSize: 20,
+                              fontFamily: 'Jameel Noori Nastaleeq Kasheeda',
                               color: Colors.white),
                         ),
                         onPressed: () {

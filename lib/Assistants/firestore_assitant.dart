@@ -1,18 +1,32 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:maseeha_update/Custodian/addMedicineData.dart';
 import 'package:maseeha_update/Doctor/appointmentReply/appointmentReply.dart';
-import 'package:maseeha_update/Doctor/doctorRegisterData.dart';
-import 'package:maseeha_update/Patient/AppUserData.dart';
+import 'package:maseeha_update/Doctor/doctorScreensData/doctorRegisterData.dart';
+import 'package:maseeha_update/Patient/Custodian/addMedicineData.dart';
 import 'package:maseeha_update/Patient/caretakerAppointment/caretakerNewAppointmentData.dart';
-import 'package:maseeha_update/Patient/newAppointmentdata.dart';
+import 'package:maseeha_update/Patient/patientScreensData/AppUserData.dart';
+import 'package:maseeha_update/Patient/patientScreensData/newAppointmentdata.dart';
+import 'package:maseeha_update/Caretaker/caretakerRegister.dart';
+
+
 
 class FirestoreAssitant {
+
+ 
   FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
 
-  Future<void> sendAppointment(NewAppointmentData data) async {
+  Future<bool> sendAppointment(NewAppointmentData data) async {
+            bool appointmentSent = false;
+    try{
     Map<String, dynamic> appointmentData = data.toJson;
 
     await firebaseFirestore.collection('appointments').add(appointmentData);
+                appointmentSent = true;
+    }
+
+   catch(e){
+           print(e);
+   }
+          return appointmentSent; 
   }
 
   Future<void> sendCaretakerAppointment(
@@ -24,12 +38,18 @@ class FirestoreAssitant {
         .add(caretakerAppointmentData);
   }
 
-  // Sending Patient Data into Database
+
 
   Future<void> sendPatientData(AppUserData data) async {
     Map<String, dynamic> patientData = data.toPatientJson;
 
     await firebaseFirestore.collection('patients').add(patientData);
+  }
+
+  Future<void> sendTokenData(data) async {
+    Map<String, dynamic> tokenData = data.toTokenJson;
+
+    await firebaseFirestore.collection('tokens').add(tokenData);
   }
 
   // Sending Doctor Data into Database
@@ -51,6 +71,13 @@ class FirestoreAssitant {
 
     await firebaseFirestore.collection('appointmentReply').add(replyData);
   }
+
+   Future<void> sendCaretakerData(CaretakerRegisterData data) async {
+    Map<String, dynamic> caretakerData = data.toCaretakerJson;
+
+    await firebaseFirestore.collection('caretakers').add(caretakerData);
+  }
+  
 
   Future<List<NewAppointmentData>> getAppointments(String doctorName) async {
     var appointments = await firebaseFirestore
