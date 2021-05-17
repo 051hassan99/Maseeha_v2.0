@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:maseeha_update/Map/userTypeforMap.dart';
 import 'package:maseeha_update/localization/demo_localization.dart';
+import 'package:maseeha_update/Assistants/authAssistant.dart' as auth_assistant;
 import 'package:provider/provider.dart';
 
 import '../lang_selector.dart';
@@ -39,6 +41,9 @@ class CaretakerLogin extends StatelessWidget {
 
     final loginCaretakerData =
         Provider.of<LoginCaretakerData>(context, listen: false);
+    final userType =
+        Provider.of<UserType>(context, listen: false);
+
     Size size = MediaQuery.of(context).size;
     return SafeArea(
       child: Scaffold(
@@ -54,9 +59,10 @@ class CaretakerLogin extends StatelessWidget {
                   Center(
                     child: Text(
                       DemoLocalization.of(context).getTranslatedValue('c'),
-                      style: GoogleFonts.rajdhani(
+                      style: TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 40,
+                           fontFamily: 'Jameel Noori Nastaleeq Kasheeda',
                           color: Colors.white),
                     ),
                   ),
@@ -109,10 +115,11 @@ class CaretakerLogin extends StatelessWidget {
                               child: Text(
                                 DemoLocalization.of(context)
                                     .getTranslatedValue('ltc'),
-                                style: GoogleFonts.rajdhani(
+                                style: TextStyle(
                                   fontWeight: FontWeight.bold,
                                   fontSize: 24,
                                   color: Theme.of(context).primaryColor,
+                                   fontFamily: 'Jameel Noori Nastaleeq Kasheeda'
                                 ),
                               ),
                             ),
@@ -147,7 +154,8 @@ class CaretakerLogin extends StatelessWidget {
                                         hintText: DemoLocalization.of(context)
                                             .getTranslatedValue('eemail'),
                                          hintStyle: TextStyle(
-                                                  fontSize: 14
+                                                  fontSize: 14,
+                                                   fontFamily: 'Jameel Noori Nastaleeq Kasheeda'
                                                 ),
                                         border: InputBorder.none,
                                         contentPadding: EdgeInsets.all(10),
@@ -210,7 +218,8 @@ class CaretakerLogin extends StatelessWidget {
                                                     context)
                                                 .getTranslatedValue('epass'),
                                                 hintStyle: TextStyle(
-                                                  fontSize: 14
+                                                  fontSize: 14,
+                                                   fontFamily: 'Jameel Noori Nastaleeq Kasheeda'
                                                 ),
                                             border: InputBorder.none,
                                             contentPadding: EdgeInsets.all(10),
@@ -270,22 +279,47 @@ class CaretakerLogin extends StatelessWidget {
                                         child: Text(
                                           DemoLocalization.of(context)
                                               .getTranslatedValue('signin'),
-                                          style: GoogleFonts.rajdhani(
+                                          style: TextStyle(
                                               fontWeight: FontWeight.bold,
                                               fontSize: 18,
-                                              color: Colors.white),
+                                              color: Colors.white,
+                                               fontFamily: 'Jameel Noori Nastaleeq Kasheeda'),
                                         ),
-                                        onPressed: () {
+                                        onPressed: () async {
                                           if (!_formkey.currentState
                                               .validate()) {
                                             return;
                                           } else {
+
+                                            _formkey.currentState.save();
+
+                                              final check =
+                                                  await loginCaretakerData
+                                                      .signUser();
+                                                
+                                              if(check){
+
+                                             userType.userType = "Caretaker";
+                                               auth_assistant.abc
+                                                    .addUserdata();
+                                                Fluttertoast.showToast(
+                                                    msg:
+                                                        'You have logged in succesfully',
+                                                    toastLength:
+                                                        Toast.LENGTH_SHORT,
+                                                    gravity:
+                                                        ToastGravity.BOTTOM,
+                                                    backgroundColor:
+                                                        Colors.blue,
+                                                    textColor: Colors.yellow);
+
                                             Navigator.push(
                                               context,
                                               MaterialPageRoute(
                                                   builder: (context) =>
                                                       CaretakerDashboard()),
                                             );
+                                          }
                                           }
                                         }),
                                   ),
@@ -306,10 +340,11 @@ class CaretakerLogin extends StatelessWidget {
                                         child: Text(
                                           DemoLocalization.of(context)
                                               .getTranslatedValue('newmember'),
-                                          style: GoogleFonts.rajdhani(
+                                          style: TextStyle(
                                               fontWeight: FontWeight.bold,
                                               fontSize: 18,
-                                              color: Colors.white),
+                                              color: Colors.white,
+                                               fontFamily: 'Jameel Noori Nastaleeq Kasheeda'),
                                         ),
                                         onPressed: () {
                                           Navigator.push(

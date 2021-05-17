@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_signin_button/button_list.dart';
 import 'package:flutter_signin_button/button_view.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:maseeha_update/Assistants/authAssistant.dart' as auth_assistant;
 import 'package:maseeha_update/Assistants/firestore_assitant.dart';
+import 'package:maseeha_update/Map/userTypeforMap.dart';
 import 'package:maseeha_update/Patient/patientScreensData/AppUserData.dart';
 import 'package:maseeha_update/Patient/patientScreensData/loginPatientData.dart';
 import 'package:maseeha_update/localization/demo_localization.dart';
@@ -107,6 +107,9 @@ class PatientLogin extends StatelessWidget {
   Widget build(BuildContext context) {
     final loginPatientData =
         Provider.of<LoginPatientData>(context, listen: false);
+
+     final userType =
+        Provider.of<UserType>(context, listen: false);
 
     Size size = MediaQuery.of(context).size;
     return SafeArea(
@@ -418,19 +421,34 @@ class PatientLogin extends StatelessWidget {
                                             } else {
                                               _formkey.currentState.save();
 
+                                            loginPatientData.toggleLoading();
+
                                               final check =
                                                   await loginPatientData
                                                       .signUser();
 
-                                              if (check) {
-                                                auth_assistant.abc
-                                                    .addUserdata();
+
+                                              if (check)  {
+
+                                               await loginPatientData.getCurrentUserData();
+                                        
+                                                
+                                                userType.userType = "Patient";
                                                 SharedPreferences sp =
                                                     await SharedPreferences
                                                         .getInstance();
 
                                                 sp.setBool(
                                                     "SignedInPatient", true);
+                                                sp.setString(
+                                                    "name", loginPatientData.userList[E.patientName.index]);
+                                                 sp.setString(
+                                                    "email", loginPatientData.userList[E.email.index]);
+                                                 sp.setString(
+                                                    "address", loginPatientData.userList[E.address.index]);
+                                                 sp.setString(
+                                                    "cnic", loginPatientData.userList[E.cnic.index]);
+
                                                 Fluttertoast.showToast(
                                                     msg:
                                                         'You have logged in succesfully',
@@ -440,16 +458,22 @@ class PatientLogin extends StatelessWidget {
                                                         ToastGravity.BOTTOM,
                                                     backgroundColor:
                                                         Colors.blue,
-                                                    textColor: Colors.yellow);
+                                                    textColor: Colors.white);
                                                 Navigator.pushReplacement(
                                                   context,
                                                   MaterialPageRoute(
                                                       builder: (context) =>
                                                           PatientDashboard()),
                                                 );
-                                              } else {
+                                              } 
+                                              
+                                              
+                                              else {
+                                                loginPatientData.toggleLoading();
                                                 createAlertDialog(context);
                                               }
+
+                                           
                                             }
                                           }),
                                     ),

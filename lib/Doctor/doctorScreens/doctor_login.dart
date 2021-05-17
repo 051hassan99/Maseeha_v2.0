@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:maseeha_update/Doctor/doctorScreensData/doctorRegisterData.dart';
 import 'package:maseeha_update/Doctor/doctorScreensData/loginDoctorData.dart';
+import 'package:maseeha_update/classes/doctor.dart';
 import 'package:maseeha_update/localization/demo_localization.dart';
 import 'package:provider/provider.dart';
 import '../../lang_selector.dart';
@@ -40,6 +41,9 @@ class DoctorLogin extends StatelessWidget {
 
     final loginDoctorData =
         Provider.of<LoginDoctorData>(context, listen: false);
+
+     final doctorData =
+        Provider.of<Doctor>(context, listen: false);
 
     Size size = MediaQuery.of(context).size;
     return SafeArea(
@@ -294,6 +298,8 @@ class DoctorLogin extends StatelessWidget {
                                                     .signUser();
 
                                             if (check) {
+
+                                              doctorData.getCurrentUserData();
                                               Navigator.push(
                                                 context,
                                                 MaterialPageRoute(

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:maseeha_update/Map/userTypeforMap.dart';
 import 'package:provider/provider.dart';
 
 import 'DataHandler/AppData.dart';
@@ -21,6 +22,9 @@ class _SearchScreenState extends State<SearchScreen> {
   @override
   Widget build(BuildContext context) {
     String placeAddress = Provider.of<AppData>(context).userlocation.placeName;
+     final userType =
+        Provider.of<UserType>(context, listen: false);
+    
 
     homelocation.text = placeAddress;
     return SafeArea(
@@ -58,13 +62,29 @@ class _SearchScreenState extends State<SearchScreen> {
                           color: Colors.white,
                         ),
                       ),
+
+                       userType.userType == "Patient" ?
                       Center(
+                       
                         child: Text(
                           "Set Doctor Destination",
                           style: TextStyle(
                             fontSize: 20,
                             fontWeight: FontWeight.bold,
                             color: Colors.white,
+                             fontFamily: 'Jameel Noori Nastaleeq Kasheeda'
+                          ),
+                        ),
+                      )
+                      : Center(
+                       
+                        child: Text(
+                          "Set Patient Destination",
+                          style: TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white,
+                             fontFamily: 'Jameel Noori Nastaleeq Kasheeda'
                           ),
                         ),
                       )
@@ -91,6 +111,9 @@ class _SearchScreenState extends State<SearchScreen> {
                               controller: homelocation,
                               decoration: InputDecoration(
                                 hintText: "Your Location",
+                                hintStyle: TextStyle(
+                                   fontFamily: 'Jameel Noori Nastaleeq Kasheeda'
+                                ),
                                 fillColor: Colors.white,
                                 filled: true,
                                 border: InputBorder.none,
@@ -116,6 +139,8 @@ class _SearchScreenState extends State<SearchScreen> {
                         color: Colors.white,
                       ),
                       SizedBox(width: 18.0),
+
+                        userType.userType == "Patient" ?
                       Expanded(
                         child: Container(
                           decoration: BoxDecoration(
@@ -131,6 +156,9 @@ class _SearchScreenState extends State<SearchScreen> {
                               controller: doctorlocation,
                               decoration: InputDecoration(
                                 hintText: "Your Doctor Location",
+                                hintStyle: TextStyle(
+                                   fontFamily: 'Jameel Noori Nastaleeq Kasheeda'
+                                ),
                                 fillColor: Colors.white,
                                 filled: true,
                                 border: InputBorder.none,
@@ -145,6 +173,40 @@ class _SearchScreenState extends State<SearchScreen> {
                           ),
                         ),
                       )
+                      :  
+                      Expanded(
+                        child: Container(
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(10.0),
+                          ),
+                          child: Padding(
+                            padding: EdgeInsets.all(6.0),
+                            child: TextField(
+                              onChanged: (val) {
+                                findPlace(val);
+                              },
+                              controller: doctorlocation,
+                              decoration: InputDecoration(
+                                hintText: "Your Patient Location",
+                                hintStyle: TextStyle(
+                                   fontFamily: 'Jameel Noori Nastaleeq Kasheeda'
+                                ),
+                                fillColor: Colors.white,
+                                filled: true,
+                                border: InputBorder.none,
+                                isDense: true,
+                                contentPadding: EdgeInsets.only(
+                                  left: 11.0,
+                                  right: 8.0,
+                                  bottom: 8.0,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      )
+                  
                     ],
                   ),
                 ],

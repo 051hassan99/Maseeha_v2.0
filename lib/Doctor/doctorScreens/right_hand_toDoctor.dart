@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:maseeha_update/Doctor/doctorScreens/doctorProfileScreen.dart';
 import 'package:maseeha_update/Doctor/doctorScreens/upeeContainer.dart';
 import 'package:maseeha_update/localization/demo_localization.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import '../../lang_selector.dart';
 import 'bmi_Container.dart';
 import 'bmrContainer.dart';
-import 'doctor_drawer.dart';
 //import 'package:flutter_svg/flutter_svg.dart';
 
 class RightHandToDoctor extends StatelessWidget {
@@ -69,7 +69,7 @@ class RightHandToDoctor extends StatelessWidget {
               child: LangSelector()),
         ],
       ),
-      drawer: DoctorDrawer(),
+      drawer: DoctorDrawerMenu(),
       body: ListView(
         children: [
           Row(

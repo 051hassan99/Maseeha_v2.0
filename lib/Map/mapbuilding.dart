@@ -4,6 +4,7 @@ import 'package:flutter_polyline_points/flutter_polyline_points.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:maseeha_update/Map/searchScreen.dart';
+import 'package:maseeha_update/Map/userTypeforMap.dart';
 import 'package:maseeha_update/localization/demo_localization.dart';
 import 'package:provider/provider.dart';
 
@@ -56,6 +57,9 @@ class _MapBuildingState extends State<MapBuilding> {
 
   @override
   Widget build(BuildContext context) {
+
+     final userType =
+        Provider.of<UserType>(context, listen: false);
     Size size = MediaQuery.of(context).size;
     return SafeArea(
       child: Scaffold(
@@ -131,6 +135,7 @@ class _MapBuildingState extends State<MapBuilding> {
                               fontFamily: 'Jameel Noori Nastaleeq Kasheeda'
                             ),
                           ),
+                          userType.userType == "Patient" ?
                           Text(
                             DemoLocalization.of(context)
                               .getTranslatedValue('yourDoctorLocation'),
@@ -139,7 +144,17 @@ class _MapBuildingState extends State<MapBuilding> {
                               color: Colors.white,
                               fontFamily: 'Jameel Noori Nastaleeq Kasheeda'
                             ),
+                          )
+                          :
+                             Text(
+                            "Patient Location",
+                            style: TextStyle(
+                              fontSize: 22.0,
+                              color: Colors.white,
+                              fontFamily: 'Jameel Noori Nastaleeq Kasheeda'
+                            ),
                           ),
+                          
                           SizedBox(height: 20.0),
                           Container(
                             height: 50,
@@ -167,13 +182,24 @@ class _MapBuildingState extends State<MapBuilding> {
                                 ),
                               ),
                               SizedBox(width: 10.0),
+
+                               userType.userType == "Patient" ?
                               Text(DemoLocalization.of(context)
                               .getTranslatedValue('searchYourDoctor'),
                               style: TextStyle(
                                 fontFamily: 'Jameel Noori Nastaleeq Kasheeda',
                                 fontSize: 18,
-                              ),),
-                            ]),
+                              ),)
+                              : Text("Search Your Patient",
+                              style: TextStyle(
+                                fontFamily: 'Jameel Noori Nastaleeq Kasheeda',
+                                fontSize: 18,
+                            
+                              ),
+
+                              ),
+                            ],
+                            ),
                           ),
                           SizedBox(height: 24.0),
                           Row(

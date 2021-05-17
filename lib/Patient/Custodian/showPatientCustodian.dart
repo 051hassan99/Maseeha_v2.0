@@ -114,7 +114,7 @@ class ShowPatientCustodian extends StatelessWidget {
                                       SizedBox(width: 25),
                                     Container(
                                       child: Text(
-                                        'Medicine Quantity',
+                                        'Medicine Description',
                                         style: TextStyle(
                                             fontSize: 18,
                                             fontWeight: FontWeight.bold,
@@ -124,7 +124,7 @@ class ShowPatientCustodian extends StatelessWidget {
                                       SizedBox(width: 20),
                                     Container(
                                       child: Text(
-                                        data.medQuantity.toString() ?? 'No data',
+                                        data.medDescription ?? 'No data',
                                         style: TextStyle(
                                           fontSize: 14,
                                           fontFamily: 'Jameel Noori Nastaleeq Kasheeda',
@@ -139,7 +139,7 @@ class ShowPatientCustodian extends StatelessWidget {
                                       SizedBox(width: 25),
                                     Container(
                                       child: Text(
-                                        'Medicine Total Quantity',
+                                        'Medicine Date',
                                         style: TextStyle(
                                             fontSize: 18,
                                             fontWeight: FontWeight.bold,
@@ -149,7 +149,7 @@ class ShowPatientCustodian extends StatelessWidget {
                                       SizedBox(width: 20),
                                     Container(
                                       child: Text(
-                                        data.medTotalQuantity.toString() ?? 'No data',
+                                        data.date ?? 'No data',
                                         style: TextStyle(
                                           fontSize: 14,
                                           fontFamily: 'Jameel Noori Nastaleeq Kasheeda',

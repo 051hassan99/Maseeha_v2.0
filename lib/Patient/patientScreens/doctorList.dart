@@ -1,7 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:maseeha_update/Assistants/firestore_assitant.dart';
 import 'package:maseeha_update/Notification/notification.dart';
 import 'package:maseeha_update/Patient/patientScreensData/loginPatientData.dart';

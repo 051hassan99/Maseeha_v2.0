@@ -41,6 +41,8 @@ class AppUserData extends ChangeNotifier {
         "CNIC": this.cnic
       };
 
+  
+
   Map<String, dynamic> get toTokenJson =>
       {"userEmailId": this.email, "tokenId": this.tokenId};
 

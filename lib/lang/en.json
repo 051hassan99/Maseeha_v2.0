@@ -89,5 +89,22 @@
     "Cancel" : "Cancel",
     "HiThere": "Hi There",
     "yourDoctorLocation": "Your Doctor Location",
-    "searchYourDoctor":"Search Your Doctor"
+    "searchYourDoctor":"Search Your Doctor",
+    "maseehaVideoZone":"Maseeha Video Zone",
+    "videoDescription":"Easy Connect with friends",
+    "createRoom":"Create Room",
+    "createRoomDescription":"Create a unique Maseeha room and ask other friends to join the same room",
+    "joinRoom":"Join Room",
+    "joinRoomDescription":"Join a Maseeha room created by your friend",
+    "roomCreated":"Room Created",
+    "roomId": "Room ID",
+    "share": "Share",
+    "join":"Join",
+    "sendIt": "You want to send it through",
+    "thisApp":"This App",
+    "otherApps":"Other Apps",
+    "note":"Note",
+    "joinCallNote":"No one has not joined this call yet,\nDo You want to close this room?",
+    "yes":"Yes",
+    "no":"No"
 }

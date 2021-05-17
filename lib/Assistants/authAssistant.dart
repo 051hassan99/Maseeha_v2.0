@@ -31,8 +31,17 @@ void addUserdata(){
     userProfileList[E.photoURL.index] =  auth.currentUser.photoURL;
 
 
-    print("User Name is "+  userProfileList[E.username.index]);
-    print("User Email is "+ userProfileList[E.email.index]);
+    print("User Name is "+ auth.currentUser.toString());
+   // print("User Email is "+ userProfileList[E.email.index]);
+
+}
+
+
+void removeUserdata(){
+
+  userProfileList[E.username.index] = '';
+   userProfileList[E.email.index] = '';
+    userProfileList[E.photoURL.index] = '';
 
 }
 }

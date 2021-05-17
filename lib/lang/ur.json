@@ -89,5 +89,22 @@
     "Cancel" : "منسوخ کریں",
     "HiThere": "ہیلو",
     "yourDoctorLocation": "آپ کے ڈاکٹر کی لوکیشن",
-    "searchYourDoctor":"اپنے ڈاکٹر کی تلاش کریں"
+    "searchYourDoctor":"اپنے ڈاکٹر کی تلاش کریں",
+    "maseehaVideoZone":"مسیحا ویڈیو زون",
+    "videoDescription":"دوستوں کے ساتھ آسان رابطہ",
+    "createRoom":"روم بنائیں",
+    "createRoomDescription":"ایک یونیک مسیحا روم بنائیں اور اپنے دوستوں کو اس میں شامل کریں",
+    "joinRoom":"روم میں شامل ھوئیں",
+    "joinRoomDescription":"اپنے دوست کے مسیحا روم میں شامل ہوں",
+    "roomCreated":"روم بنا دیا گیا ہے",
+    "roomId": "روم آی ڈی",
+    "share": "شیئر کیجئے",
+    "join":"شامل ہوئیں",
+    "sendIt": "آپ اسے بھیجنا چاہتے ہیں",
+    "thisApp":"اس ایپ سے",
+    "otherApps":"دیگر ایپس سے",
+    "note":"نوٹ",
+    "joinCallNote":"ابھی تک کوئی بھی اس کال میں شامل نہیں ہوا ہے  کیا آپ یہ کال بند کرنا چاہتے ہیں؟",
+    "yes":"جی ہاں",
+    "no":"نہیں"
 }

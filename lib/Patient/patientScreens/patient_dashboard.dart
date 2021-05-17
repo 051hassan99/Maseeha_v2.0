@@ -3,11 +3,13 @@ import 'package:flutter_svg/svg.dart';
 import 'package:maseeha_update/Map/mapbuilding.dart';
 import 'package:maseeha_update/Patient/Chat/screens/chats/chats_screen.dart';
 import 'package:maseeha_update/Patient/Custodian/patientCustodianSelection.dart';
-import 'package:maseeha_update/Patient/TeleMedicine/videoHomePage.dart';
+import 'package:maseeha_update/Patient/TeleMedicine/UI/home_page.dart';
+import 'package:maseeha_update/Patient/patientScreens/patientProfileScreen.dart';
+//import 'package:maseeha_update/Patient/TeleMedicine/videoHomePage.dart';
 import 'package:maseeha_update/localization/demo_localization.dart';
 import '../../lang_selector.dart';
 import 'appointmentselction.dart';
-import 'main_drawer.dart';
+
 
 class PatientDashboard extends StatelessWidget {
   static const String id = 'patient_dashboard';
@@ -52,7 +54,7 @@ class PatientDashboard extends StatelessWidget {
                 child: LangSelector()),
           ],
         ),
-        drawer: MainDrawer(),
+        drawer: DrawerMenu(),
         body: ListView(
           children: [
             Row(
@@ -182,12 +184,14 @@ class PatientDashboard extends StatelessWidget {
                     SizedBox(width: 10),
                     GestureDetector(
                       onTap: () {
+
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => MyHomePage(),
+                            builder: (context) => TeleMedicineHomePage(),
                           ),
                         );
+                        
                       },
                       child: _buildCard(
                         svgPicture: SvgPicture.asset(

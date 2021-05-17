@@ -3,7 +3,9 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:maseeha_update/Doctor/appointmentReply/appointmentReply.dart';
+import 'package:maseeha_update/Map/userTypeforMap.dart';
 import 'package:maseeha_update/Notification/notification.dart';
+import 'package:maseeha_update/Patient/Custodian/localNotificationImplement.dart';
 import 'package:maseeha_update/Patient/caretakerAppointment/caretakerNewAppointmentData.dart';
 import 'package:maseeha_update/Patient/patientScreens/doctorList.dart';
 import 'package:maseeha_update/category.dart';
@@ -29,6 +31,7 @@ import 'Caretaker/loginCaretakerData.dart';
 import 'classes/doctor.dart';
 import 'localization/demo_localization.dart';
 import 'splashScreen.dart';
+
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -58,11 +61,13 @@ class _MyAppState extends State<MyApp> {
   var bgcolor = Colors.blue;
   Locale _locale;
 
+
   @override
   void initState() {
     // ignore: todo
     // TODO: implement initState
     super.initState();
+    
     // getToken();
   }
 
@@ -135,6 +140,12 @@ class _MyAppState extends State<MyApp> {
         ),
         ChangeNotifierProvider(
           create: (context) => Token(),
+        ),
+         ChangeNotifierProvider(
+          create: (context) => LocalNotificationImplement(),
+        ),
+         ChangeNotifierProvider(
+          create: (context) => UserType(),
         ),
       ],
       child: MaterialApp(

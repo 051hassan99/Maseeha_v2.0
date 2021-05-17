@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:maseeha_update/Patient/Custodian/localNotificationImplement.dart';
 import 'package:maseeha_update/Patient/Custodian/showPatientCustodian.dart';
 import 'package:maseeha_update/localization/demo_localization.dart';
+import 'package:provider/provider.dart';
 import '../../category.dart';
 import '../../lang_selector.dart';
 import 'addMedicine.dart';
@@ -8,6 +10,8 @@ import 'addMedicine.dart';
 class PatientCustodianSelection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+  //   final localNotificationImplement =  Provider.of<LocalNotificationImplement>(context, listen: false);
+    Provider.of<LocalNotificationImplement>(context).context = context;
     Size size = MediaQuery.of(context).size;
     return SafeArea(
       child: Scaffold(

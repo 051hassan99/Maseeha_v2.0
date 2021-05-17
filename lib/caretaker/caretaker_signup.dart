@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:maseeha_update/localization/demo_localization.dart';
 import 'package:provider/provider.dart';
 
@@ -31,10 +30,11 @@ class CaretakerSignup extends StatelessWidget {
                   Center(
                     child: Text(
                       DemoLocalization.of(context).getTranslatedValue('c'),
-                      style: GoogleFonts.rajdhani(
+                      style: TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 50,
-                          color: Colors.white),
+                          color: Colors.white,
+                           fontFamily: 'Jameel Noori Nastaleeq Kasheeda'),
                     ),
                   ),
                   Container(
@@ -83,10 +83,11 @@ class CaretakerSignup extends StatelessWidget {
                                 child: Text(
                                   DemoLocalization.of(context)
                                       .getTranslatedValue('stc'),
-                                  style: GoogleFonts.rajdhani(
+                                  style: TextStyle(
                                     fontWeight: FontWeight.bold,
                                     fontSize: 24,
                                     color: Theme.of(context).primaryColor,
+                                     fontFamily: 'Jameel Noori Nastaleeq Kasheeda'
                                   ),
                                 ),
                               ),
@@ -120,6 +121,9 @@ class CaretakerSignup extends StatelessWidget {
                                         decoration: InputDecoration(
                                           hintText: DemoLocalization.of(context)
                                               .getTranslatedValue('efullname'),
+                                          hintStyle: TextStyle(
+                                             fontFamily: 'Jameel Noori Nastaleeq Kasheeda'
+                                          ),
                                           border: InputBorder.none,
                                           contentPadding: EdgeInsets.all(10),
                                         ),
@@ -169,6 +173,9 @@ class CaretakerSignup extends StatelessWidget {
                                         decoration: InputDecoration(
                                           hintText: DemoLocalization.of(context)
                                               .getTranslatedValue('eemail'),
+                                          hintStyle: TextStyle(
+                                             fontFamily: 'Jameel Noori Nastaleeq Kasheeda'
+                                          ),
                                           border: InputBorder.none,
                                           contentPadding: EdgeInsets.all(10),
                                         ),
@@ -227,6 +234,9 @@ class CaretakerSignup extends StatelessWidget {
                                           hintText: DemoLocalization.of(context)
                                               .getTranslatedValue(
                                                   'EnterYourHospital'),
+                                          hintStyle: TextStyle(
+                                             fontFamily: 'Jameel Noori Nastaleeq Kasheeda'
+                                          ),
                                           border: InputBorder.none,
                                           contentPadding: EdgeInsets.all(10),
                                         ),
@@ -278,6 +288,9 @@ class CaretakerSignup extends StatelessWidget {
                                           hintText: DemoLocalization.of(context)
                                               .getTranslatedValue(
                                                   'EnterYourPncNo'),
+                                          hintStyle: TextStyle(
+                                             fontFamily: 'Jameel Noori Nastaleeq Kasheeda'
+                                          ),
                                           border: InputBorder.none,
                                           contentPadding: EdgeInsets.all(10),
                                         ),
@@ -330,6 +343,9 @@ class CaretakerSignup extends StatelessWidget {
                                               hintText: DemoLocalization.of(
                                                       context)
                                                   .getTranslatedValue('epass'),
+                                              hintStyle: TextStyle(
+                                                 fontFamily: 'Jameel Noori Nastaleeq Kasheeda'
+                                              ),
                                               border: InputBorder.none,
                                               contentPadding: EdgeInsets.all(10),
                                               suffixIcon: IconButton(
@@ -397,6 +413,9 @@ class CaretakerSignup extends StatelessWidget {
                                                   DemoLocalization.of(context)
                                                       .getTranslatedValue(
                                                           'econfirmpass'),
+                                              hintStyle: TextStyle(
+                                                 fontFamily: 'Jameel Noori Nastaleeq Kasheeda'
+                                              ),
                                               border: InputBorder.none,
                                               contentPadding: EdgeInsets.all(10),
                                               suffixIcon: IconButton(
@@ -464,10 +483,11 @@ class CaretakerSignup extends StatelessWidget {
                                           child: Text(
                                             DemoLocalization.of(context)
                                                 .getTranslatedValue('signup'),
-                                            style: GoogleFonts.rajdhani(
+                                            style: TextStyle(
                                                 fontWeight: FontWeight.bold,
                                                 fontSize: 18,
-                                                color: Colors.white),
+                                                color: Colors.white,
+                                                 fontFamily: 'Jameel Noori Nastaleeq Kasheeda'),
                                           ),
                                           onPressed: () async {
                                             if (!_formkey.currentState
@@ -519,10 +539,11 @@ class CaretakerSignup extends StatelessWidget {
                                             DemoLocalization.of(context)
                                                 .getTranslatedValue(
                                                     'backtologin'),
-                                            style: GoogleFonts.rajdhani(
+                                            style: TextStyle(
                                                 fontWeight: FontWeight.bold,
                                                 fontSize: 18,
-                                                color: Colors.white),
+                                                color: Colors.white,
+                                                 fontFamily: 'Jameel Noori Nastaleeq Kasheeda'),
                                           ),
                                           onPressed: () {
                                             Navigator.push(

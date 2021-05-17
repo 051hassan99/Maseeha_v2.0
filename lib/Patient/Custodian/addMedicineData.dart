@@ -2,23 +2,31 @@ import 'package:flutter/cupertino.dart';
 
 class AddMedicineData extends ChangeNotifier {
   String medName;
-  int medQuantity;
-  int medTotalQuantity;
+  String medDescription;
+  String date;
   String time;
   String patientEmail;
+  bool loading = false;
 
   AddMedicineData(
       {this.medName,
-      this.medQuantity,
-      this.medTotalQuantity,
+      this.medDescription,
+      this.date,
       this.time,
       this.patientEmail});
+
+void toggleLoading(){
+
+    loading = !loading;
+     notifyListeners();
+}
+
 
   factory AddMedicineData.fromMedicineJson(Map<String, dynamic> map) {
     return AddMedicineData(
       medName: map['MedicineName'],
-      medQuantity: map['MedicineQuantity'],
-      medTotalQuantity: map['MedicineTotalQuantity'],
+      medDescription: map['MedicineDescription'],
+      date: map['DoseDate'],
       time: map['DoseTime'],
       patientEmail: map['PatientEmail'],
     );
@@ -26,8 +34,8 @@ class AddMedicineData extends ChangeNotifier {
 
   Map<String, dynamic> get toMedicineJson => {
         "MedicineName": this.medName,
-        "MedicineQuantity": this.medQuantity,
-        "MedicineTotalQuantity": this.medTotalQuantity,
+        "MedicineDescription": this.medDescription,
+        "DoseDate": this.date,
         "DoseTime": this.time,
         "PatientEmail": this.patientEmail,
       };

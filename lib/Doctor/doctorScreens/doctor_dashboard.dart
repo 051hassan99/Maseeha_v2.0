@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:maseeha_update/Doctor/doctorScreens/doctorProfileScreen.dart';
 import 'package:maseeha_update/Doctor/doctorScreens/right_hand_toDoctor.dart';
-import 'package:maseeha_update/Doctor/manageAppointment.dart';
 import 'package:maseeha_update/localization/demo_localization.dart';
 import '../../lang_selector.dart';
 import 'apointment_messages.dart';
-import 'doctor_drawer.dart';
+import 'manageAppointment.dart';
+
 
 class DoctorDashboard extends StatelessWidget {
   static const String id = 'doctor_dashboard';
@@ -49,7 +50,7 @@ class DoctorDashboard extends StatelessWidget {
                 child: LangSelector()),
           ],
         ),
-        drawer: DoctorDrawer(),
+        drawer: DoctorDrawerMenu(),
         body: ListView(
           children: [
             Row(
