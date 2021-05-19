@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:maseeha_update/Caretaker/caretakerAppointmentMessages.dart';
 import 'package:maseeha_update/Map/mapbuilding.dart';
 import 'package:maseeha_update/localization/demo_localization.dart';
 import '../lang_selector.dart';
@@ -25,8 +25,10 @@ class CaretakerDashboard extends StatelessWidget {
                   child: Center(
                     child: Text(
                       DemoLocalization.of(context).getTranslatedValue('title'),
-                      style: GoogleFonts.montserrat(
+                      style: TextStyle(
                         fontWeight: FontWeight.bold,
+                         fontFamily: 'Jameel Noori Nastaleeq Kasheeda'
+
                       ),
                     ),
                   ),
@@ -57,8 +59,9 @@ class CaretakerDashboard extends StatelessWidget {
                   child: Text(
                     DemoLocalization.of(context)
                         .getTranslatedValue('caretakerdashboard'),
-                    style: GoogleFonts.montserrat(
+                    style: TextStyle(
                       fontWeight: FontWeight.bold,
+                       fontFamily: 'Jameel Noori Nastaleeq Kasheeda',
                       color: Theme.of(context).primaryColor,
                       fontSize: 25,
                     ),
@@ -69,7 +72,8 @@ class CaretakerDashboard extends StatelessWidget {
              GestureDetector(
                       onTap: () {
 
-
+                         Navigator.of(context).pushReplacement(createRoute(CaretakerAppointmentMessages()));
+                        
                         
                       },
                       child: _buildCard(
@@ -82,6 +86,7 @@ class CaretakerDashboard extends StatelessWidget {
                           style: TextStyle(
                             fontSize: 13,
                             fontWeight: FontWeight.bold,
+                             fontFamily: 'Jameel Noori Nastaleeq Kasheeda',
                             color: Colors.white,
                           ),
                         ),
@@ -92,12 +97,7 @@ class CaretakerDashboard extends StatelessWidget {
                       GestureDetector(
                       onTap: () {
 
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => MapBuilding(),
-                          ),
-                        );
+                         Navigator.of(context).push(createRoute(MapBuilding()));
                         
                       },
                       child: _buildCard(
@@ -110,6 +110,7 @@ class CaretakerDashboard extends StatelessWidget {
                           style: TextStyle(
                             fontSize: 13,
                             fontWeight: FontWeight.bold,
+                             fontFamily: 'Jameel Noori Nastaleeq Kasheeda',
                             color: Colors.white,
                           ),
                         ),
@@ -121,7 +122,36 @@ class CaretakerDashboard extends StatelessWidget {
           ],
         ));
   }
+
+  Route createRoute(widget) {
+  return PageRouteBuilder(
+    transitionDuration: Duration(seconds: 1),
+    transitionsBuilder: (context, animation, setAnimation, child) {
+      var begin = Offset(0.0, 1.0);
+      var end = Offset.zero;
+      var tween = Tween(begin: begin, end: end);
+      var offsetAnimation = animation.drive(tween);
+  
+
+
+  return SlideTransition(
+    position: offsetAnimation,
+    child: child,
+  );
+    },
+      pageBuilder: (
+        BuildContext context, 
+        Animation <double>animation, 
+        Animation <double> setAnimation) =>  widget,
+     
+    
+  );
 }
+
+
+}
+
+
 
 Padding _buildCard(
     {final SvgPicture svgPicture, Text text, BuildContext context}) {

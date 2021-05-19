@@ -7,29 +7,34 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:provider/provider.dart';
 
 class DrawerMenu extends StatelessWidget {
+
+  final auth = FirebaseAuth.instance;
+  
   @override
   Widget build(BuildContext context) {
- 
-String name;
-String email;
-String address;
-String cnic;
-   Future getUserCredentials() async {
-      SharedPreferences sp = await SharedPreferences.getInstance();
-      name = 
-       sp.getString("name");
-      email =  sp.getString("email");
-      address=   sp.getString("address");
-      cnic =  sp.getString("cnic");
+    
+    String name;
+    String email;
+    String address;
+    String cnic;
+    
 
-return 'data';
+
+    Future getUserCredentials() async {
+      SharedPreferences sp = await SharedPreferences.getInstance();
+      name = sp.getString("name");
+      email = sp.getString("email");
+      address = sp.getString("address");
+      cnic = sp.getString("cnic");
+
+      return 'data';
     }
 
+
+
     return Drawer(
-      child: Column
-      ( 
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
+      child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: <
+          Widget>[
         googleauth.abc.isGoogleLoggedIn
             ? Container(
                 width: double.infinity,
@@ -57,8 +62,6 @@ return 'data';
                           ),
                         ),
                       ),
-                     
-                      
                       Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Row(
@@ -125,14 +128,6 @@ return 'data';
                   ),
                 ),
               )
-
-
-
-
-
-
-
-
             : Container(
                 width: double.infinity,
                 padding: EdgeInsets.all(18),
@@ -156,187 +151,150 @@ return 'data';
                           ),
                         ),
                       ),
-                      
-
                       FutureBuilder(
-                        future: getUserCredentials(),
-                        builder: (context, snapshot){
-
-                      if(snapshot.hasData)
-                        return Padding(
-                                       padding: const EdgeInsets.all(8.0),
-                          child: Row(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: [
-                              
-                                Text(
-                                  "Name ",
-                                  style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    fontFamily: 'Jameel Noori Nastaleeq Kasheeda',
-                                    color: Colors.white,
-                                    fontSize: 16,
-                                  ),
-                                ),
-                                SizedBox(width: 20),
-                                Text(
-                                    name!=
-                                            null
-                                        ? name
-                                        : 'Mark ZukerBerg',
-                                    style: TextStyle(
-                                      fontFamily:
-                                          'Jameel Noori Nastaleeq Kasheeda',
-                                      color: Colors.white,
-                                      fontSize: 16,
-                                    )),
-                              ]),
-                        );
-
-                        else
-
-                          return CircularProgressIndicator();
-                        
-
-                        
-
-                        }
-                      ),
+                          future: getUserCredentials(),
+                          builder: (context, snapshot) {
+                            if (snapshot.hasData)
+                              return Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        "Name ",
+                                        style: TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          fontFamily:
+                                              'Jameel Noori Nastaleeq Kasheeda',
+                                          color: Colors.white,
+                                          fontSize: 16,
+                                        ),
+                                      ),
+                                      SizedBox(width: 20),
+                                      Text(
+                                          name != null
+                                              ? name
+                                              : 'Mark ZukerBerg',
+                                          style: TextStyle(
+                                            fontFamily:
+                                                'Jameel Noori Nastaleeq Kasheeda',
+                                            color: Colors.white,
+                                            fontSize: 16,
+                                          )),
+                                    ]),
+                              );
+                            else
+                              return CircularProgressIndicator();
+                          }),
                       FutureBuilder(
-                        future: getUserCredentials(),
-                        builder: (context, snapshot){
-
-                      if(snapshot.hasData)
-                        return Padding(
-                                       padding: const EdgeInsets.all(8.0),
-                          child: Row(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: [
-                        
-                                Text(
-                                  "Email ",
-                                  style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    fontFamily: 'Jameel Noori Nastaleeq Kasheeda',
-                                    color: Colors.white,
-                                    fontSize: 16,
-                                  ),
+                          future: getUserCredentials(),
+                          builder: (context, snapshot) {
+                            if (snapshot.hasData)
+                              return Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        "Email ",
+                                        style: TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          fontFamily:
+                                              'Jameel Noori Nastaleeq Kasheeda',
+                                          color: Colors.white,
+                                          fontSize: 16,
+                                        ),
+                                      ),
+                                      SizedBox(width: 20),
+                                      Text(
+                                          email != null
+                                              ? email
+                                              : 'abc@gmail.com',
+                                          style: TextStyle(
+                                            fontFamily:
+                                                'Jameel Noori Nastaleeq Kasheeda',
+                                            color: Colors.white,
+                                            fontSize: 16,
+                                          )),
+                                    ]),
+                              );
+                            else
+                              return CircularProgressIndicator();
+                          }),
+                      FutureBuilder(
+                          future: getUserCredentials(),
+                          builder: (context, snapshot) {
+                            if (snapshot.hasData)
+                              return Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: FittedBox(
+                                  fit: BoxFit.contain,
+                                  child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.start,
+                                      children: [
+                                        Text(
+                                          "Address",
+                                          style: TextStyle(
+                                            fontWeight: FontWeight.bold,
+                                            fontFamily:
+                                                'Jameel Noori Nastaleeq Kasheeda',
+                                            color: Colors.white,
+                                            fontSize: 16,
+                                          ),
+                                        ),
+                                        SizedBox(width: 20),
+                                        Text(
+                                            address != null
+                                                ? address
+                                                : 'xxxxxxxxxxxx',
+                                            style: TextStyle(
+                                              fontFamily:
+                                                  'Jameel Noori Nastaleeq Kasheeda',
+                                              color: Colors.white,
+                                              fontSize: 16,
+                                            )),
+                                      ]),
                                 ),
-                                SizedBox(width: 20),
-                                Text(
-                                    email!=
-                                            null
-                                        ? email
-                                        : 'abc@gmail.com',
-                                    style: TextStyle(
-                                      fontFamily:
-                                          'Jameel Noori Nastaleeq Kasheeda',
-                                      color: Colors.white,
-                                      fontSize: 16,
-                                    )),
-                              ]),
-                        );
-
-                        else
-
-                          return CircularProgressIndicator();
-                        
-
-                        
-
-                        }
-                      ),
-                     FutureBuilder(
-                        future: getUserCredentials(),
-                        builder: (context, snapshot){
-
-                      if(snapshot.hasData)
-                        return Padding(
-                                       padding: const EdgeInsets.all(8.0),
-                          child: FittedBox(
-                            fit: BoxFit.contain,
-                            child: Row(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                children: [
-                             
-                                  Text(
-                                    "Address",
-                                    style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      fontFamily: 'Jameel Noori Nastaleeq Kasheeda',
-                                      color: Colors.white,
-                                      fontSize: 16,
-                                    ),
-                                  ),
-                                  SizedBox(width: 20),
-                                  Text(
-                                      address!=
-                                              null
-                                          ? address
-                                          : 'xxxxxxxxxxxx',
-                                      style: TextStyle(
-                                        fontFamily:
-                                            'Jameel Noori Nastaleeq Kasheeda',
-                                        color: Colors.white,
-                                        fontSize: 16,
-                                      )),
-                                ]),
-                          ),
-                        );
-
-                        else
-
-                          return CircularProgressIndicator();
-                        
-
-                        
-
-                        }
-                      ),
-                    FutureBuilder(
-                        future: getUserCredentials(),
-                        builder: (context, snapshot){
-
-                      if(snapshot.hasData)
-                        return Padding(
-                                       padding: const EdgeInsets.all(8.0),
-                          child: Row(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: [
-                             
-                                Text(
-                                  "CNIC",
-                                  style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    fontFamily: 'Jameel Noori Nastaleeq Kasheeda',
-                                    color: Colors.white,
-                                    fontSize: 16,
-                                  ),
-                                ),
-                                SizedBox(width: 20),
-                                Text(
-                                    cnic!=
-                                            null
-                                        ? cnic
-                                        : 'xxxxx-xxxxxx-x',
-                                    style: TextStyle(
-                                      fontFamily:
-                                          'Jameel Noori Nastaleeq Kasheeda',
-                                      color: Colors.white,
-                                      fontSize: 16,
-                                    )),
-                              ]),
-                        );
-
-                        else
-
-                          return CircularProgressIndicator();
-                        
-
-                        
-
-                        }
-                      ),
+                              );
+                            else
+                              return CircularProgressIndicator();
+                          }),
+                      FutureBuilder(
+                          future: getUserCredentials(),
+                          builder: (context, snapshot) {
+                            if (snapshot.hasData)
+                              return Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        "CNIC",
+                                        style: TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          fontFamily:
+                                              'Jameel Noori Nastaleeq Kasheeda',
+                                          color: Colors.white,
+                                          fontSize: 16,
+                                        ),
+                                      ),
+                                      SizedBox(width: 20),
+                                      Text(
+                                          cnic != null
+                                              ? cnic
+                                              : 'xxxxx-xxxxxx-x',
+                                          style: TextStyle(
+                                            fontFamily:
+                                                'Jameel Noori Nastaleeq Kasheeda',
+                                            color: Colors.white,
+                                            fontSize: 16,
+                                          )),
+                                    ]),
+                              );
+                            else
+                              return CircularProgressIndicator();
+                          }),
                     ],
                   ),
                 ),
@@ -357,23 +315,25 @@ return 'data';
             title: Text('Logout'),
             leading: Icon(Icons.close),
             onTap: () async {
-              googleauth.abc.logout(context);
-
-
-              final auth = FirebaseAuth.instance;
-              auth.signOut();
+              if (googleauth.abc.isGoogleLoggedIn) {
+                googleauth.abc.logout(context);
+              } else {
+                final auth = FirebaseAuth.instance;
+                auth.signOut();
+              }
 
               SharedPreferences sp = await SharedPreferences.getInstance();
               sp.setBool("SignedInPatient", false);
-
               while (Navigator.canPop(context)) {
                 Navigator.pop(context);
               }
-              context.read<LoginPatientData>().loading = false;
+
               Navigator.pushReplacement(
                 context,
                 MaterialPageRoute(builder: (context) => PatientLogin()),
               );
+
+              context.read<LoginPatientData>().loading = false;
             }),
       ]),
     );

@@ -147,7 +147,8 @@ class _MapBuildingState extends State<MapBuilding> {
                           )
                           :
                              Text(
-                            "Patient Location",
+                            DemoLocalization.of(context)
+                              .getTranslatedValue('yourPatientLocation'),
                             style: TextStyle(
                               fontSize: 22.0,
                               color: Colors.white,
@@ -190,7 +191,8 @@ class _MapBuildingState extends State<MapBuilding> {
                                 fontFamily: 'Jameel Noori Nastaleeq Kasheeda',
                                 fontSize: 18,
                               ),)
-                              : Text("Search Your Patient",
+                              : Text(DemoLocalization.of(context)
+                              .getTranslatedValue('searchYourPatient'),
                               style: TextStyle(
                                 fontFamily: 'Jameel Noori Nastaleeq Kasheeda',
                                 fontSize: 18,

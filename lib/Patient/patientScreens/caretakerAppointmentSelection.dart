@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:maseeha_update/Patient/patientScreens/patientAppointmentMessages.dart';
+import 'package:maseeha_update/Patient/caretakerAppointment/caratakerslist.dart';
 import 'package:maseeha_update/localization/demo_localization.dart';
 import '../../category.dart';
 import '../../lang_selector.dart';
-import 'doctorList.dart';
 
-class AppointmentSelection extends StatelessWidget {
+class CaretakerAppointmentSelection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -54,7 +53,7 @@ class AppointmentSelection extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 60.0),
                   child: CategoryButton(
-                    imagePath: 'assets/images/doctor.svg',
+                    imagePath: 'assets/images/babysitter.svg',
                     text: 'd',
                     height: constraints.biggest.height * 0.40,
                     width: 10,
@@ -62,7 +61,7 @@ class AppointmentSelection extends StatelessWidget {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => DoctorList(),
+                          builder: (context) => CaretakerList(),
                         ),
                       );
                     },
@@ -77,11 +76,7 @@ class AppointmentSelection extends StatelessWidget {
                     height: constraints.biggest.height * 0.40,
                     width: 10,
                     onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => AppointmentHistory()),
-                      );
+                      
                     },
                   ),
                 ),

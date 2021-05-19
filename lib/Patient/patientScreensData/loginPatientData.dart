@@ -64,6 +64,7 @@ class LoginPatientData extends ChangeNotifier {
   Future<bool> signUser() async {
     bool check = false;
 
+
     try {
       await auth
           .signInWithEmailAndPassword(email: email, password: password)
@@ -78,7 +79,6 @@ class LoginPatientData extends ChangeNotifier {
     print('Email Verified Status After: $check');
     print('Email : $email');
     print('Password: $password');
-    
     return check;
   }
 }

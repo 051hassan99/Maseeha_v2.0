@@ -11,8 +11,9 @@ class CaretakerRegisterData extends ChangeNotifier {
   String carePassword;
   String careConfirmPass;
   bool loading;
-     String tokenId;
+  String tokenId;
   bool securetext = true;
+  String cnic;
 
   final firestoreAssitant = FirestoreAssitant();
   final tokenAssistant = Token();
@@ -36,7 +37,8 @@ class CaretakerRegisterData extends ChangeNotifier {
         "name": this.careName,
         "pnc": this.pnc,
         "caretakerHospital": this.careHospital,
-        "caretakerEmail": this.careEmail
+        "caretakerEmail": this.careEmail,
+        "CNIC":this.cnic
       };
   
     Map<String, dynamic> get toTokenJson =>

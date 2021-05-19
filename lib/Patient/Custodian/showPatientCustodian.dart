@@ -87,7 +87,7 @@ class ShowPatientCustodian extends StatelessWidget {
                                     SizedBox(width: 25),
                                     Container(
                                       child: Text(
-                                        'Medicine Name',
+                                        DemoLocalization.of(context).getTranslatedValue('medName'),
                                         style: TextStyle(
                                             fontSize: 18,
                                             fontWeight: FontWeight.bold,
@@ -99,7 +99,7 @@ class ShowPatientCustodian extends StatelessWidget {
                                       child: Text(
                                         data.medName ?? 'No data',
                                         style: TextStyle(
-                                          fontSize: 14,
+                                          fontSize: 16,
                                           fontFamily: 'Jameel Noori Nastaleeq Kasheeda',
                                         ),
                                       ),
@@ -114,7 +114,7 @@ class ShowPatientCustodian extends StatelessWidget {
                                       SizedBox(width: 25),
                                     Container(
                                       child: Text(
-                                        'Medicine Description',
+                                         DemoLocalization.of(context).getTranslatedValue('medDescription'),
                                         style: TextStyle(
                                             fontSize: 18,
                                             fontWeight: FontWeight.bold,
@@ -126,7 +126,7 @@ class ShowPatientCustodian extends StatelessWidget {
                                       child: Text(
                                         data.medDescription ?? 'No data',
                                         style: TextStyle(
-                                          fontSize: 14,
+                                          fontSize: 16,
                                           fontFamily: 'Jameel Noori Nastaleeq Kasheeda',
                                         ),
                                       ),
@@ -139,7 +139,7 @@ class ShowPatientCustodian extends StatelessWidget {
                                       SizedBox(width: 25),
                                     Container(
                                       child: Text(
-                                        'Medicine Date',
+                                         DemoLocalization.of(context).getTranslatedValue('medDate'),
                                         style: TextStyle(
                                             fontSize: 18,
                                             fontWeight: FontWeight.bold,
@@ -151,7 +151,7 @@ class ShowPatientCustodian extends StatelessWidget {
                                       child: Text(
                                         data.date ?? 'No data',
                                         style: TextStyle(
-                                          fontSize: 14,
+                                          fontSize: 16,
                                           fontFamily: 'Jameel Noori Nastaleeq Kasheeda',
                                         ),
                                       ),
@@ -164,7 +164,7 @@ class ShowPatientCustodian extends StatelessWidget {
                                       SizedBox(width: 25),
                                     Container(
                                       child: Text(
-                                        'Medicine Time',
+                                         DemoLocalization.of(context).getTranslatedValue('medTime'),
                                         style: TextStyle(
                                             fontSize: 18,
                                             fontWeight: FontWeight.bold,
@@ -176,7 +176,7 @@ class ShowPatientCustodian extends StatelessWidget {
                                       child: Text(
                                         data.time ?? 'No data',
                                         style: TextStyle(
-                                          fontSize: 14,
+                                          fontSize: 16,
                                           fontFamily: 'Jameel Noori Nastaleeq Kasheeda',
                                         ),
                                       ),

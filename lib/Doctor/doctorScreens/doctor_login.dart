@@ -4,6 +4,7 @@ import 'package:maseeha_update/Doctor/doctorScreensData/loginDoctorData.dart';
 import 'package:maseeha_update/classes/doctor.dart';
 import 'package:maseeha_update/localization/demo_localization.dart';
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import '../../lang_selector.dart';
 import 'doctor_dashboard.dart';
 import 'doctor_signup.dart';
@@ -298,6 +299,13 @@ class DoctorLogin extends StatelessWidget {
                                                     .signUser();
 
                                             if (check) {
+
+                                               SharedPreferences sp =
+                                                    await SharedPreferences
+                                                        .getInstance();
+
+                                                sp.setBool(
+                                                    "SignedInDoctor", true);
 
                                               doctorData.getCurrentUserData();
                                               Navigator.push(

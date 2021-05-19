@@ -18,6 +18,13 @@ class LoginCaretakerData extends ChangeNotifier {
     notifyListeners();
   }
 
+  
+  String getCurrentCaretakerrData() {
+    final auth = FirebaseAuth.instance;
+    User user = auth.currentUser;
+    return user.email;
+  }
+
   bool isEmailVerified(user) {
     return user.emailVerified;
   }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:maseeha_update/Map/userTypeforMap.dart';
+import 'package:maseeha_update/localization/demo_localization.dart';
 import 'package:provider/provider.dart';
 
 import 'DataHandler/AppData.dart';
@@ -67,7 +68,8 @@ class _SearchScreenState extends State<SearchScreen> {
                       Center(
                        
                         child: Text(
-                          "Set Doctor Destination",
+                          DemoLocalization.of(context)
+                              .getTranslatedValue('setDoctorDestination'),
                           style: TextStyle(
                             fontSize: 20,
                             fontWeight: FontWeight.bold,
@@ -79,7 +81,8 @@ class _SearchScreenState extends State<SearchScreen> {
                       : Center(
                        
                         child: Text(
-                          "Set Patient Destination",
+                         DemoLocalization.of(context)
+                              .getTranslatedValue('setPatientDestination'),
                           style: TextStyle(
                             fontSize: 20,
                             fontWeight: FontWeight.bold,
@@ -110,7 +113,8 @@ class _SearchScreenState extends State<SearchScreen> {
                             child: TextField(
                               controller: homelocation,
                               decoration: InputDecoration(
-                                hintText: "Your Location",
+                                hintText: DemoLocalization.of(context)
+                              .getTranslatedValue('yourLocation'),
                                 hintStyle: TextStyle(
                                    fontFamily: 'Jameel Noori Nastaleeq Kasheeda'
                                 ),
@@ -155,7 +159,8 @@ class _SearchScreenState extends State<SearchScreen> {
                               },
                               controller: doctorlocation,
                               decoration: InputDecoration(
-                                hintText: "Your Doctor Location",
+                                hintText:DemoLocalization.of(context)
+                              .getTranslatedValue('yourDoctorLocation'),
                                 hintStyle: TextStyle(
                                    fontFamily: 'Jameel Noori Nastaleeq Kasheeda'
                                 ),

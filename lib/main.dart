@@ -2,6 +2,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:maseeha_update/Caretaker/caretakerAppointmentReplyData.dart';
 import 'package:maseeha_update/Doctor/appointmentReply/appointmentReply.dart';
 import 'package:maseeha_update/Map/userTypeforMap.dart';
 import 'package:maseeha_update/Notification/notification.dart';
@@ -71,12 +72,7 @@ class _MyAppState extends State<MyApp> {
     // getToken();
   }
 
-  /* void getToken() async {
-    String token = await FirebaseMessaging.instance.getToken();
 
-    print(token);
-  }
-*/
   void setLocale(Locale locale) {
     setState(() {
       _locale = locale;
@@ -146,6 +142,9 @@ class _MyAppState extends State<MyApp> {
         ),
          ChangeNotifierProvider(
           create: (context) => UserType(),
+        ),
+         ChangeNotifierProvider(
+          create: (_) => CaretakerAppointmentReplyData(),
         ),
       ],
       child: MaterialApp(

@@ -188,10 +188,10 @@ class DoctorList extends StatelessWidget {
                               ),
                               decoration: BoxDecoration(
                                 shape: BoxShape.circle,
-                                /* image: DecorationImage(
+                                 image: DecorationImage(
                                       image: NetworkImage(
-                                          'https://www.google.com/url?sa=i&url=https://flutterappworld.com/a-high-performance-flutter-widget-to-render-bottts-svg-avatars/&psig=AOvVaw0pbd2aLdtAYDPZSY8ZCbFK&ust=1605966714142000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCODx_sSike0CFQAAAAAdAAAAABAJ'),
-                                    ), */
+                                          'https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=752&q=80'),
+                                    ), 
                                 border: Border.all(
                                   color: Theme.of(context).primaryColor,
                                   width: 2,
@@ -239,7 +239,7 @@ class DoctorList extends StatelessWidget {
                                   // ignore: deprecated_member_use
                                   FlatButton(
                                     child: Text(
-                                      'Click Here ',
+                                       DemoLocalization.of(context).getTranslatedValue('clickHere'),
                                       style: TextStyle(
                                           fontSize: 12,
                                           fontWeight: FontWeight.bold,

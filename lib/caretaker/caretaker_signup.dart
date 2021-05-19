@@ -258,6 +258,59 @@ class CaretakerSignup extends StatelessWidget {
                                 ),
                               ),
                             ),
+
+                            Padding(
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: size.width / 9),
+                              child: Container(
+                                margin: EdgeInsets.all(10),
+                                padding: EdgeInsets.all(4),
+                                width: 300,
+                                decoration: BoxDecoration(
+                                  border: Border.all(
+                                    color: Color(0xFFBC7C7C7),
+                                    width: 2,
+                                  ),
+                                  borderRadius: BorderRadius.circular(50),
+                                ),
+                                child: Row(
+                                  children: [
+                                    Container(
+                                      width: 60,
+                                      child: Icon(
+                                        Icons.account_circle,
+                                        size: 25,
+                                        color: Color(0xFFBB9B9B9),
+                                      ),
+                                    ),
+                                    Expanded(
+                                      child: TextFormField(
+                                        decoration: InputDecoration(
+                                          hintText: DemoLocalization.of(context)
+                                              .getTranslatedValue('eYourCnic'),
+                                          hintStyle: TextStyle(
+                                             fontFamily: 'Jameel Noori Nastaleeq Kasheeda'
+                                          ),
+                                          border: InputBorder.none,
+                                          contentPadding: EdgeInsets.all(10),
+                                        ),
+                                        validator: (String value) {
+                                          if (value.isEmpty) {
+                                            return DemoLocalization.of(context)
+                                                .getTranslatedValue(
+                                                    'namerequired');
+                                          }
+                                          return null;
+                                        },
+                                        onChanged: (String value) {
+                                          caretakerRegisterData.careName = value;
+                                        },
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
                             Padding(
                               padding: EdgeInsets.symmetric(
                                   horizontal: size.width / 9),

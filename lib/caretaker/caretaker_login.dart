@@ -13,6 +13,7 @@ import 'loginCaretakerData.dart';
 
 class CaretakerLogin extends StatelessWidget {
   final _formkey = GlobalKey<FormState>();
+  final routeMethod = CaretakerDashboard();
 
   @override
   Widget build(BuildContext context) {
@@ -347,12 +348,7 @@ class CaretakerLogin extends StatelessWidget {
                                                fontFamily: 'Jameel Noori Nastaleeq Kasheeda'),
                                         ),
                                         onPressed: () {
-                                          Navigator.push(
-                                            context,
-                                            MaterialPageRoute(
-                                                builder: (context) =>
-                                                    CaretakerSignup()),
-                                          );
+                                          Navigator.of(context).push(routeMethod.createRoute(CaretakerSignup()));
                                         }),
                                   ),
                                 ],

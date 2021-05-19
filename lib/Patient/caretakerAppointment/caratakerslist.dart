@@ -1,28 +1,112 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:maseeha_update/Assistants/firestore_assitant.dart';
+import 'package:maseeha_update/Notification/notification.dart';
 import 'package:maseeha_update/Patient/caretakerAppointment/caretakerNewAppointment.dart';
 import 'package:maseeha_update/Patient/caretakerAppointment/caretakerNewAppointmentData.dart';
+import 'package:maseeha_update/Patient/patientScreensData/loginPatientData.dart';
 import 'package:maseeha_update/classes/caretaker.dart';
 import 'package:maseeha_update/localization/demo_localization.dart';
 import 'package:provider/provider.dart';
 
 import '../../lang_selector.dart';
+import '../../token.dart';
 
-//import 'package:path/path.dart';
 
 class CaretakerList extends StatelessWidget {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+     final firestoreAssitant = FirestoreAssitant();
 
   @override
   Widget build(BuildContext context) {
-    void takeCaretakerAppointment(ctx) {
-      showModalBottomSheet(
-          context: ctx,
-          builder: (context) {
-            return CaretakerNewAppointment();
-          });
-    }
+
+     final patientEmail =
+        context.read<LoginPatientData>().getCurrentPatientData();
+
+    final caretakerAppointmentData =
+        Provider.of<CaretakerNewAppointmentData>(context, listen: false);
+   void takeCaretakerAppointment(BuildContext context) => showDialog(
+        context: context,
+        builder: (_) {
+          return SingleChildScrollView(
+            child: AlertDialog(
+              title: Container(
+                child: Center(
+                  child: Text(
+                    DemoLocalization.of(context).getTranslatedValue('fillform'),
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 20,
+                      fontFamily:
+                                                    'Jameel Noori Nastaleeq Kasheeda',
+                      color: Theme.of(context).primaryColor,
+                    ),
+                  ),
+                ),
+              ),
+              content: CaretakerNewAppointment(),
+
+              actions: [
+
+                // ignore: deprecated_member_use
+                FlatButton(
+                splashColor: Colors.transparent,
+                highlightColor: Colors.transparent,
+                child: Text(
+                  DemoLocalization.of(context).getTranslatedValue('submit'),
+                  style: TextStyle(
+                       fontWeight: FontWeight.bold,
+                          fontSize: 16,
+                          fontFamily: 'Jameel Noori Nastaleeq Kasheeda',
+                      color: Theme.of(context).primaryColor),
+                ),
+                onPressed: () async {
+                  try {
+                    print('Uploading data');
+
+                    context.read<Token>().targetUserEmail =
+                            context.read<CaretakerNewAppointmentData>().caretakerEmail;
+                        context.read<NotificationSend>().senderName =
+                            context.read<CaretakerNewAppointmentData>().name;
+                        context.read<NotificationSend>().notificationType =
+                            "Appointment";
+                            
+                    firestoreAssitant
+                        .sendCaretakerAppointment(caretakerAppointmentData);
+                       Fluttertoast.showToast(
+                              msg: 'You have Succefully Created an appointment',
+                              toastLength: Toast.LENGTH_SHORT,
+                              gravity: ToastGravity.BOTTOM,
+                              backgroundColor: Colors.blue,
+                              textColor: Colors.yellow);
+                              Navigator.pop(context);
+                  } catch (_) {
+                    print('Failed to upload');
+                  }
+                }),
+
+                  // ignore: deprecated_member_use
+                  FlatButton(
+                    child: Text(
+                      DemoLocalization.of(context).getTranslatedValue('Cancel'),
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 16,
+                          fontFamily: 'Jameel Noori Nastaleeq Kasheeda',
+                          color: Colors.blue),
+                    ),
+                    onPressed: () async {
+                      Navigator.pop(context);
+                    }),
+          
+              ],
+      
+            
+            ),
+          );
+        },
+   );
 
     Size size = MediaQuery.of(context).size;
     return Scaffold(
@@ -39,8 +123,9 @@ class CaretakerList extends StatelessWidget {
                 child: Center(
                   child: Text(
                     DemoLocalization.of(context).getTranslatedValue('title'),
-                    style: GoogleFonts.montserrat(
+                    style: TextStyle(
                       fontWeight: FontWeight.bold,
+                       fontFamily: 'Jameel Noori Nastaleeq Kasheeda',
                     ),
                   ),
                 ),
@@ -72,12 +157,11 @@ class CaretakerList extends StatelessWidget {
                 }
 
                 final caretakers = snapshot.data.docs;
-                print(caretakers.length);
+      
 
                 List<Widget> caretakerCards = [];
                 for (var caretaker in caretakers) {
                   Caretaker ckts = Caretaker.fromJson(caretaker.data());
-                  print(ckts.name);
                   caretakerCards.add(Container(
                     padding: EdgeInsets.only(
                       top: 10,
@@ -95,10 +179,10 @@ class CaretakerList extends StatelessWidget {
                               ),
                               decoration: BoxDecoration(
                                 shape: BoxShape.circle,
-                                /* image: DecorationImage(
+                                 image: DecorationImage(
                                       image: NetworkImage(
-                                          'https://www.google.com/url?sa=i&url=https://flutterappworld.com/a-high-performance-flutter-widget-to-render-bottts-svg-avatars/&psig=AOvVaw0pbd2aLdtAYDPZSY8ZCbFK&ust=1605966714142000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCODx_sSike0CFQAAAAAdAAAAABAJ'),
-                                    ), */
+                                          'https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=752&q=80'),
+                                    ), 
                                 border: Border.all(
                                   color: Theme.of(context).primaryColor,
                                   width: 2,
@@ -107,7 +191,7 @@ class CaretakerList extends StatelessWidget {
                               padding: EdgeInsets.all(5),
                             ),
                             Container(
-                              height: 150,
+                              height: 180,
                               width: 150,
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -118,19 +202,22 @@ class CaretakerList extends StatelessWidget {
                                       ckts.name ?? 'No data',
                                       style: TextStyle(
                                           fontSize: 16,
-                                          fontWeight: FontWeight.bold),
+                                          fontWeight: FontWeight.bold,
+                                           fontFamily: 'Jameel Noori Nastaleeq Kasheeda',),
                                     ),
                                   ),
                                   Text(
                                     ckts.pnc ?? 'No data',
                                     style: TextStyle(
                                       fontSize: 12,
+                                       fontFamily: 'Jameel Noori Nastaleeq Kasheeda',
                                     ),
                                   ),
                                   Text(
-                                    ckts.currentStatus ?? 'No data',
+                                    ckts.caretakerEmail ?? 'No data',
                                     style: TextStyle(
                                       fontSize: 12,
+                                       fontFamily: 'Jameel Noori Nastaleeq Kasheeda',
                                     ),
                                   ),
                                   // ignore: deprecated_member_use
@@ -146,8 +233,14 @@ class CaretakerList extends StatelessWidget {
                                     onPressed: () {
                                       try {
                                         context
+                                            .read<CaretakerNewAppointmentData>().caretakerName
+                                             = ckts.name;
+                                        context
                                             .read<CaretakerNewAppointmentData>()
-                                            .caretakerName = ckts.name;
+                                            .caretakerEmail = ckts.caretakerEmail;
+                                        context
+                                            .read<CaretakerNewAppointmentData>()
+                                            .patientEmail = patientEmail;
                                         takeCaretakerAppointment(context);
                                       } catch (err) {
                                         print(err.toString());
@@ -171,4 +264,6 @@ class CaretakerList extends StatelessWidget {
       ),
     );
   }
-}
+   
+  }
+

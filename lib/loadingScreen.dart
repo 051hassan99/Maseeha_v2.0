@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:maseeha_update/Doctor/doctorScreens/doctor_dashboard.dart';
 import 'package:maseeha_update/Patient/patientScreens/patient_dashboard.dart';
 import 'package:maseeha_update/splashScreen.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
 import 'Map/userTypeforMap.dart';
+import 'classes/doctor.dart';
+
+
 
 class LoadingScreen extends StatelessWidget {
 
@@ -15,7 +18,10 @@ class LoadingScreen extends StatelessWidget {
     SharedPreferences sp = await SharedPreferences.getInstance();
 
     bool flag =  sp.getBool("SignedInPatient");
-        flag = flag ?? false;
+       flag = flag ?? false;
+     bool doctorFlag =  sp.getBool("SignedInDoctor");
+     doctorFlag = doctorFlag ?? false;
+       
     if (flag ) {
 
       
@@ -28,7 +34,21 @@ class LoadingScreen extends StatelessWidget {
         context,
         MaterialPageRoute(builder: (context) => PatientDashboard()),
       );
-    } else {
+    } 
+
+    else if(doctorFlag ){
+        final doctorData =
+        Provider.of<Doctor>(context, listen: false);
+      doctorData.getCurrentUserData();
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (context) => DoctorDashboard()),
+      );
+
+    }
+    
+    
+    else {
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(builder: (context) => SplashScreen()),
