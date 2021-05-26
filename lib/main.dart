@@ -90,9 +90,6 @@ class _MyAppState extends State<MyApp> {
           create: (context) => LoginPatientData(),
         ),
         ChangeNotifierProvider(
-          create: (context) => LoginPatientData(),
-        ),
-        ChangeNotifierProvider(
           create: (context) => DoctorRegisterData(),
         ),
         ChangeNotifierProvider(

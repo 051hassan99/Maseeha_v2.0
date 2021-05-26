@@ -27,6 +27,7 @@ dependencies:
     sdk: flutter
   agora_rtc_engine: 1.0.15
   android_alarm_manager: ^0.4.0
+  bubble: ^1.2.1
   cloud_firestore: ^1.0.1
   convex_bottom_bar: null
   cupertino_icons: ^1.0.2

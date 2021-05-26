@@ -1,14 +1,16 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:maseeha_update/Assistants/firestore_assitant.dart';
 import 'package:maseeha_update/Doctor/appointmentReply/appointmentReply.dart';
 import 'package:maseeha_update/Doctor/doctorScreensData/doctorRegisterData.dart';
+import 'package:maseeha_update/Notification/notification.dart';
 import 'package:maseeha_update/Patient/patientScreensData/newAppointmentdata.dart';
 import 'package:maseeha_update/localization/demo_localization.dart';
 import 'package:provider/provider.dart';
 
 import '../../lang_selector.dart';
+import '../../token.dart';
 
 class Appointments extends StatelessWidget {
   static const String id = 'appointments_screen';
@@ -21,6 +23,8 @@ class Appointments extends StatelessWidget {
     Size size = MediaQuery.of(context).size;
     final appointmentReplyData =
         Provider.of<AppointmentReply>(context, listen: false);
+      final notification = Provider.of<NotificationSend>(context, listen: false);
+    final token = Provider.of<Token>(context, listen: false);
 
     void appointmentMessageReply(context, doctorName, doctorEmail, patientName,
             patientEmail, appointmentType) =>
@@ -36,10 +40,11 @@ class Appointments extends StatelessWidget {
                     child: Center(
                       child: Text(
                         'Are you want to accept appointment request?',
-                        style: GoogleFonts.rajdhani(
+                        style: TextStyle(
                           fontWeight: FontWeight.bold,
-                          fontSize: 20,
+                          fontSize: 18,
                           color: Theme.of(context).primaryColor,
+                             fontFamily: 'Jameel Noori Nastaleeq Kasheeda'
                         ),
                       ),
                     ),
@@ -47,7 +52,11 @@ class Appointments extends StatelessWidget {
                   actions: [
                     // ignore: deprecated_member_use
                     FlatButton(
-                        child: Text('Yes'),
+                        child: Text( DemoLocalization.of(context)
+                                            .getTranslatedValue('yes'),style: TextStyle(
+                             fontFamily: 'Jameel Noori Nastaleeq Kasheeda',
+                              fontWeight: FontWeight.bold,
+                        ),),
                         onPressed: () {
                           Navigator.pop(context);
                           showDialog(
@@ -59,10 +68,11 @@ class Appointments extends StatelessWidget {
                                       child: Text(
                                         DemoLocalization.of(context)
                                             .getTranslatedValue('fillform'),
-                                        style: GoogleFonts.rajdhani(
+                                        style: TextStyle(
                                           fontWeight: FontWeight.bold,
                                           fontSize: 14,
                                           color: Theme.of(context).primaryColor,
+                                             fontFamily: 'Jameel Noori Nastaleeq Kasheeda'
                                         ),
                                       ),
                                     ),
@@ -80,6 +90,8 @@ class Appointments extends StatelessWidget {
                                                     'Enter Timing in format April 23, 2021/11:00 AM',
                                                 hintStyle: TextStyle(
                                                   fontSize: 12,
+                                                     fontFamily: 'Jameel Noori Nastaleeq Kasheeda',
+                                                      fontWeight: FontWeight.bold,
                                                 ),
                                               ),
                                               validator: (String value) {
@@ -103,8 +115,12 @@ class Appointments extends StatelessWidget {
                                   actions: [
                                     // ignore: deprecated_member_use
                                     FlatButton(
-                                        child: Text('Submit'),
-                                        onPressed: () {
+                                        child: Text( DemoLocalization.of(context)
+                                            .getTranslatedValue('submit'),style: TextStyle(
+                                              fontFamily: 'Jameel Noori Nastaleeq Kasheeda',
+                                               fontWeight: FontWeight.bold,
+                                            ),),
+                                        onPressed: () async{
                                           context
                                               .read<AppointmentReply>()
                                               .docEmail = doctorEmail;
@@ -117,13 +133,35 @@ class Appointments extends StatelessWidget {
                                           context
                                               .read<AppointmentReply>()
                                               .patientEmail = patientEmail;
+                                          context.read<NotificationSend>().notificationType =
+                                        "Appointment Reply";
+                                           context.read<NotificationSend>().senderName = patientName;
+                                             context.read<Token>().targetUserEmail = patientEmail;
+                                             
                                           firestoreAssitant.sendApointmentReply(
                                               appointmentReplyData);
+
+                                           Fluttertoast.showToast(
+                              msg: 'You have Succefully replied an appointment',
+                              toastLength: Toast.LENGTH_SHORT,
+                              gravity: ToastGravity.BOTTOM,
+                              backgroundColor: Colors.blue,
+                              textColor: Colors.yellow);
+                          final tokenID = await token.getTokenId();
+
+                           print("TOKEN ID \n");
+                          print(tokenID);
+                          await notification.sendNotifications(tokenID);
+                    
                                           Navigator.pop(context);
                                         }),
                                     // ignore: deprecated_member_use
                                     FlatButton(
-                                        child: Text('Cancel'),
+                                        child: Text( DemoLocalization.of(context)
+                                            .getTranslatedValue('Cancel'),style: TextStyle(
+                                              fontFamily: 'Jameel Noori Nastaleeq Kasheeda',
+                                               fontWeight: FontWeight.bold,
+                                            ),),
                                         onPressed: () {
                                           Navigator.pop(context);
                                         })
@@ -133,7 +171,14 @@ class Appointments extends StatelessWidget {
                         }),
                     // ignore: deprecated_member_use
                     FlatButton(
-                        child: Text('No'),
+                        child: Text( DemoLocalization.of(context)
+                                            .getTranslatedValue('no'),
+                        style: TextStyle(
+                         
+                                              fontFamily: 'Jameel Noori Nastaleeq Kasheeda',
+                                               fontWeight: FontWeight.bold,
+                                          ),
+                        ),
                         onPressed: () {
                           Navigator.pop(context);
                         }),
@@ -149,18 +194,24 @@ class Appointments extends StatelessWidget {
                     child: Center(
                       child: Text(
                         'Are you want to accept appointment request?',
-                        style: GoogleFonts.rajdhani(
+                        style: TextStyle(
                           fontWeight: FontWeight.bold,
-                          fontSize: 20,
+                          fontSize: 18,
                           color: Theme.of(context).primaryColor,
+                          fontFamily: 'Jameel Noori Nastaleeq Kasheeda'
                         ),
+
                       ),
                     ),
                   ),
                   actions: [
                     // ignore: deprecated_member_use
                     FlatButton(
-                        child: Text('Yes'),
+                        child: Text( DemoLocalization.of(context)
+                                            .getTranslatedValue('yes'),style: TextStyle(
+                          fontFamily: 'Jameel Noori Nastaleeq Kasheeda',
+                           fontWeight: FontWeight.bold,
+                        ),),
                         onPressed: () {
                           Navigator.pop(context);
                           showDialog(
@@ -172,10 +223,11 @@ class Appointments extends StatelessWidget {
                                       child: Text(
                                         DemoLocalization.of(context)
                                             .getTranslatedValue('fillform'),
-                                        style: GoogleFonts.rajdhani(
+                                        style: TextStyle(
                                           fontWeight: FontWeight.bold,
                                           fontSize: 20,
                                           color: Theme.of(context).primaryColor,
+                                          fontFamily: 'Jameel Noori Nastaleeq Kasheeda'
                                         ),
                                       ),
                                     ),
@@ -190,7 +242,12 @@ class Appointments extends StatelessWidget {
                                               keyboardType: TextInputType.text,
                                               decoration: InputDecoration(
                                                   hintText:
-                                                      'Please Enter the address'),
+                                                      'Please Enter the address',
+                                                      hintStyle: TextStyle(
+                                                        fontFamily: 'Jameel Noori Nastaleeq Kasheeda',
+                                                         fontWeight: FontWeight.bold,
+                                                      )),
+                                                      
                                               validator: (String value) {
                                                 if (value.isEmpty) {
                                                   return DemoLocalization.of(
@@ -212,8 +269,12 @@ class Appointments extends StatelessWidget {
                                   actions: [
                                     // ignore: deprecated_member_use
                                     FlatButton(
-                                        child: Text('Submit'),
-                                        onPressed: () {
+                                        child: Text( DemoLocalization.of(context)
+                                            .getTranslatedValue('submit'),style: TextStyle(
+                                              fontFamily: 'Jameel Noori Nastaleeq Kasheeda',
+                                               fontWeight: FontWeight.bold,
+                                            ),),
+                                        onPressed: ()async {
                                           context
                                               .read<AppointmentReply>()
                                               .docEmail = doctorEmail;
@@ -226,14 +287,26 @@ class Appointments extends StatelessWidget {
                                           context
                                               .read<AppointmentReply>()
                                               .patientEmail = patientEmail;
+                                          context.read<NotificationSend>().notificationType =
+                                        "Appointment Reply";
+                                           context.read<NotificationSend>().senderName = patientName;
+                                             context.read<Token>().targetUserEmail = patientEmail;
+                                             
                                           firestoreAssitant.sendApointmentReply(
                                               appointmentReplyData);
-                                          Navigator.pop(context);
-                                        }),
-                                    // ignore: deprecated_member_use
-                                    FlatButton(
-                                        child: Text('Cancel'),
-                                        onPressed: () {
+
+                                           Fluttertoast.showToast(
+                              msg: 'You have Succefully Rreplied an appointment',
+                              toastLength: Toast.LENGTH_SHORT,
+                              gravity: ToastGravity.BOTTOM,
+                              backgroundColor: Colors.blue,
+                              textColor: Colors.yellow);
+                          final tokenID = await token.getTokenId();
+
+                          print("TOKEN ID \n");
+                          print(tokenID);
+                          await notification.sendNotifications(tokenID);
+                    
                                           Navigator.pop(context);
                                         }),
                                   ],
@@ -242,7 +315,12 @@ class Appointments extends StatelessWidget {
                         }),
                     // ignore: deprecated_member_use
                     FlatButton(
-                        child: Text('No'),
+                        child: Text( DemoLocalization.of(context)
+                                            .getTranslatedValue('no'),style: TextStyle(
+                          fontFamily: 'Jameel Noori Nastaleeq Kasheeda',
+                                               fontWeight: FontWeight.bold,
+
+                        ),),
                         onPressed: () {
                           Navigator.pop(context);
                         })
@@ -264,8 +342,9 @@ class Appointments extends StatelessWidget {
                 child: Center(
                   child: Text(
                     DemoLocalization.of(context).getTranslatedValue('title'),
-                    style: GoogleFonts.montserrat(
+                    style: TextStyle(
                       fontWeight: FontWeight.bold,
+                        fontFamily: 'Jameel Noori Nastaleeq Kasheeda',
                     ),
                   ),
                 ),

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:maseeha_update/Doctor/doctorScreensData/upeeContainerData.dart';
 import 'package:maseeha_update/localization/demo_localization.dart';
 import 'package:provider/provider.dart';
@@ -18,35 +17,18 @@ class UPEEContainer extends StatelessWidget {
 
     return Form(
       key: _formkey,
-      child: ListView(
-        children: [
-          Container(
-            height: size.height / 10,
-            margin: EdgeInsets.symmetric(
-              vertical: size.height / 35,
-            ),
-            child: Center(
-              child: Text(
-                DemoLocalization.of(context).getTranslatedValue('UPEE'),
-                style: GoogleFonts.rajdhani(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 24,
-                  color: Theme.of(context).primaryColor,
-                ),
-              ),
-            ),
-          ),
-          SizedBox(height: size.height / 50),
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: size.width / 5),
-            child: Container(
-              margin: EdgeInsets.all(10),
-              padding: EdgeInsets.all(4),
-              width: 300,
+      child: SingleChildScrollView(
+        child: Column(
+          children: [
+           
+        SizedBox(height: size.height * 0.06),
+            Container(
+               padding: EdgeInsets.all(size.width *0.01),
+              width: double.infinity,
               decoration: BoxDecoration(
                 border: Border.all(
                   color: Color(0xFFBC7C7C7),
-                  width: 2,
+                  width: 1,
                 ),
                 borderRadius: BorderRadius.circular(50),
               ),
@@ -54,39 +36,17 @@ class UPEEContainer extends StatelessWidget {
                 padding: EdgeInsets.only(
                   left: 20,
                 ),
-                child: TextFormField(
-                  controller: _a,
-                  decoration: InputDecoration(
-                    hintText:
-                        DemoLocalization.of(context).getTranslatedValue('SUP'),
-                    border: InputBorder.none,
-                    contentPadding: EdgeInsets.all(10),
-                  ),
-                  validator: (String value) {
-                    if (value.isEmpty) {
-                      return DemoLocalization.of(context)
-                          .getTranslatedValue('SUP');
-                    }
-                    return null;
-                  },
-                  onChanged: (String value) {
-                    upeeData.sup = double.parse(value);
-                  },
-                ),
+                child: SpotUrineProtientTextField(a: _a, upeeData: upeeData),
               ),
             ),
-          ),
-          SizedBox(height: size.height / 50),
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: size.width / 5),
-            child: Container(
-              margin: EdgeInsets.all(10),
-              padding: EdgeInsets.all(4),
-              width: 300,
+                       SizedBox(height: size.height * 0.06),
+            Container(
+               padding: EdgeInsets.all(size.width *0.01),
+              width: double.infinity,
               decoration: BoxDecoration(
                 border: Border.all(
                   color: Color(0xFFBC7C7C7),
-                  width: 2,
+                  width: 1,
                 ),
                 borderRadius: BorderRadius.circular(50),
               ),
@@ -94,42 +54,23 @@ class UPEEContainer extends StatelessWidget {
                 padding: EdgeInsets.only(
                   left: 20,
                 ),
-                child: TextFormField(
-                  controller: _c,
-                  decoration: InputDecoration(
-                    hintText:
-                        DemoLocalization.of(context).getTranslatedValue('SUC'),
-                    border: InputBorder.none,
-                    contentPadding: EdgeInsets.all(10),
-                  ),
-                  validator: (String value) {
-                    if (value.isEmpty) {
-                      return DemoLocalization.of(context)
-                          .getTranslatedValue('SUC');
-                    }
-                    return null;
-                  },
-                  onChanged: (String value) {
-                    upeeData.suc = double.parse(value);
-                  },
-                ),
+                child: SpotUrineCreateTextField(c: _c, upeeData: upeeData),
               ),
             ),
-          ),
-          Padding(
-            padding: EdgeInsets.symmetric(
-                vertical: size.width / 9, horizontal: size.width / 9),
-            child: Row(
+
+                SizedBox(height: size.height * 0.06),
+            Row(
               children: [
                 Container(
-                  width: 100,
+                  width: size.width * 0.25,
                   // ignore: deprecated_member_use
                   child: FlatButton(
                     child: Text(
                       'Result',
-                      style: GoogleFonts.rajdhani(
+                      style: TextStyle(
                         fontWeight: FontWeight.bold,
-                        fontSize: 20,
+                        fontSize: 14,
+                        fontFamily: 'Jameel Noori Nastaleeq Kasheeda',
                         color: Theme.of(context).primaryColor,
                       ),
                     ),
@@ -138,8 +79,8 @@ class UPEEContainer extends StatelessWidget {
                         return;
                       } else {
                         _formkey.currentState.save();
-                        upeeData.resultofCalculation(
-                            upeeData.sup, upeeData.suc);
+
+                        upeeData.resultofCalculation(upeeData.sup, upeeData.suc);
                       }
                     },
                   ),
@@ -148,7 +89,8 @@ class UPEEContainer extends StatelessWidget {
                   child: Consumer<UPEEContainerData>(
                       builder: (context, upeeData, _) {
                     return Container(
-                      height: 50,
+                      height: size.width * 0.15,
+                      width:  size.width * 0.2,
                       decoration: BoxDecoration(
                         color: Theme.of(context).primaryColor,
                         border: Border.all(
@@ -161,9 +103,10 @@ class UPEEContainer extends StatelessWidget {
                         child: Text(
                           upeeData.myFinalResult,
                           style: TextStyle(
-                            fontSize: 18,
+                            fontSize: 14,
                             fontWeight: FontWeight.bold,
                             color: Colors.white,
+                            fontFamily: 'Jameel Noori Nastaleeq Kasheeda'
                           ),
                         ),
                       ),
@@ -171,29 +114,117 @@ class UPEEContainer extends StatelessWidget {
                   }),
                 ),
                 Container(
-                  width: 100,
+              
                   // ignore: deprecated_member_use
                   child: FlatButton(
                     child: Text(
                       'Clear',
-                      style: GoogleFonts.rajdhani(
+                      style: TextStyle(
                         fontWeight: FontWeight.bold,
-                        fontSize: 20,
+                        fontSize: 14,
                         color: Theme.of(context).primaryColor,
+                        fontFamily: 'Jameel Noori Nastaleeq Kasheeda'
                       ),
                     ),
                     onPressed: () {
-                      _a.clear();
+                      _a.clear(); 
                       _c.clear();
                       upeeData.clearValues();
+                    
                     },
                   ),
                 ),
               ],
             ),
-          ),
-        ],
+          ],
+        ),
       ),
+    );
+  }
+}
+
+class SpotUrineCreateTextField extends StatefulWidget {
+  const SpotUrineCreateTextField({
+    Key key,
+    @required TextEditingController c,
+    @required this.upeeData,
+  }) : _c = c, super(key: key);
+
+  final TextEditingController _c;
+  final UPEEContainerData upeeData;
+
+  @override
+  _SpotUrineCreateTextFieldState createState() => _SpotUrineCreateTextFieldState();
+}
+
+class _SpotUrineCreateTextFieldState extends State<SpotUrineCreateTextField> {
+  @override
+  Widget build(BuildContext context) {
+    return TextFormField(
+      controller: widget._c,
+      decoration: InputDecoration(
+        hintText:
+            DemoLocalization.of(context).getTranslatedValue('SUC'),
+        border: InputBorder.none,
+          hintStyle: TextStyle(
+            fontSize: 14,
+            fontFamily: 'Jameel Noori Nastaleeq Kasheeda'
+          ),
+        contentPadding: EdgeInsets.all(10),
+      ),
+      validator: (String value) {
+        if (value.isEmpty) {
+          return DemoLocalization.of(context)
+              .getTranslatedValue('SUC');
+        }
+        return null;
+      },
+      onChanged: (String value) {
+        widget.upeeData.suc = double.parse(value);
+      },
+    );
+  }
+}
+
+class SpotUrineProtientTextField extends StatefulWidget {
+  const SpotUrineProtientTextField({
+    Key key,
+    @required TextEditingController a,
+    @required this.upeeData,
+  }) : _a = a, super(key: key);
+
+  final TextEditingController _a;
+  final UPEEContainerData upeeData;
+
+  @override
+  _SpotUrineProtientTextFieldState createState() => _SpotUrineProtientTextFieldState();
+}
+
+class _SpotUrineProtientTextFieldState extends State<SpotUrineProtientTextField> {
+  @override
+  Widget build(BuildContext context) {
+    return TextFormField(
+      controller: widget._a,
+      decoration: InputDecoration(
+        hintText:
+            DemoLocalization.of(context).getTranslatedValue('SUP'),
+          hintStyle: TextStyle(
+            fontSize: 14,
+            fontFamily: 'Jameel Noori Nastaleeq Kasheeda'
+          ),
+        border: InputBorder.none,
+        contentPadding: EdgeInsets.all(10),
+      ),
+      validator: (String value) {
+        if (value.isEmpty) {
+          return DemoLocalization.of(context)
+              .getTranslatedValue('SUP');
+        }
+        return null;
+      },
+      onChanged: (String value) {
+        widget.upeeData.sup = double.parse(value);
+      },
     );
   }
 }

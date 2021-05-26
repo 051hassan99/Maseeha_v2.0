@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:maseeha_update/Doctor/doctorScreensData/bmiContainer_Data.dart';
 import 'package:maseeha_update/localization/demo_localization.dart';
 import 'package:provider/provider.dart';
@@ -19,160 +18,146 @@ class BMIContainer extends StatelessWidget {
       child: SingleChildScrollView(
         child: Column(
           children: [
+           
             Container(
-              height: size.height / 15,
-              margin: EdgeInsets.symmetric(
-                vertical: size.height / 35,
+              padding: EdgeInsets.all(size.width *0.01),
+              width: double.infinity,
+              decoration: BoxDecoration(
+                border: Border.all(
+                  color: Color(0xFFBC7C7C7),
+                
+                ),
+                borderRadius: BorderRadius.circular(30),
               ),
-              child: Center(
-                child: Text(
-                  DemoLocalization.of(context).getTranslatedValue('BMI'),
-                  style: GoogleFonts.rajdhani(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 28,
-                    color: Theme.of(context).primaryColor,
-                  ),
-                ),
-              ),
-            ),
-            SizedBox(height: size.height / 50),
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: size.width / 9),
-              child: Container(
-                margin: EdgeInsets.all(10),
-                padding: EdgeInsets.all(4),
-                width: 300,
-                decoration: BoxDecoration(
-                  border: Border.all(
-                    color: Color(0xFFBC7C7C7),
-                    width: 2,
-                  ),
-                  borderRadius: BorderRadius.circular(50),
-                ),
-                child: Row(
-                  children: [
-                    HeighTextfield(a: _a, bmiData: bmiData),
-                    HeightInchTextField(b: _b, bmiData: bmiData),
-                  ],
-                ),
-              ),
-            ),
-            SizedBox(height: size.height / 80),
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: size.width / 5),
-              child: Container(
-                margin: EdgeInsets.all(10),
-                padding: EdgeInsets.all(4),
-                width: 300,
-                decoration: BoxDecoration(
-                  border: Border.all(
-                    color: Color(0xFFBC7C7C7),
-                    width: 2,
-                  ),
-                  borderRadius: BorderRadius.circular(50),
-                ),
-                child: Container(
-                  padding: EdgeInsets.only(
-                    left: 20,
-                  ),
-                  child: TextFormField(
-                    controller: _c,
-                    decoration: InputDecoration(
-                      hintText: DemoLocalization.of(context)
-                          .getTranslatedValue('mass'),
-                      border: InputBorder.none,
-                      contentPadding: EdgeInsets.all(10),
-                    ),
-                    validator: (String value) {
-                      if (value.isEmpty) {
-                        return DemoLocalization.of(context)
-                            .getTranslatedValue('mass');
-                      }
-                      return null;
-                    },
-                    onChanged: (String value) {
-                      bmiData.mass = double.parse(value);
-                    },
-                  ),
-                ),
-              ),
-            ),
-            Padding(
-              padding: EdgeInsets.symmetric(
-                  vertical: size.width / 9, horizontal: size.width / 9),
               child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Container(
-                    width: 100,
-                    // ignore: deprecated_member_use
-                    child: FlatButton(
-                      child: Text(
-                        'Result',
-                        style: GoogleFonts.rajdhani(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 20,
-                          color: Theme.of(context).primaryColor,
-                        ),
-                      ),
-                      onPressed: () {
-                        if (!_formkey.currentState.validate()) {
-                          return;
-                        } else {
-                          _formkey.currentState.save();
-
-                          bmiData.finalResult(bmiData.meter, bmiData.mass);
-                        }
-                      },
-                    ),
-                  ),
-                  Expanded(
-                    child: Consumer<BMIContainerData>(
-                        builder: (context, bmiData, _) {
-                      return Container(
-                        height: 50,
-                        decoration: BoxDecoration(
-                          color: Theme.of(context).primaryColor,
-                          border: Border.all(
-                            color: Color(0xFFBC7C7C7),
-                            width: 2,
-                          ),
-                          borderRadius: BorderRadius.circular(50),
-                        ),
-                        child: Center(
-                          child: Text(
-                            bmiData.myFinalResult,
-                            style: TextStyle(
-                              fontSize: 18,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.white,
-                            ),
-                          ),
-                        ),
-                      );
-                    }),
-                  ),
-                  Container(
-                    width: 100,
-                    // ignore: deprecated_member_use
-                    child: FlatButton(
-                      child: Text(
-                        'Clear',
-                        style: GoogleFonts.rajdhani(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 20,
-                          color: Theme.of(context).primaryColor,
-                        ),
-                      ),
-                      onPressed: () {
-                        _a.clear();
-                        _b.clear();
-                        _c.clear();
-                        bmiData.clearValues();
-                      },
-                    ),
-                  ),
+                  HeighTextfield(a: _a, bmiData: bmiData),
+                  HeightInchTextField(b: _b, bmiData: bmiData),
                 ],
               ),
+            ),
+
+            SizedBox(height: size.height * 0.06),
+       
+            Padding(
+             padding: EdgeInsets.symmetric(
+                horizontal: size.width * 0.08),
+              child: Container(
+               
+                 padding: EdgeInsets.all(size.width *0.01),
+  
+                decoration: BoxDecoration(
+                  border: Border.all(
+                    color: Color(0xFFBC7C7C7),
+                   
+                  ),
+                  borderRadius: BorderRadius.circular(50),
+                ),
+                child: TextFormField(
+                  controller: _c,
+                  decoration: InputDecoration(
+                    hintText: DemoLocalization.of(context)
+                        .getTranslatedValue('mass'),
+                    hintStyle: TextStyle(
+              fontSize: 14,
+              fontFamily: 'Jameel Noori Nastaleeq Kasheeda'
+          ),
+                    border: InputBorder.none,
+                    contentPadding: EdgeInsets.only(
+                      left : 40),
+                  ),
+                  validator: (String value) {
+                    if (value.isEmpty) {
+                      return DemoLocalization.of(context)
+                          .getTranslatedValue('mass');
+                    }
+                    return null;
+                  },
+                  onChanged: (String value) {
+                    bmiData.mass = double.parse(value);
+                  },
+                ),
+              ),
+            ),
+
+              SizedBox(height: size.height * 0.06),
+            Row(
+              children: [
+                Container(
+                  width: size.width * 0.25,
+                  // ignore: deprecated_member_use
+                  child: FlatButton(
+                    child: Text(
+                      'Result',
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 14,
+                        fontFamily: 'Jameel Noori Nastaleeq Kasheeda',
+                        color: Theme.of(context).primaryColor,
+                      ),
+                    ),
+                    onPressed: () {
+                      if (!_formkey.currentState.validate()) {
+                        return;
+                      } else {
+                        _formkey.currentState.save();
+
+                        bmiData.finalResult(bmiData.meter, bmiData.mass);
+                      }
+                    },
+                  ),
+                ),
+                Expanded(
+                  child: Consumer<BMIContainerData>(
+                      builder: (context, bmiData, _) {
+                    return Container(
+                      height: size.width * 0.15,
+                      width:  size.width * 0.2,
+                      decoration: BoxDecoration(
+                        color: Theme.of(context).primaryColor,
+                        border: Border.all(
+                          color: Color(0xFFBC7C7C7),
+                          width: 2,
+                        ),
+                        borderRadius: BorderRadius.circular(50),
+                      ),
+                      child: Center(
+                        child: Text(
+                          bmiData.myFinalResult,
+                          style: TextStyle(
+                            fontSize: 14,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white,
+                            fontFamily: 'Jameel Noori Nastaleeq Kasheeda'
+                          ),
+                        ),
+                      ),
+                    );
+                  }),
+                ),
+                Container(
+              
+                  // ignore: deprecated_member_use
+                  child: FlatButton(
+                    child: Text(
+                      'Clear',
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 14,
+                        color: Theme.of(context).primaryColor,
+                        fontFamily: 'Jameel Noori Nastaleeq Kasheeda'
+                      ),
+                    ),
+                    onPressed: () {
+                      _a.clear();
+                      _b.clear();
+                      _c.clear();
+                      bmiData.clearValues();
+                    },
+                  ),
+                ),
+              ],
             ),
           ],
         ),
@@ -202,12 +187,16 @@ class _HeightInchTextFieldState extends State<HeightInchTextField> {
   Widget build(BuildContext context) {
     return Expanded(
       child: TextFormField(
-        //  controller: _b,
+         controller: widget._b,
         decoration: InputDecoration(
           hintText:
               DemoLocalization.of(context).getTranslatedValue('HeightInInc'),
+          hintStyle: TextStyle(
+            fontSize: 14,
+            fontFamily: 'Jameel Noori Nastaleeq Kasheeda'
+          ),
           border: InputBorder.none,
-          contentPadding: EdgeInsets.all(10),
+          contentPadding: EdgeInsets.all(5),
         ),
         validator: (String value) {
           if (value.isEmpty) {
@@ -246,10 +235,14 @@ class _HeighTextfieldState extends State<HeighTextfield> {
   Widget build(BuildContext context) {
     return Expanded(
       child: TextFormField(
-        controller: feetTextController,
+        controller:widget._a,
         decoration: InputDecoration(
           hintText:
               DemoLocalization.of(context).getTranslatedValue('HeightInFeet'),
+          hintStyle: TextStyle(
+            fontSize: 14,
+            fontFamily: 'Jameel Noori Nastaleeq Kasheeda'
+          ),
           border: InputBorder.none,
           contentPadding: EdgeInsets.all(10),
         ),

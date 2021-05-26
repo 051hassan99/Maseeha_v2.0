@@ -1,6 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:maseeha_update/Assistants/firestore_assitant.dart';
 import 'package:maseeha_update/Doctor/appointmentReply/appointmentReply.dart';
 import 'package:maseeha_update/Patient/patientScreensData/loginPatientData.dart';
@@ -8,7 +7,6 @@ import 'package:maseeha_update/localization/demo_localization.dart';
 import 'package:provider/provider.dart';
 
 import '../../lang_selector.dart';
-
 
 class AppointmentHistory extends StatelessWidget {
   static const String id = 'appointments_screen';
@@ -33,9 +31,9 @@ class AppointmentHistory extends StatelessWidget {
                 child: Center(
                   child: Text(
                     DemoLocalization.of(context).getTranslatedValue('title'),
-                    style: GoogleFonts.montserrat(
-                      fontWeight: FontWeight.bold,
-                    ),
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontFamily: 'Jameel Noori Nastaleeq Kasheeda'),
                   ),
                 ),
               ),
@@ -77,83 +75,82 @@ class AppointmentHistory extends StatelessWidget {
                 return Padding(
                   padding:
                       const EdgeInsets.symmetric(horizontal: 50.0, vertical: 5),
-                  child: Container(
-                    decoration: BoxDecoration(
-                      color: Theme.of(context).primaryColor,
-                      borderRadius: BorderRadius.circular(20),
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.white,
-                          blurRadius: 6.0,
-                          offset: Offset(0.7, 0.7),
-                        ),
-                      ],
-                    ),
-                    child: Column(
-                      children: [
-                        SizedBox(height: 5),
-                        RichText(
-                          text: TextSpan(
-                            text: 'Patient name:    ',
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 14.0,
-                              color: Colors.red,
-                            ),
+                  child: Card(
+                    child: Container(
+                      decoration: BoxDecoration(
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.white,
+                            blurRadius: 6.0,
+                            offset: Offset(0.7, 0.7),
+                          ),
+                        ],
+                      ),
+                      child: Column(
+                        children: [
+                          SizedBox(height: size.height * 0.02),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
                             children: [
-                              TextSpan(
-                                text: appReply[index].patientName,
+                              SizedBox(width: size.width * 0.04),
+                              Text(
+                                "Patient Name",
                                 style: TextStyle(
-                                  fontSize: 12,
-                                  color: Colors.white,
+                                  fontFamily: 'Jameel Noori Nastaleeq Kasheeda',
+                                ),
+                              ),
+                               SizedBox(width: size.width * 0.12),
+                              Text(
+                                appReply[index].patientName,
+                                style: TextStyle(
+                                  fontFamily: 'Jameel Noori Nastaleeq Kasheeda',
+                                ),
+                              )
+                            ],
+                          ),
+                          SizedBox(height: size.height * 0.02),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                               SizedBox(width: size.width * 0.04),
+                              Text(
+                                "Message from Doctor",
+                                style: TextStyle(
+                                  fontFamily: 'Jameel Noori Nastaleeq Kasheeda',
+                                ),
+                              ),
+                               SizedBox(width: size.width * 0.04),
+                              Text(
+                                appReply[index].appointmentReplyMessage,
+                                style: TextStyle(
+                                  fontFamily: 'Jameel Noori Nastaleeq Kasheeda',
+                                ),
+                              )
+                            ],
+                          ),
+                          SizedBox(height: size.height * 0.02),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              SizedBox(width: size.width * 0.04),
+                              Text(
+                                "Doctor Name",
+                                style: TextStyle(
+                                  fontFamily: 'Jameel Noori Nastaleeq Kasheeda',
+                                ),
+                              ),
+                               SizedBox(width: size.width * 0.12),
+                              Text(
+                                appReply[index].docName,
+                                style: TextStyle(
+                                  fontFamily: 'Jameel Noori Nastaleeq Kasheeda',
                                 ),
                               ),
                             ],
                           ),
-                        ),
-                        SizedBox(height: 5),
-                        RichText(
-                          text: TextSpan(
-                            text: 'Message form Doctor:   ',
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 14.0,
-                              color: Colors.red,
-                            ),
-                            children: [
-                              TextSpan(
-                                text: appReply[index].appointmentReplyMessage,
-                                style: TextStyle(
-                                  fontSize: 12,
-                                  color: Colors.white,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                        SizedBox(height: 5),
-                        RichText(
-                          text: TextSpan(
-                            text: 'Doctor Name:   ',
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 14.0,
-                              color: Colors.red,
-                            ),
-                            children: [
-                              TextSpan(
-                                text: appReply[index].docName,
-                                style: TextStyle(
-                                  fontSize: 12,
-                                  color: Colors.white,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                        SizedBox(height: 5),
-                        SizedBox(height: 5),
-                      ],
+                          SizedBox(height: size.height * 0.02),
+                        ],
+                      ),
                     ),
                   ),
                 );
