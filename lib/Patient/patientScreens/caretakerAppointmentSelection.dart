@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:maseeha_update/Patient/caretakerAppointment/caratakerslist.dart';
+import 'package:maseeha_update/Patient/patientScreens/patientCaretakerAppointmentMessage.dart';
 import 'package:maseeha_update/localization/demo_localization.dart';
 import '../../category.dart';
 import '../../lang_selector.dart';
@@ -54,7 +55,7 @@ class CaretakerAppointmentSelection extends StatelessWidget {
                   padding: const EdgeInsets.symmetric(horizontal: 60.0),
                   child: CategoryButton(
                     imagePath: 'assets/images/babysitter.svg',
-                    text: 'd',
+                    text: 'c',
                     height: constraints.biggest.height * 0.40,
                     width: 10,
                     onTap: () {
@@ -76,6 +77,13 @@ class CaretakerAppointmentSelection extends StatelessWidget {
                     height: constraints.biggest.height * 0.40,
                     width: 10,
                     onTap: () {
+
+                       Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => CaretakerAppointmentHistory()
+                        ),
+                      );
                       
                     },
                   ),

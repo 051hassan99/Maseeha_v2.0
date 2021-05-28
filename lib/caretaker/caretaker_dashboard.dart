@@ -11,116 +11,121 @@ class CaretakerDashboard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    return Scaffold(
-        appBar: AppBar(
-          title: Padding(
-            padding: EdgeInsets.only(
-              right: size.width / 30,
+    return WillPopScope(
+       onWillPop: () {
+        return new Future(() => false);
+      },
+          child: Scaffold(
+          appBar: AppBar(
+            title: Padding(
+              padding: EdgeInsets.only(
+                right: size.width / 30,
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  Container(
+                    width: size.width * 0.28,
+                    child: Center(
+                      child: Text(
+                        DemoLocalization.of(context).getTranslatedValue('title'),
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                           fontFamily: 'Jameel Noori Nastaleeq Kasheeda'
+
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
             ),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                Container(
-                  width: size.width * 0.28,
-                  child: Center(
+            actions: <Widget>[
+              Padding(
+                  padding: EdgeInsets.only(
+                    left: size.width / 30,
+                    right: size.width / 30,
+                  ),
+                  child: LangSelector()),
+            ],
+          ),
+          drawer: CaretakerDrawer(),
+          body: ListView(
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Container(
+                    margin: EdgeInsets.only(
+                      top: size.height / 35,
+                      bottom: size.width / 30,
+                    ),
                     child: Text(
-                      DemoLocalization.of(context).getTranslatedValue('title'),
+                      DemoLocalization.of(context)
+                          .getTranslatedValue('caretakerdashboard'),
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
-                         fontFamily: 'Jameel Noori Nastaleeq Kasheeda'
-
+                         fontFamily: 'Jameel Noori Nastaleeq Kasheeda',
+                        color: Theme.of(context).primaryColor,
+                        fontSize: 25,
                       ),
                     ),
                   ),
-                ),
-              ],
-            ),
-          ),
-          actions: <Widget>[
-            Padding(
-                padding: EdgeInsets.only(
-                  left: size.width / 30,
-                  right: size.width / 30,
-                ),
-                child: LangSelector()),
-          ],
-        ),
-        drawer: CaretakerDrawer(),
-        body: ListView(
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Container(
-                  margin: EdgeInsets.only(
-                    top: size.height / 35,
-                    bottom: size.width / 30,
-                  ),
-                  child: Text(
-                    DemoLocalization.of(context)
-                        .getTranslatedValue('caretakerdashboard'),
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                       fontFamily: 'Jameel Noori Nastaleeq Kasheeda',
-                      color: Theme.of(context).primaryColor,
-                      fontSize: 25,
-                    ),
-                  ),
-                ),
-              ],
-            ),
-             GestureDetector(
-                      onTap: () {
+                ],
+              ),
+               GestureDetector(
+                        onTap: () {
 
-                         Navigator.of(context).pushReplacement(createRoute(CaretakerAppointmentMessages()));
-                        
-                        
-                      },
-                      child: _buildCard(
-                        svgPicture: SvgPicture.asset(
-                            'assets/images/viewpatients.svg',
-                            semanticsLabel: 'Tablet'),
-                        text: Text(
-                          DemoLocalization.of(context)
-                              .getTranslatedValue('ViewPatients'),
-                          style: TextStyle(
-                            fontSize: 13,
-                            fontWeight: FontWeight.bold,
-                             fontFamily: 'Jameel Noori Nastaleeq Kasheeda',
-                            color: Colors.white,
+                           Navigator.of(context).push(createRoute(CaretakerAppointmentMessages()));
+                          
+                          
+                        },
+                        child: _buildCard(
+                          svgPicture: SvgPicture.asset(
+                              'assets/images/viewpatients.svg',
+                              semanticsLabel: 'Tablet'),
+                          text: Text(
+                            DemoLocalization.of(context)
+                                .getTranslatedValue('ViewPatients'),
+                            style: TextStyle(
+                              fontSize: 13,
+                              fontWeight: FontWeight.bold,
+                               fontFamily: 'Jameel Noori Nastaleeq Kasheeda',
+                              color: Colors.white,
+                            ),
                           ),
+                          context: context,
                         ),
-                        context: context,
                       ),
-                    ),
-                    SizedBox(height: 20),
-                      GestureDetector(
-                      onTap: () {
+                      SizedBox(height: 20),
+                        GestureDetector(
+                        onTap: () {
 
-                         Navigator.of(context).push(createRoute(MapBuilding()));
-                        
-                      },
-                      child: _buildCard(
-                        svgPicture: SvgPicture.asset(
-                            'assets/images/map.svg',
-                            semanticsLabel: 'Tablet'),
-                        text: Text(
-                          DemoLocalization.of(context)
-                              .getTranslatedValue('FindLocation'),
-                          style: TextStyle(
-                            fontSize: 13,
-                            fontWeight: FontWeight.bold,
-                             fontFamily: 'Jameel Noori Nastaleeq Kasheeda',
-                            color: Colors.white,
+                           Navigator.of(context).push(createRoute(MapBuilding()));
+                          
+                        },
+                        child: _buildCard(
+                          svgPicture: SvgPicture.asset(
+                              'assets/images/map.svg',
+                              semanticsLabel: 'Tablet'),
+                          text: Text(
+                            DemoLocalization.of(context)
+                                .getTranslatedValue('FindLocation'),
+                            style: TextStyle(
+                              fontSize: 13,
+                              fontWeight: FontWeight.bold,
+                               fontFamily: 'Jameel Noori Nastaleeq Kasheeda',
+                              color: Colors.white,
+                            ),
                           ),
+                          context: context,
                         ),
-                        context: context,
                       ),
-                    ),
-          
+            
 
-          ],
-        ));
+            ],
+          )),
+    );
   }
 
   Route createRoute(widget) {

@@ -20,7 +20,7 @@ class CaretakerAppointmentReplyData extends ChangeNotifier{
         appointmentReplyMessage: map['ReplyMessage'],
         patientName: map['patientName'],
         patientEmail: map['patientEmail'],
-        caretakerName: map['Caretakerame'],
+        caretakerName: map['CaretakerName'],
         caretakerEmail: map['CaretakerEmail']);
   }
 
@@ -28,8 +28,8 @@ class CaretakerAppointmentReplyData extends ChangeNotifier{
         "ReplyMessage": this.appointmentReplyMessage,
         "patientName": this.patientName,
         "patientEmail": this.patientEmail,
-        "DoctorName": this.caretakerName,
-        "docEmail": this.caretakerEmail,
+        "CaretakerName": this.caretakerName,
+        "CaretakerEmail": this.caretakerEmail,
         "createdAt": FieldValue.serverTimestamp()
       };
 }
