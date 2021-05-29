@@ -233,7 +233,8 @@ class _MapBuildingState extends State<MapBuilding> {
                                             ? Provider.of<AppData>(context)
                                                 .userlocation
                                                 .placeName
-                                            : "Add Home",
+                                            : DemoLocalization.of(context)
+                              .getTranslatedValue('addHome'),
                                         style: TextStyle(
                                           fontSize: 18.0,
                                           color: Colors.white,

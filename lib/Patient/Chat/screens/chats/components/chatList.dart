@@ -108,12 +108,12 @@ class ChatList extends StatelessWidget {
                         ),
                       ),
                       onTap: (){
-                         context.read<Doctor>().chatDoctorName = doc.fullName;
+                       
                                       context.read<Token>().targetUserEmail = doc.docEmail;
                                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) =>ChatFunctionality(),
+                            builder: (context) =>ChatFunctionality(doc.fullName),
                           ),
                         );
                       },

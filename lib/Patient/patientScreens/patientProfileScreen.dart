@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:maseeha_update/Patient/googleSignIn.dart' as googleauth;
 import 'package:maseeha_update/Patient/patientScreens/patient_login.dart';
 import 'package:maseeha_update/Patient/patientScreensData/loginPatientData.dart';
+import 'package:maseeha_update/localization/demo_localization.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:provider/provider.dart';
 
@@ -69,7 +70,8 @@ class DrawerMenu extends StatelessWidget {
                             children: [
                               SizedBox(width: 10),
                               Text(
-                                "Name ",
+                               DemoLocalization.of(context)
+                        .getTranslatedValue('Name'),
                                 style: TextStyle(
                                   fontWeight: FontWeight.bold,
                                   fontFamily: 'Jameel Noori Nastaleeq Kasheeda',
@@ -100,7 +102,8 @@ class DrawerMenu extends StatelessWidget {
                             children: [
                               SizedBox(width: 10),
                               Text(
-                                "Email",
+                                DemoLocalization.of(context)
+                        .getTranslatedValue('Email'),
                                 style: TextStyle(
                                   fontWeight: FontWeight.bold,
                                   fontFamily: 'Jameel Noori Nastaleeq Kasheeda',
@@ -130,24 +133,27 @@ class DrawerMenu extends StatelessWidget {
               )
             : Container(
                 width: double.infinity,
+                height: 400,
                 padding: EdgeInsets.all(18),
                 color: Theme.of(context).primaryColor,
                 child: Center(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
-                      Container(
-                        width: 80,
-                        height: 80,
-                        margin: EdgeInsets.only(
-                          top: 50,
-                        ),
-                        decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          image: DecorationImage(
-                            image: NetworkImage(
-                                'https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=752&q=80'),
-                            fit: BoxFit.fill,
+                      Center(
+                        child: Container(
+                          width: 80,
+                          height: 120,
+                          margin: EdgeInsets.only(
+                            top: 50,
+                          ),
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            image: DecorationImage(
+                              image: NetworkImage(
+                                  'https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=752&q=80'),
+                              fit: BoxFit.fill,
+                            ),
                           ),
                         ),
                       ),
@@ -161,7 +167,8 @@ class DrawerMenu extends StatelessWidget {
                                     mainAxisAlignment: MainAxisAlignment.start,
                                     children: [
                                       Text(
-                                        "Name ",
+                                        DemoLocalization.of(context)
+                        .getTranslatedValue('Name'),
                                         style: TextStyle(
                                           fontWeight: FontWeight.bold,
                                           fontFamily:
@@ -196,7 +203,8 @@ class DrawerMenu extends StatelessWidget {
                                     mainAxisAlignment: MainAxisAlignment.start,
                                     children: [
                                       Text(
-                                        "Email ",
+                                       DemoLocalization.of(context)
+                        .getTranslatedValue('Email'),
                                         style: TextStyle(
                                           fontWeight: FontWeight.bold,
                                           fontFamily:
@@ -234,7 +242,8 @@ class DrawerMenu extends StatelessWidget {
                                           MainAxisAlignment.start,
                                       children: [
                                         Text(
-                                          "Address",
+                                          DemoLocalization.of(context)
+                        .getTranslatedValue('Address'),
                                           style: TextStyle(
                                             fontWeight: FontWeight.bold,
                                             fontFamily:
@@ -270,7 +279,8 @@ class DrawerMenu extends StatelessWidget {
                                     mainAxisAlignment: MainAxisAlignment.start,
                                     children: [
                                       Text(
-                                        "CNIC",
+                                       DemoLocalization.of(context)
+                        .getTranslatedValue('CNIC'),
                                         style: TextStyle(
                                           fontWeight: FontWeight.bold,
                                           fontFamily:
@@ -299,20 +309,25 @@ class DrawerMenu extends StatelessWidget {
                   ),
                 ),
               ),
-        ListTile(
-          title: Text('Profile'),
-          leading: Icon(Icons.person),
-          onLongPress: () {},
-        ),
+    
         Divider(),
         ListTile(
-          title: Text('Settings'),
+          title: Text(DemoLocalization.of(context)
+                        .getTranslatedValue('Settings'),
+                         style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontFamily: 'Jameel Noori Nastaleeq Kasheeda',
+                      ),),
           leading: Icon(Icons.settings),
           onLongPress: () {},
         ),
         Divider(),
         ListTile(
-            title: Text('Logout'),
+            title: Text(DemoLocalization.of(context)
+                        .getTranslatedValue('LogOut'), style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontFamily: 'Jameel Noori Nastaleeq Kasheeda',
+                      ),),
             leading: Icon(Icons.close),
             onTap: () async {
               if (googleauth.abc.isGoogleLoggedIn) {

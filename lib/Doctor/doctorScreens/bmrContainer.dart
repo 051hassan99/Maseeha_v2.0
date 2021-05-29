@@ -36,7 +36,8 @@ class BMRContainer extends StatelessWidget {
                       },
                     );
                   }),
-                  Text('Male',
+                  Text(  DemoLocalization.of(context)
+                          .getTranslatedValue('Male'),
                   style: TextStyle(
                       fontFamily: 'Jameel Noori Nastaleeq Kasheeda',
                       fontSize: 14 ),),
@@ -50,7 +51,8 @@ class BMRContainer extends StatelessWidget {
                       },
                     );
                   }),
-                  Text('Female',
+                  Text(  DemoLocalization.of(context)
+                          .getTranslatedValue('female'),
                   style: TextStyle(
                       fontFamily: 'Jameel Noori Nastaleeq Kasheeda' ,
                       fontSize: 14),),
@@ -132,7 +134,8 @@ class BMRContainer extends StatelessWidget {
                   // ignore: deprecated_member_use
                   child: FlatButton(
                     child: Text(
-                      'Result',
+                        DemoLocalization.of(context)
+                          .getTranslatedValue('Result'),
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 14,
@@ -184,7 +187,8 @@ class BMRContainer extends StatelessWidget {
                   // ignore: deprecated_member_use
                   child: FlatButton(
                     child: Text(
-                      'Clear',
+                        DemoLocalization.of(context)
+                          .getTranslatedValue('Clear'),
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 14,

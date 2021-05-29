@@ -433,26 +433,27 @@ class MessageAppointment extends StatelessWidget {
     return Card(
       child: Container(
         width: double.infinity,
-        height: size.height * 0.25,
+        height: size.height * 0.3,
         child: Column(
           children: [
             SizedBox(height: 10),
             Row(
               children: [
-                Container(
-                  child: Text(
-                    '  Patient Name:   ',
-                    style: TextStyle(
-                        fontSize: 14,
-                        fontWeight: FontWeight.bold),
-                  ),
+                 SizedBox(width: 10),
+                Text(
+                 DemoLocalization.of(context)
+                                          .getTranslatedValue('PatientName'),
+                  style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                       fontFamily: 'Jameel Noori Nastaleeq Kasheeda'),
                 ),
-                Container(
-                  child: Text(
-                    message.name ?? 'No data',
-                    style: TextStyle(
-                      fontSize: 12,
-                    ),
+                 SizedBox(width: 30),
+                Text(
+                  message.name ?? 'No data',
+                  style: TextStyle(
+                    fontSize: 14,
+                     fontFamily: 'Jameel Noori Nastaleeq Kasheeda'
                   ),
                 ),
               ],
@@ -462,19 +463,23 @@ class MessageAppointment extends StatelessWidget {
 
             Row(
               children: [
-                Container(
-                  child: Text(
-                    '  Patient Email:   ',
-                    style: TextStyle(
-                        fontSize: 14,
-                        fontWeight: FontWeight.bold),
-                  ),
+                  SizedBox(width: 10),
+                Text(
+                  DemoLocalization.of(context)
+                                          .getTranslatedValue('PatientEmail'),
+                  style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                       fontFamily: 'Jameel Noori Nastaleeq Kasheeda'),
                 ),
-                Container(
-                  child: Text(
+                 SizedBox(width: 20),
+                FittedBox(
+                  fit: BoxFit.contain,
+                      child: Text(
                     message.patientEmail ?? 'No data',
                     style: TextStyle(
-                      fontSize: 12,
+                      fontSize: 14,
+                       fontFamily: 'Jameel Noori Nastaleeq Kasheeda'
                     ),
                   ),
                 ),
@@ -483,41 +488,21 @@ class MessageAppointment extends StatelessWidget {
             SizedBox(height: 10),
             Row(
               children: [
-                Container(
-                  child: Text(
-                    '  Patient Age:      ',
-                    style: TextStyle(
-                        fontSize: 14,
-                        fontWeight: FontWeight.bold),
-                  ),
+                  SizedBox(width: 10),
+                Text(
+                   DemoLocalization.of(context)
+                                          .getTranslatedValue('PatientAge'),
+                  style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                       fontFamily: 'Jameel Noori Nastaleeq Kasheeda'),
                 ),
-                Container(
-                  child: Text(
-                    message.age.toString() ?? 'No data',
-                    style: TextStyle(
-                      fontSize: 12,
-                    ),
-                  ),
-                ),
-              ],
-            ),
-            SizedBox(height: 10),
-            Row(
-              children: [
-                Container(
-                  child: Text(
-                    '  Appointment Type:   ',
-                    style: TextStyle(
-                        fontSize: 14,
-                        fontWeight: FontWeight.bold),
-                  ),
-                ),
-                Container(
-                  child: Text(
-                    message.appointmenttype ?? 'No data',
-                    style: TextStyle(
-                      fontSize: 12,
-                    ),
+                 SizedBox(width: 40),
+                Text(
+                  message.age.toString() ?? 'No data',
+                  style: TextStyle(
+                    fontSize: 14,
+                     fontFamily: 'Jameel Noori Nastaleeq Kasheeda'
                   ),
                 ),
               ],
@@ -525,20 +510,43 @@ class MessageAppointment extends StatelessWidget {
             SizedBox(height: 10),
             Row(
               children: [
-                Container(
-                  child: Text(
-                    '  Patient Disease:   ',
-                    style: TextStyle(
-                        fontSize: 14,
-                        fontWeight: FontWeight.bold),
+                 SizedBox(width: 10),
+                Text(
+                  DemoLocalization.of(context)
+                                          .getTranslatedValue('AppointmentType'),
+                  style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                       fontFamily: 'Jameel Noori Nastaleeq Kasheeda'),
+                ),
+                  SizedBox(width: 30),
+                Text(
+                  message.appointmenttype ?? 'No data',
+                  style: TextStyle(
+                    fontSize: 14,
+                     fontFamily: 'Jameel Noori Nastaleeq Kasheeda'
                   ),
                 ),
-                Container(
-                  child: Text(
-                    message.diseaseDescription ?? 'No data',
-                    style: TextStyle(
-                      fontSize: 12,
-                    ),
+              ],
+            ),
+            SizedBox(height: 10),
+            Row(
+              children: [
+                 SizedBox(width: 10),
+                Text(
+                   DemoLocalization.of(context)
+                                          .getTranslatedValue('PatientDisease'),
+                  style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                       fontFamily: 'Jameel Noori Nastaleeq Kasheeda'),
+                ),
+                 SizedBox(width: 30),
+                Text(
+                  message.diseaseDescription ?? 'No data',
+                  style: TextStyle(
+                    fontSize: 14,
+                     fontFamily: 'Jameel Noori Nastaleeq Kasheeda'
                   ),
                 ),
               ],

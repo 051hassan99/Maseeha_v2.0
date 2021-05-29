@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:maseeha_update/Patient/Chat/screens/calls.dart';
+import 'package:maseeha_update/localization/demo_localization.dart';
 import 'components/chatList.dart';
 
 class ChatsScreen extends StatefulWidget {
@@ -28,14 +29,17 @@ class _ChatsScreenState extends State<ChatsScreen> {
         });
       },
       items: [
-        BottomNavigationBarItem(icon: Icon(Icons.messenger), label: "Chats" ),
+        BottomNavigationBarItem(icon: Icon(Icons.messenger), label: DemoLocalization.of(context)
+                              .getTranslatedValue('chats') ),
      //   BottomNavigationBarItem(icon: Icon(Icons.people), label: "People"),
-        BottomNavigationBarItem(icon: Icon(Icons.call), label: "Calls"),
+        BottomNavigationBarItem(icon: Icon(Icons.call), label: DemoLocalization.of(context)
+                              .getTranslatedValue('calls')),
         BottomNavigationBarItem(
           icon: Icon(Icons.list
           
           ),
-          label: "Registerd Doctors",
+          label:DemoLocalization.of(context)
+                              .getTranslatedValue('registeredDoctors'),
         ),
       ],
     );
@@ -61,7 +65,8 @@ class _ChatsScreenState extends State<ChatsScreen> {
     return AppBar(
       title: Padding(
         padding: const EdgeInsets.all(50.0),
-        child: Text("Maseeha Chats",style: TextStyle(
+        child: Text( DemoLocalization.of(context)
+                              .getTranslatedValue('maseehaChats'),style: TextStyle(
              fontFamily: 'Jameel Noori Nastaleeq Kasheeda',
              fontWeight: FontWeight.bold
         ),),

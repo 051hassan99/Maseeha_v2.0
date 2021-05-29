@@ -66,7 +66,8 @@ class UPEEContainer extends StatelessWidget {
                   // ignore: deprecated_member_use
                   child: FlatButton(
                     child: Text(
-                      'Result',
+                     DemoLocalization.of(context)
+                          .getTranslatedValue('Result'),
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 14,
@@ -118,7 +119,8 @@ class UPEEContainer extends StatelessWidget {
                   // ignore: deprecated_member_use
                   child: FlatButton(
                     child: Text(
-                      'Clear',
+                      DemoLocalization.of(context)
+                          .getTranslatedValue('Clear'),
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 14,

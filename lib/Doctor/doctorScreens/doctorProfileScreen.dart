@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:maseeha_update/Doctor/doctorScreens/doctor_login.dart';
 import 'package:maseeha_update/classes/doctor.dart';
+import 'package:maseeha_update/localization/demo_localization.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -15,6 +16,7 @@ class DoctorDrawerMenu extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
         Container(
+          height: 400,
           width: double.infinity,
           padding: EdgeInsets.all(30),
           color: Theme.of(context).primaryColor,
@@ -22,7 +24,7 @@ class DoctorDrawerMenu extends StatelessWidget {
             children: <Widget>[
               Container(
                 width: 80,
-                height: 80,
+                height: 120,
                 margin: EdgeInsets.only(
                   top: 30,
                 ),
@@ -43,7 +45,8 @@ class DoctorDrawerMenu extends StatelessWidget {
                     children: [
                       SizedBox(width: 10),
                       Text(
-                        "Name ",
+                        DemoLocalization.of(context)
+                        .getTranslatedValue('Name'),
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
                           fontFamily: 'Jameel Noori Nastaleeq Kasheeda',
@@ -70,7 +73,8 @@ class DoctorDrawerMenu extends StatelessWidget {
                     children: [
                       SizedBox(width: 10),
                       Text(
-                        "Email",
+                        DemoLocalization.of(context)
+                        .getTranslatedValue('Email'),
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
                           fontFamily: 'Jameel Noori Nastaleeq Kasheeda',
@@ -124,7 +128,8 @@ class DoctorDrawerMenu extends StatelessWidget {
                     children: [
                       SizedBox(width: 10),
                       Text(
-                        "Specialization ",
+                         DemoLocalization.of(context)
+                        .getTranslatedValue('specialization'),
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
                           fontFamily: 'Jameel Noori Nastaleeq Kasheeda',
@@ -147,22 +152,26 @@ class DoctorDrawerMenu extends StatelessWidget {
             ],
           ),
         ),
+      
+       Divider(),
         ListTile(
-          title: Text('Profile'),
-          leading: Icon(Icons.person),
-          onLongPress: () {},
-        ),
-        Divider(),
-        ListTile(
-          title: Text('Settings'),
+          title: Text(DemoLocalization.of(context)
+                        .getTranslatedValue('Settings'),
+                         style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontFamily: 'Jameel Noori Nastaleeq Kasheeda',
+                      ),),
           leading: Icon(Icons.settings),
           onLongPress: () {},
         ),
         Divider(),
-        Divider(),
         ListTile(
-            title: Text('Logout'),
-            leading: Icon(Icons.close),
+            title: Text(DemoLocalization.of(context)
+                        .getTranslatedValue('LogOut'), style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontFamily: 'Jameel Noori Nastaleeq Kasheeda',
+                      ),),
+                leading: Icon(Icons.close),
             onTap: () async {
               final auth = FirebaseAuth.instance;
               auth.signOut();

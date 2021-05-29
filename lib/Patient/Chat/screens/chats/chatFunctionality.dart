@@ -1,12 +1,21 @@
 import 'package:bubble/bubble.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:maseeha_update/Patient/patientScreensData/loginPatientData.dart';
-import 'package:maseeha_update/classes/doctor.dart';
 import 'package:maseeha_update/token.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
 
 class ChatFunctionality extends StatefulWidget {
+
+
+ final receiverName;
+
+
+  ChatFunctionality(
+    this.receiverName
+  ); 
+
+
   @override
   _ChatFunctionalityState createState() => _ChatFunctionalityState();
 }
@@ -35,7 +44,6 @@ class _ChatFunctionalityState extends State<ChatFunctionality> {
 
   @override
   Widget build(BuildContext context) {
-    final doctorName = context.read<Doctor>().chatDoctorName;
     final currentUser =
         context.read<LoginPatientData>().getCurrentPatientData();
     final toPerson = context.read<Token>().targetUserEmail;
@@ -44,7 +52,7 @@ class _ChatFunctionalityState extends State<ChatFunctionality> {
         title: Padding(
           padding: const EdgeInsets.all(58.0),
           child: Text(
-            doctorName,
+            widget.receiverName,
             style: TextStyle(fontSize: 14),
           ),
         ),

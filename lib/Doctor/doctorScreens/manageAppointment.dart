@@ -3,8 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_progress_hud/flutter_progress_hud.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:maseeha_update/Doctor/doctorScreens/apointment_messages.dart';
+import 'package:maseeha_update/Patient/Chat/screens/chats/chatFunctionality.dart';
 import 'package:maseeha_update/Patient/patientScreensData/newAppointmentdata.dart';
 import 'package:maseeha_update/localization/demo_localization.dart';
+import 'package:maseeha_update/token.dart';
+import 'package:provider/provider.dart';
 
 
 
@@ -78,7 +81,7 @@ class _ManageAppointmentState extends State<ManageAppointment> {
   Widget build(BuildContext context) {
 
    
-  
+     final token = Provider.of<Token>(context, listen: false);
     
     Size size = MediaQuery.of(context).size;
    
@@ -134,12 +137,12 @@ class _ManageAppointmentState extends State<ManageAppointment> {
               child: TextFormField(
                 controller: myQuery,
                 decoration: InputDecoration(
-                  hintText: 'Enter your query here',
+                  hintText:  DemoLocalization.of(context).getTranslatedValue('EnterYourQueryHere'),
                   hintStyle: TextStyle(
                     fontFamily: 'Jameel Noori Nastaleeq Kasheeda',
                   ),
                   border: InputBorder.none,
-                  contentPadding: EdgeInsets.only(left: 50),
+                  contentPadding: EdgeInsets.all(20),
                 ),
                 validator: (value) {
                   if (value.isEmpty) {
@@ -165,7 +168,7 @@ class _ManageAppointmentState extends State<ManageAppointment> {
                 splashColor: Colors.transparent,
                 highlightColor: Colors.transparent,
                 child: Text(
-                    "Search",
+                    DemoLocalization.of(context).getTranslatedValue('Search'),
                   style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontFamily: 'Jameel Noori Nastaleeq Kasheeda',
@@ -204,7 +207,7 @@ class _ManageAppointmentState extends State<ManageAppointment> {
                 splashColor: Colors.transparent,
                 highlightColor: Colors.transparent,
                 child: Text(
-                  "Delete",
+                   DemoLocalization.of(context).getTranslatedValue('Delete'),
                   style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 18,
@@ -244,6 +247,7 @@ class _ManageAppointmentState extends State<ManageAppointment> {
                 ),
                 onPressed: () {
                   
+                  
 
                 }),
       ]),
@@ -251,11 +255,26 @@ class _ManageAppointmentState extends State<ManageAppointment> {
       Column(
             children: [
 
+              SizedBox(height: 40),
+
               result == null ?
 
-               Text("No Data Right Now")
+               Text( DemoLocalization.of(context).getTranslatedValue('NoDataRightNow'))
              
-                : MessageAppointment(size: size, message: result,)
+                : GestureDetector(
+                        child: MessageAppointment(size: size, message: result,),
+                        onTap: (){
+
+                          token.targetUserEmail = result.patientEmail;
+                            Navigator.push(
+                                                context,
+                                                MaterialPageRoute(
+                                                    builder: (context) =>
+                                                        ChatFunctionality(result.name)));
+                          
+
+                        },
+                        )
 
               
               

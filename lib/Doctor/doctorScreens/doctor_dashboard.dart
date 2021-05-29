@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:maseeha_update/Doctor/doctorScreens/doctorProfileScreen.dart';
 import 'package:maseeha_update/Doctor/doctorScreens/right_hand_toDoctor.dart';
+import 'package:maseeha_update/Patient/TeleMedicine/UI/home_page.dart';
 import 'package:maseeha_update/localization/demo_localization.dart';
 import '../../lang_selector.dart';
 import 'apointment_messages.dart';
@@ -173,7 +174,14 @@ class DoctorDashboard extends StatelessWidget {
                     ),
                     SizedBox(width: 10),
                     GestureDetector(
-                      onTap: () {},
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => TeleMedicineHomePage(),
+                          ),
+                        );
+                      },
                       child: _buildCard(
                         svgPicture: SvgPicture.asset(
                             'assets/images/computer.svg',
