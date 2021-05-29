@@ -1,6 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:maseeha_update/Caretaker/caretaker_login.dart';
+import 'package:maseeha_update/caretaker/caretaker_login.dart';
 import 'package:maseeha_update/localization/demo_localization.dart';
 import 'package:maseeha_update/Assistants/authAssistant.dart' as auth_assistant;
 

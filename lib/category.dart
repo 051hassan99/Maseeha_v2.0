@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:maseeha_update/Caretaker/caretaker_login.dart';
 import 'package:maseeha_update/Patient/patientScreens/patient_login.dart';
+import 'package:maseeha_update/caretaker/caretaker_login.dart';
 import 'Doctor/doctorScreens/doctor_login.dart';
 import 'lang_selector.dart';
 import 'localization/demo_localization.dart';

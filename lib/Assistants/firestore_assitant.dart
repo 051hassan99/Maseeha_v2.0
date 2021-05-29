@@ -1,12 +1,12 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:maseeha_update/Caretaker/caretakerAppointmentReplyData.dart';
 import 'package:maseeha_update/Doctor/appointmentReply/appointmentReply.dart';
 import 'package:maseeha_update/Doctor/doctorScreensData/doctorRegisterData.dart';
 import 'package:maseeha_update/Patient/Custodian/addMedicineData.dart';
 import 'package:maseeha_update/Patient/caretakerAppointment/caretakerNewAppointmentData.dart';
 import 'package:maseeha_update/Patient/patientScreensData/AppUserData.dart';
 import 'package:maseeha_update/Patient/patientScreensData/newAppointmentdata.dart';
-import 'package:maseeha_update/Caretaker/caretakerRegister.dart';
+import 'package:maseeha_update/caretaker/caretakerAppointmentReplyData.dart';
+import 'package:maseeha_update/caretaker/caretakerRegister.dart';
 
 
 
