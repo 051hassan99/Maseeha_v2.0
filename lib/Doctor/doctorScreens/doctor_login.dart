@@ -294,11 +294,15 @@ class DoctorLogin extends StatelessWidget {
                                           } else {
                                             _formkey.currentState.save();
 
+                                            final isDoctor = await loginDoctorData.checkDoctor();
+                                            print("Here is the result \n");
+                                            print(isDoctor);
+
                                             final check =
                                                 await loginDoctorData
                                                     .signUser();
 
-                                            if (check) {
+                                            if (check && isDoctor) {
 
                                                SharedPreferences sp =
                                                     await SharedPreferences

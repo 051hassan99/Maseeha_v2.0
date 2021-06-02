@@ -1,9 +1,11 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 
 
 class LoginDoctorData extends ChangeNotifier {
   final auth = FirebaseAuth.instance;
+    FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
 
   
   String docEmail;
@@ -24,6 +26,23 @@ class LoginDoctorData extends ChangeNotifier {
   bool isEmailVerified(user) {
     return user.emailVerified;
   }
+
+
+   Future <bool> checkDoctor()async {
+      bool isDoctor = true;
+   await  firebaseFirestore
+        .collection("doctors")
+        .where("docEmail", isEqualTo: docEmail)
+        .get()
+        .then((value) {
+          if(value.size ==0){
+              isDoctor = false;
+          }
+    });
+    return isDoctor;
+ 
+  }
+
 
   Future<bool> signUser() async {
     bool check = false;

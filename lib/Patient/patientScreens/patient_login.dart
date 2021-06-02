@@ -108,8 +108,7 @@ class PatientLogin extends StatelessWidget {
     final loginPatientData =
         Provider.of<LoginPatientData>(context, listen: false);
 
-     final userType =
-        Provider.of<UserType>(context, listen: false);
+    final userType = Provider.of<UserType>(context, listen: false);
 
     Size size = MediaQuery.of(context).size;
     return SafeArea(
@@ -421,18 +420,16 @@ class PatientLogin extends StatelessWidget {
                                             } else {
                                               _formkey.currentState.save();
 
-                                            loginPatientData.toggleLoading();
+                                              loginPatientData.toggleLoading();
 
                                               final check =
                                                   await loginPatientData
                                                       .signUser();
 
+                                              if (check) {
+                                                await loginPatientData
+                                                    .getCurrentUserData();
 
-                                              if (check)  {
-
-                                               await loginPatientData.getCurrentUserData();
-                                        
-                                                
                                                 userType.userType = "Patient";
                                                 SharedPreferences sp =
                                                     await SharedPreferences
@@ -441,13 +438,21 @@ class PatientLogin extends StatelessWidget {
                                                 sp.setBool(
                                                     "SignedInPatient", true);
                                                 sp.setString(
-                                                    "name", loginPatientData.userList[E.patientName.index]);
-                                                 sp.setString(
-                                                    "email", loginPatientData.userList[E.email.index]);
-                                                 sp.setString(
-                                                    "address", loginPatientData.userList[E.address.index]);
-                                                 sp.setString(
-                                                    "cnic", loginPatientData.userList[E.cnic.index]);
+                                                    "name",
+                                                    loginPatientData.userList[
+                                                        E.patientName.index]);
+                                                sp.setString(
+                                                    "email",
+                                                    loginPatientData.userList[
+                                                        E.email.index]);
+                                                sp.setString(
+                                                    "address",
+                                                    loginPatientData.userList[
+                                                        E.address.index]);
+                                                sp.setString(
+                                                    "cnic",
+                                                    loginPatientData.userList[
+                                                        E.cnic.index]);
 
                                                 Fluttertoast.showToast(
                                                     msg:
@@ -465,15 +470,11 @@ class PatientLogin extends StatelessWidget {
                                                       builder: (context) =>
                                                           PatientDashboard()),
                                                 );
-                                              } 
-                                              
-                                              
-                                              else {
-                                                loginPatientData.toggleLoading();
+                                              } else {
+                                                loginPatientData
+                                                    .toggleLoading();
                                                 createAlertDialog(context);
                                               }
-
-                                           
                                             }
                                           }),
                                     ),

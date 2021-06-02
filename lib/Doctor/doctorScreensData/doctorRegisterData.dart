@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:http/http.dart' as http;
@@ -78,9 +77,9 @@ class DoctorRegisterData extends ChangeNotifier {
         try {
           print('Uploading data');
           firestoreAssitant.sendDoctorData(this);
-          print("Getting Token Id...");
-          tokenId = await tokenAssistant.getToken();
-          await firestoreAssitant.sendTokenData(this);
+        //  print("Getting Token Id...");
+         // tokenId = await tokenAssistant.getToken();
+         // await firestoreAssitant.sendTokenData(this);
         } catch (_) {
           print('Failed to upload');
         }
@@ -96,16 +95,23 @@ class DoctorRegisterData extends ChangeNotifier {
     return false;
   }
 
-  Future<bool> appConnect() async {
-    var data =
-        await getData('http://10.0.2.2:5000/?pmdc=$pmdc&docName=$docName');
-    sleep(const Duration(seconds: 5));
+ Future<bool> appConnect() async {
+   bool isDoctor = false;
+    Uri url = Uri.parse(
+        'http://192.168.43.35:8000/doctor?pmdc=$pmdc&docName=$docName');
+    var data = await getData(url);
+    //sleep(const Duration(seconds: 5));
     var decodedData = jsonDecode(data);
+
     if (decodedData['query'] == 'true') {
-      return true;
+      isDoctor = true;
     } else {
       return false;
     }
+
+  
+    return isDoctor;
     //print(decodedData['query']);
   }
+
 }

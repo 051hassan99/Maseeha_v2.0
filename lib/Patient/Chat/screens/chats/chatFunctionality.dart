@@ -104,8 +104,8 @@ class _ChatFunctionalityState extends State<ChatFunctionality> {
                                 : BubbleNip.leftTop,
                             margin: BubbleEdges.only(
                               top: 10,
-                              left: currentUser == doc.data()['from'] ? 255 : 0,
-                              right: currentUser != doc.data()['from'] ? 255 : 0,
+                              left: currentUser == doc.data()['from'] ? 180 : 0,
+                              right: currentUser != doc.data()['from'] ? 180 : 0,
                             ),
                           ),
                         );

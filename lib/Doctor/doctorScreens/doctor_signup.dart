@@ -167,73 +167,81 @@ class DoctorSignup extends StatelessWidget {
                                   child: Row(
                                     children: [
                                       Container(
-                                        margin: EdgeInsets.only(
-                                          left: 20,
-                                        ),
-                                        width: (size.width) / 3,
-                                        decoration: BoxDecoration(
-                                          color: Theme.of(context).primaryColor,
-                                          borderRadius:
-                                              BorderRadius.circular(80),
-                                        ),
-                                        // ignore: deprecated_member_use
-                                        child: FlatButton(
-                                            splashColor: Colors.transparent,
-                                            highlightColor: Colors.transparent,
-                                            child: Text(
-                                              DemoLocalization.of(context)
-                                                  .getTranslatedValue('signup'),
-                                              style: TextStyle(
-                                                  fontWeight: FontWeight.bold,
-                                                   fontFamily: 'Jameel Noori Nastaleeq Kasheeda',
-                                                  fontSize: 18,
-                                                  color: Colors.white),
-                                            ),
-                                            onPressed: () async {
-                                              /*  if (!_formkey.currentState
+                                          margin: EdgeInsets.only(
+                                            left: 20,
+                                          ),
+                                          width: (size.width) / 3,
+                                          decoration: BoxDecoration(
+                                            color:
+                                                Theme.of(context).primaryColor,
+                                            borderRadius:
+                                                BorderRadius.circular(80),
+                                          ),
+                                          // ignore: deprecated_member_use
+                                          child: FlatButton(
+                                              splashColor: Colors.transparent,
+                                              highlightColor:
+                                                  Colors.transparent,
+                                              child: Text(
+                                                DemoLocalization.of(context)
+                                                    .getTranslatedValue(
+                                                        'signup'),
+                                                style: TextStyle(
+                                                    fontWeight: FontWeight.bold,
+                                                    fontFamily:
+                                                        'Jameel Noori Nastaleeq Kasheeda',
+                                                    fontSize: 18,
+                                                    color: Colors.white),
+                                              ),
+                                              onPressed: () async {
+                                                /*  if (!_formkey.currentState
                                                   .validate()) {
                                                 return;
                                               } else {
-                                                print('here on connect!');
+                                                print('here on connect!')};*/
 
-                                                // final resultVariable =
-                                                //     await doctorRegisterData
-                                                //         .appConnect();
-                                                // if (resultVariable) {
-                                                //   print('true'); */
+                                                final isDoctor =
+                                                    await doctorRegisterData
+                                                        .appConnect();
+                                                if (isDoctor) {
+                                                  print('DOCTOR IS AUTHENTICATED SUCCESFULLY');
 
-                                              final variable = await Provider
-                                                      .of<DoctorRegisterData>(
-                                                          context,
-                                                          listen: false)
-                                                  .registerUser();
+                                             /*     final variable = await Provider
+                                                          .of<DoctorRegisterData>(
+                                                              context,
+                                                              listen: false)
+                                                      .registerUser();
 
-                                              if (variable) {
-                                                Fluttertoast.showToast(
-                                                    msg: 'You have succesfully signed up',
-                                                    toastLength:
-                                                        Toast.LENGTH_SHORT,
-                                                    gravity:
-                                                        ToastGravity.BOTTOM,
-                                                    backgroundColor:
-                                                        Colors.blue,
-                                                    textColor: Colors.white);
-                                                Navigator.push(
-                                                  context,
-                                                  MaterialPageRoute(
-                                                      builder: (context) =>
-                                                          DoctorLogin()),
-                                                );
-                                              }
+                                                  if (variable && isDoctor) {
+                                                    Fluttertoast.showToast(
+                                                        msg:
+                                                            'You have succesfully signed up',
+                                                        toastLength:
+                                                            Toast.LENGTH_SHORT,
+                                                        gravity:
+                                                            ToastGravity.BOTTOM,
+                                                        backgroundColor:
+                                                            Colors.blue,
+                                                        textColor:
+                                                            Colors.white);
+                                                    Navigator.push(
+                                                      context,
+                                                      MaterialPageRoute(
+                                                          builder: (context) =>
+                                                              DoctorLogin()),
+                                                    );
+                                                  }
 
-                                              print(context
-                                                  .read<DoctorRegisterData>()
-                                                  .docName);
-                                              print(context
-                                                  .read<DoctorRegisterData>()
-                                                  .docEmail);
-                                            }),
-                                      ),
+                                                  print(context
+                                                      .read<
+                                                          DoctorRegisterData>()
+                                                      .docName);
+                                                  print(context
+                                                      .read<
+                                                          DoctorRegisterData>()
+                                                      .docEmail); */
+                                                }
+                                              })),
                                       Container(
                                         margin: EdgeInsets.only(
                                           left: 10,
@@ -256,7 +264,8 @@ class DoctorSignup extends StatelessWidget {
                                               style: TextStyle(
                                                   fontWeight: FontWeight.bold,
                                                   fontSize: 18,
-                                                   fontFamily: 'Jameel Noori Nastaleeq Kasheeda',
+                                                  fontFamily:
+                                                      'Jameel Noori Nastaleeq Kasheeda',
                                                   color: Colors.white),
                                             ),
                                             onPressed: () {

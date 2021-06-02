@@ -7,6 +7,7 @@ import 'package:maseeha_update/Patient/patientScreensData/AppUserData.dart';
 import 'package:maseeha_update/Patient/patientScreensData/newAppointmentdata.dart';
 import 'package:maseeha_update/caretaker/caretakerAppointmentReplyData.dart';
 import 'package:maseeha_update/caretaker/caretakerRegister.dart';
+import 'package:maseeha_update/classes/review.dart';
 
 
 
@@ -101,4 +102,11 @@ class FirestoreAssitant {
 
     return apps;
   }
+
+  Future<void> sendReview(Review data) async {
+    Map<String, dynamic> reviewData = data.toJson;
+
+    await firebaseFirestore.collection('Reviews').add(reviewData);
+  }
+
 }

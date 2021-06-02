@@ -64,10 +64,10 @@ class CaretakerRegisterData extends ChangeNotifier {
         try{
            print('Uploading data');
            await firestoreAssitant.sendCaretakerData(this);
-          print("Getting Token Id...");
+      /*    print("Getting Token Id...");
           tokenId = await tokenAssistant.getToken();
           print("Token id is "+tokenId);
-          await firestoreAssitant.sendTokenData(this);
+          await firestoreAssitant.sendTokenData(this); */
        
         }
 

@@ -139,5 +139,12 @@
     "AppointmentType":"اپائنٹمنٹ کی قسم",
     "PatientDisease":"مریض کا مرض",
     "Clear":"کلیئر",
-    "Result":"نتیجہ"
+    "Result":"نتیجہ",
+    "ReviewSection":"جائزہ سیکشن",
+    "DoctorReview":"ڈاکٹر کا جائزہ",
+    "CaretakerReview":"نگراں جائزہ",
+    "rateMessage":"10 میں سے شرح",
+    "writeReview":"اپنا جائزہ لکھیں",
+    "CaretakerName":"نگراں نام",
+    "MessageFromCaretaker":"نگران کا پیغام"
 }

@@ -139,5 +139,12 @@
     "AppointmentType":"Appointment Type",
     "PatientDisease":"Patient Disease",
     "Clear":"Clear",
-    "Result":"Result"
+    "Result":"Result",
+    "ReviewSection":"Review Section",
+    "DoctorReview":"Doctor Review",
+    "CaretakerReview":"Caretaker Review",
+    "rateMessage":"Rate out of 10",
+    "writeReview":"Write your review",
+    "CaretakerName":"Cartaker Name",
+    "MessageFromCaretaker":"Message From Caretaker"
 }

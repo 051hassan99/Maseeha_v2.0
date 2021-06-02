@@ -6,6 +6,7 @@ import 'package:maseeha_update/Patient/Custodian/patientCustodianSelection.dart'
 import 'package:maseeha_update/Patient/TeleMedicine/UI/home_page.dart';
 import 'package:maseeha_update/Patient/patientScreens/caretakerAppointmentSelection.dart';
 import 'package:maseeha_update/Patient/patientScreens/patientProfileScreen.dart';
+import 'package:maseeha_update/Patient/patientScreens/reviewSelection.dart';
 //import 'package:maseeha_update/Patient/TeleMedicine/videoHomePage.dart';
 import 'package:maseeha_update/localization/demo_localization.dart';
 import '../../lang_selector.dart';
@@ -341,6 +342,47 @@ class PatientDashboard extends StatelessWidget {
                         context: context,
                       ),
                     ),
+                  ],
+                ),
+              ),
+            ),
+
+            FittedBox(
+              fit: BoxFit.contain,
+              child: Padding(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 80.0,
+                  vertical: 20.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    GestureDetector(
+                      onTap: () {
+                          Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => ReviewSelection(),
+                          ),
+                        );
+                      },
+                      child: _buildCard(
+                        svgPicture: SvgPicture.asset(
+                            'assets/images/customer-review.svg',
+                            semanticsLabel: 'Tablet'),
+                        text: Text(
+                          DemoLocalization.of(context)
+                              .getTranslatedValue('ReviewSection'),
+                          style: TextStyle(
+                            fontSize: 13,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white,
+                            fontFamily: 'Jameel Noori Nastaleeq Kasheeda',
+                          ),
+                        ),
+                        context: context,
+                      ),
+                    ),
+                   
                   ],
                 ),
               ),
